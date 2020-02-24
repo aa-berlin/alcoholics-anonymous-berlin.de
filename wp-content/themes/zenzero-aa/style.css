@@ -9,6 +9,48 @@ Text Domain: zenzero-aa
 Domain Path: /languages
 */
 
+.site-header {
+    padding-left: 3.5em;
+    padding-right: 3.5em;
+}
+
+.menu-toggle {
+    border: 0;
+    margin: 0;
+    padding: 1.5em;
+    float: none;
+}
+
+@media screen and (max-width: 767px) {
+
+    .site-header {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+}
+
+.main-navigation {
+    padding: 0;
+}
+
+.main-navigation a {
+    border-bottom: 0;
+}
+
+.main-navigation ul li .indicator {
+    border: 0;
+}
+
+.main-navigation.toggled .nav-menu {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.main-navigation.toggled .nav-menu ul {
+    padding-left: 1.5em;
+    padding-right: 0;
+}
+
 .wp-block-latest-posts {
     margin-left: 0;
 }
