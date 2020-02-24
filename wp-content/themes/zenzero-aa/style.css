@@ -24,7 +24,7 @@ Domain Path: /languages
     margin-top: 5px;
 }
 
-@media screen and (max-width: 767px) {
+@media all and (max-width: 767px) {
 
     .site-content {
         padding-left: 2.5em;
@@ -39,6 +39,7 @@ Domain Path: /languages
 
 .main-navigation {
     padding: 0;
+    margin-top: 0;
 }
 
 .main-navigation a {
@@ -108,7 +109,8 @@ h4 {
     position: relative;
 }
 
-@media (max-width: 767px) {
+@media all and (max-width: 767px) {
+
     #tsml #location .page-header,
     #tsml #meeting .page-header,
     #tsml #meetings .page-header {
@@ -148,7 +150,8 @@ h4 {
     margin: 0;
 }
 
-@media (max-width: 767px) {
+@media all and (max-width: 767px) {
+
     #tsml #location .page-header h1,
     #tsml #meeting .page-header h1,
     #tsml #meetings .page-header h1 {
@@ -242,7 +245,8 @@ h4 {
 }
 
 
-@media (min-width: 992px) {
+@media all and (min-width: 992px) {
+
     #tsml #location #feedback .panel.expanded, 
     #tsml #meeting #feedback .panel.expanded {
         margin-right: -100%;
