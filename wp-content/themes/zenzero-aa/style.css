@@ -1,0 +1,197 @@
+/*
+Theme Name: Zenzero (AA Customized)
+Theme URI: https://crestaproject.com/downloads/zenzero/
+Author: Rizzo Andrea - CrestaProject.com + alcoholics-anonymous-berlin.de
+Author URI: https://crestaproject.com
+Template: zenzero
+Version: 1.0.0
+Text Domain: zenzero-aa
+Domain Path: /languages
+*/
+
+.wp-block-latest-posts {
+    margin-left: 0;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.3;
+}
+
+h1 a {
+    color: inherit;
+}
+
+h2 a {
+    color: inherit;
+}
+
+#toTop.showTop.withS {
+    bottom: 7em;
+    font-size: 25px;
+}
+
+.single .byline {
+    display: none;
+}
+
+.showSide, 
+.showSearch {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    font-size: 18px;
+}
+
+#tsml #location .page-header,
+#tsml #meeting .page-header,
+#tsml #meetings .page-header {
+    background: none;
+    border: 0;
+    margin-top: 3em;
+    margin-bottom: 2.5em;
+    padding: 0;
+    position: relative;
+}
+
+@media (max-width: 767px) {
+    #tsml #location .page-header,
+    #tsml #meeting .page-header,
+    #tsml #meetings .page-header {
+        margin-top: 1.5em;
+    }
+}
+
+#tsml #location .page-header h1 + a,
+#tsml #meeting .page-header h1 + a,
+#tsml #meetings .page-header h1 + a {
+    position: absolute;
+    top: 100%;
+}
+
+#tsml #location .page-header::after,
+#tsml #meeting .page-header::after,
+#tsml #meetings .page-header::after {
+    display: block;
+    content: "";
+    height: .5em;
+    width: .5em;
+    background: rgba(0,0,0,.08);
+    border-radius: 50%;
+    margin: 1.5em auto 30px auto;
+    box-shadow: 1em 0em rgba(0,0,0,.08), -1em 0em rgba(0,0,0,.08);
+}
+
+#tsml #location .page-header h1,
+#tsml #meeting .page-header h1,
+#tsml #meetings .page-header h1 {
+    font-size: 28px;
+    letter-spacing: -2px;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1.6;
+    font-weight: 700;
+    margin: 0;
+}
+
+@media (max-width: 767px) {
+    #tsml #location .page-header h1,
+    #tsml #meeting .page-header h1,
+    #tsml #meetings .page-header h1 {
+        font-size: 18px;
+    }
+}
+
+#tsml #meetings .row.title {
+    display: block;
+    margin-top: -15px;
+}
+
+#tsml #meetings .row.controls {
+    margin-left: -30px;
+    margin-right: -15px;
+}
+
+#tsml #meetings .row.controls > * {
+    padding-right: 0;
+}
+
+#tsml a.list-group-item, 
+#tsml button.list-group-item {
+    color: inherit;
+}
+
+#tsml .btn {
+    border-radius: 2px;
+}
+
+#tsml .btn.active, 
+#tsml .btn:active {
+    box-shadow: inset 0 3px 3px rgba(0,0,0,.1);
+}
+
+#tsml .row > * {
+    padding-right: 0;
+}
+
+#tsml #meetings .controls input {
+    border-radius: 2px 0 0 2px;
+}
+
+#tsml #meetings .controls .input-group-btn:last-child > .btn {
+    border-radius: 0 2px 2px 0;
+}
+
+#tsml .dropdown-menu {
+    border-radius: 2px;
+}
+
+#tsml #meetings .results #table-wrapper {
+    margin-bottom: 30px;
+}
+
+#tsml #meetings .results table {
+    table-layout: fixed;
+    border-bottom: 1px solid #ddd;
+}
+
+#tsml #meetings .results table thead th {
+    padding-top: 5px;
+}
+
+#tsml #location .main,
+#tsml #meeting .main {
+    margin-left: -15px;
+    margin-right: -15px;
+    width: 100%;
+}
+
+#tsml #location .panel,
+#tsml #meeting .panel {
+    border-radius: 2px;
+}
+
+#tsml #location .panel ul.list-group .list-group-item.list-group-item-meetings ul li, 
+#tsml #meeting .panel ul.list-group .list-group-item.list-group-item-meetings ul li {
+    padding-left: 80px;
+}
+
+#tsml #location .panel ul.list-group .list-group-item.list-group-item-meetings ul li span, 
+#tsml #meeting .panel ul.list-group .list-group-item.list-group-item-meetings ul li span {
+    color: inherit;
+    text-align: left;
+}
+
+#tsml #location .panel ul.list-group .list-group-item h3.list-group-item-heading, 
+#tsml #meeting .panel ul.list-group .list-group-item h3.list-group-item-heading {
+    color: inherit;
+}
+
+
+@media (min-width: 992px) {
+    #tsml #location #feedback .panel.expanded, 
+    #tsml #meeting #feedback .panel.expanded {
+        margin-right: -100%;
+    }
+}
+

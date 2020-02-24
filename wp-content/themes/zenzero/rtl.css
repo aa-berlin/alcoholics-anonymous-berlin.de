@@ -1,0 +1,147 @@
+/*
+Theme Name: zenzero
+
+Adding support for language written in a Right To Left (RTL) direction is easy -
+it's just a matter of overwriting all the horizontal positioning attributes
+of your CSS stylesheet in a separate stylesheet file named rtl.css.
+
+http://codex.wordpress.org/Right_to_Left_Language_Support
+
+*/
+
+body {
+	direction: rtl;
+	unicode-bidi: embed;
+}
+.spaceLeft {
+	padding-right: 5px;
+	padding-left: 0px;
+}
+.spaceRight {
+	padding-left: 5px;
+	padding-right: 0px;
+}
+.spaceLeftDouble {
+	padding-right: 10px;
+	padding-left: 0px;
+}
+.spaceRightDouble {
+	padding-left: 10px;
+	padding-right: 0px;
+}
+#comments article footer img {
+	float: right;
+	margin-right: 0;
+	margin-left: 1em;
+}
+#comments ol ol {
+	padding-left: 0;
+	padding-right: 5%;
+}
+#comments ol ol article {
+	padding-left: 0;
+	padding-right: 5%;
+	border-right: 2px solid rgba(0,0,0,.08);
+	border-left: 0;
+}
+#comments .reply {
+	left: 0;
+	right: initial;
+}
+.comment-reply-title small {
+	float: left;
+}
+textarea {
+	padding-left: 0;
+	padding-right: 14px;
+}
+.post-navigation .nav-next .meta-nav {
+	padding-right: 0;
+	padding-left: 15px;
+}
+.post-navigation .nav-previous .meta-nav {
+	padding-left: 0;
+	padding-right: 15px;
+}
+.comment-navigation .nav-next, .paging-navigation .nav-next, .post-navigation .nav-next {
+	text-align: left;
+}
+#close-search {
+	float: left;
+}
+.page-header .page-title img {
+	margin-left: 0.5em;
+	margin-right: 0;
+}
+
+.main-navigation li a:not(:last-child):after {
+    margin: 0 6px 0 0;
+    float: left;
+}
+.main-navigation ul ul li a:not(:last-child):after {
+    content: "\f0d9";
+    margin: 0 6px 0 0;
+    float: left;
+}
+.main-navigation ul ul ul {
+	right: 100%;
+	left: inherit;
+}
+.readMoreLink i.fa-angle-double-right:before {
+	content: "\f100";
+}
+.main-navigation ul ul a {
+	text-align: right;
+}
+aside ul.menu .indicatorBar {
+	right: inherit;
+	left: 0;
+}
+aside ul.menu ul.sub-menu {
+	padding-left: 0em;
+	padding-right: 1.5em;
+}
+.widget_archive li a, .widget_categories li a {
+	float: right;
+}
+.widget_archive li, .widget_categories li {
+	text-align: left;
+}
+.widget.widget_categories li:before {
+	padding-right: inherit;
+	padding-left: 0.5em;
+	float: right;
+}
+.widget.widget_archive li:before {
+	content: "\f0d9";
+	padding-right: inherit;
+	padding-left: 0.5em;
+	float: right;
+}
+@media all and (max-width: 1024px) {
+	.menu-toggle, .main-navigation.toggled .nav-menu {
+		text-align: right;
+		float: right;
+	}
+	.menu-toggle i {
+		float: left;
+	}
+	.main-navigation.toggled .nav-menu ul {
+		right: inherit;
+		left: auto;
+		padding-right: 5%;
+		padding-left: inherit;
+	}
+	.main-navigation ul li .indicator {
+		left: 0;
+		right: inherit;
+		border-right: 1px solid rgba(0,0,0,.08);
+		border-left: none;
+	}
+	.main-navigation ul ul {
+		float: right;
+	}
+	.main-navigation ul ul a {
+		text-align: right;
+	}
+}
