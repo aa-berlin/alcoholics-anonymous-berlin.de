@@ -20,6 +20,10 @@ Domain Path: /languages
     float: none;
 }
 
+.menu-toggle i {
+    margin-top: 5px;
+}
+
 @media screen and (max-width: 767px) {
 
     .site-content {
