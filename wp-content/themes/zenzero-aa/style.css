@@ -182,7 +182,7 @@ h4 {
 }
 
 .single .byline {
-    display: none;
+    display: none !important;
 }
 
 .showSide, 
