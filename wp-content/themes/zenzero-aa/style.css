@@ -142,6 +142,7 @@ Domain Path: /languages
 
 .main-navigation ul li .indicator {
     border: 0;
+    cursor: pointer;
 }
 
 .main-navigation.toggled .nav-menu {
