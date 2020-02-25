@@ -41,6 +41,10 @@ if ( function_exists( 'wp_body_open' ) ) {
                 endif; ?>
             </div>
 
+            <?php if ( is_active_sidebar( 'header_teasers' ) ) : ?>
+                <?php dynamic_sidebar( 'header_teasers' ); ?>
+            <?php endif; ?>
+
             <?php $zenzero_theme_options_socialheader = get_theme_mod('zenzero_theme_options_socialheader', '');
             if ($zenzero_theme_options_socialheader == 1) : ?>
                 <?php zenzero_social_button(); ?>

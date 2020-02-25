@@ -10,18 +10,95 @@ Domain Path: /languages
 */
 
 .site-header {
-    padding-left: 3.5em;
-    padding-right: 3.5em;
+    padding: 1.5em 3.5em 0 3.5em;
 }
 
-.menu-toggle {
-    border-color: transparent;
-    padding: 1.5em 1.5em;
-    float: none;
-}
-
-.menu-toggle i {
+.site-header .hotline-teaser {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 13px;
     margin-top: 5px;
+    height: 0;
+    line-height: 1.4em;
+}
+
+.site-header .hotline-teaser .line {
+    font-weight: normal;
+    display: block;
+    max-width: 50%;
+    margin: 0 auto;
+    white-space: nowrap;
+}
+
+@media all and (max-width: 479px) {
+
+    .site-header {
+        padding-top: 1em;
+        padding-bottom: 0;
+    }
+
+    .site-header .hotline-teaser {
+        height: auto;
+        margin-bottom: -10px;
+    }
+
+    .site-header .hotline-teaser .line {
+        max-width: none;
+    }
+}
+
+@media all and (min-width: 1025px) {
+
+    .site-header .hotline-teaser {
+        height: auto;
+    }
+
+    .site-header .hotline-teaser .line {
+        max-width: none;
+    }
+}
+
+.site-header .hotline-teaser .call-icon {
+    font-size: 24px;
+    vertical-align: middle;
+    background: rgb(205, 223, 223);
+    color: rgb(0, 63, 122);
+    border-radius: 2px;
+    padding: 0 3px;
+    margin-right: 5px;
+    position: relative;
+    top: 2px;
+    animation: shake 0.8s cubic-bezier(.36,.07,.19,.97) both;
+    animation-delay: 2s;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1200px;
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 1px, 0);
+    }
+
+    20%, 80% {
+        transform: translate3d(2px, -1px, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 2px, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(4px, -2px, 0);
+    }
+}
+
+.site-header .hotline-teaser .call-link {
+    font-size: 16px;
+    vertical-align: middle;
+    font-weight: bold;
+    position: relative;
+    z-index: 10;
 }
 
 @media all and (max-width: 767px) {
@@ -34,6 +111,23 @@ Domain Path: /languages
     .site-header {
         padding-left: 1em;
         padding-right: 1em;
+    }
+}
+
+.menu-toggle {
+    border-color: transparent;
+    padding: 1.5em 1.5em;
+    float: none;
+}
+
+.menu-toggle i {
+    margin-top: 5px;
+}
+
+@media all and (min-width: 480px) {
+
+    .menu-toggle {
+        margin-top: 20px;
     }
 }
 
