@@ -64,18 +64,23 @@ Domain Path: /languages
     background: rgb(205, 223, 223);
     color: rgb(0, 63, 122);
     border-radius: 2px;
-    padding: 0 3px;
+    padding: 1px 3px 0 3px;
     margin-right: 5px;
     position: relative;
     top: 2px;
-    animation: shake 0.8s cubic-bezier(.36,.07,.19,.97) both;
+    animation: shake-1 0.8s cubic-bezier(.36,.07,.19,.97) both;
     animation-delay: 2s;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     perspective: 1200px;
 }
 
-@keyframes shake {
+.site-header .hotline-teaser:hover .call-icon {
+    animation-delay: 0s;
+    animation-name: shake-2;
+}
+
+@keyframes shake-1 {
     10%, 90% {
         transform: translate3d(-1px, 1px, 0);
     }
@@ -85,11 +90,29 @@ Domain Path: /languages
     }
 
     30%, 50%, 70% {
-        transform: translate3d(-4px, 2px, 0);
+        transform: translate3d(-3px, 2px, 0);
     }
 
     40%, 60% {
-        transform: translate3d(4px, -2px, 0);
+        transform: translate3d(3px, -2px, 0);
+    }
+}
+
+@keyframes shake-2 {
+    10%, 90% {
+        transform: translate3d(-1px, 1px, 0);
+    }
+
+    20%, 80% {
+        transform: translate3d(1px, -1px, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate3d(-2px, 2px, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(2px, -2px, 0);
     }
 }
 
@@ -99,6 +122,14 @@ Domain Path: /languages
     font-weight: bold;
     position: relative;
     z-index: 10;
+}
+
+.site-header .hotline-teaser .call-link:hover {
+    color: #fff;
+}
+
+.site-header .hotline-teaser .call-link:hover .call-icon {
+    background: #fff;
 }
 
 @media all and (max-width: 767px) {
