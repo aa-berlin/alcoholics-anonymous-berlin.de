@@ -6,6 +6,8 @@
 .env
 docker-compose.override.yml
 /wp-content/plugins/akismet
+/wp-content/plugins/disable-comments
+/wp-content/plugins/redirection
 /wp-content/plugins/index.php
 /wp-content/plugins/hello.php
 /wp-content/index.php
