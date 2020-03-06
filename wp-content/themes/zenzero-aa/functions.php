@@ -25,3 +25,10 @@ function zenzero_aa_widgets_init() {
         'after_title' => '</p>',
     ] );
 }
+
+if (function_exists('tsml_custom_types')) {
+    tsml_custom_types(array(
+        'NDA' => 'No Dogs Allowed',
+        'IX' => 'Inter',
+    ));
+}
