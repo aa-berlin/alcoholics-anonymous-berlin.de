@@ -23,4 +23,10 @@ To run cron tasks, set up a cron job by calling he following URL:
 https://<your-website>/wp-cron.php?doing_wp_cron&cron_key=<your-cron-key>
 ```
 
+The command in full using wget:
+
+```
+wget -q -O - https://<your-website>/wp-cron.php?doing_wp_cron&cron_key=<your-cron-key> >/dev/null 2>&1
+```
+
 Where `<your-website>` might just be `www.alcoholics-anonymous-berlin.de` and `<your-cron-key>` must match the pattern in your top-level [.htaccess](./.htaccess).
