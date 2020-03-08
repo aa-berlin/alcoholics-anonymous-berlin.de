@@ -1,0 +1,31 @@
+# Deny access to /wp-cron.php unless caller knows a secret key
+RewriteCond %{QUERY_STRING} !cron_key=1234567890-234567890
+RewriteRule wp-cron.php - [F]
+
+# Compress HTML, CSS, JavaScript, Text, Images, XML and fonts
+AddOutputFilterByType DEFLATE application/atom+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/json
+AddOutputFilterByType DEFLATE application/manifest+json
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+AddOutputFilterByType DEFLATE application/x-font
+AddOutputFilterByType DEFLATE application/x-font-opentype
+AddOutputFilterByType DEFLATE application/x-font-otf
+AddOutputFilterByType DEFLATE application/x-font-truetype
+AddOutputFilterByType DEFLATE application/x-font-ttf
+AddOutputFilterByType DEFLATE application/x-javascript
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE font/eot
+AddOutputFilterByType DEFLATE font/opentype
+AddOutputFilterByType DEFLATE font/otf
+AddOutputFilterByType DEFLATE font/ttf
+AddOutputFilterByType DEFLATE image/svg+xml
+AddOutputFilterByType DEFLATE image/x-icon
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/javascript
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/vcard
+AddOutputFilterByType DEFLATE text/xml
