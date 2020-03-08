@@ -7,6 +7,7 @@ add_action( 'wp_enqueue_scripts', 'zenzero_aa_scripts' );
 add_action( 'widgets_init', 'zenzero_aa_widgets_init' );
 add_action( 'wp_ajax_tsml_pdf', 'zenzero_aa_tsml_ajax_pdf', 0 );
 add_action( 'wp_ajax_nopriv_tsml_pdf', 'zenzero_aa_tsml_ajax_pdf', 0 );
+add_filter( 'rewrite_rules_array', 'zenzero_aa_filter_rewrite_rules_array' );
 
 function enqueue_parent_styles() {
    wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
@@ -56,4 +57,15 @@ function zenzero_aa_tsml_ajax_pdf() {
     }
 
     exit;
+}
+
+function zenzero_aa_filter_rewrite_rules_array( $rules ) {
+    foreach ( $rules as $rule => $rewrite ) {
+//        example deleting author permalinks:
+//        if ( preg_match( '#/author/#', $rule ) ) {
+//            unset( $rules[$rule] );
+//        }
+    }
+
+    return $rules;
 }
