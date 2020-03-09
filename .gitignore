@@ -6,12 +6,12 @@
 .env
 /.htaccess
 docker-compose.override.yml
+/wp-content/tsml-cache-*
 /wp-content/plugins/akismet
 /wp-content/plugins/wp-crontrol
 /wp-content/plugins/disable-comments
 /wp-content/plugins/redirection
 /wp-content/plugins/index.php
 /wp-content/plugins/hello.php
-/wp-content/index.php
 /wp-content/themes/index.php
 /wp-content/themes/twenty*
