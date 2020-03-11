@@ -31,9 +31,9 @@ function zenzero_aa_widgets_init() {
 
 if (function_exists('tsml_custom_types')) {
     tsml_custom_types(array(
-        'DOGS' => 'Dogs Welcome',
+        'DF' => 'Dog Friendly',
         'NOWC' => 'No Toilets Available',
-        'NODOGS' => 'No Dogs Allowed',
+        'NODF' => 'No Dogs Allowed',
         'IX' => 'Inter',
     ));
 }
