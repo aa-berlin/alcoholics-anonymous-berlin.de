@@ -34,6 +34,7 @@ if (function_exists('tsml_custom_types')) {
         'DF' => 'Dog Friendly',
         'NOWC' => 'No Toilets Available',
         'NODF' => 'No Dogs Allowed',
+        'TOP' => 'Topic',
         'IX' => 'Inter',
     ));
 }
