@@ -2,23 +2,23 @@
 
 require get_template_directory() . '/inc/template-tags.php';
 
-add_action( 'wp_enqueue_scripts', 'enqueue_parent_styles' );
-add_action( 'wp_enqueue_scripts', 'zenzero_aa_scripts' );
-add_action( 'widgets_init', 'zenzero_aa_widgets_init' );
-add_action( 'wp_ajax_tsml_pdf', 'zenzero_aa_tsml_ajax_pdf', 0 );
-add_action( 'wp_ajax_nopriv_tsml_pdf', 'zenzero_aa_tsml_ajax_pdf', 0 );
-add_filter( 'rewrite_rules_array', 'zenzero_aa_filter_rewrite_rules_array' );
+add_action('wp_enqueue_scripts', 'enqueue_parent_styles');
+add_action('wp_enqueue_scripts', 'zenzero_aa_scripts');
+add_action('widgets_init', 'zenzero_aa_widgets_init');
+add_action('wp_ajax_tsml_pdf', 'zenzero_aa_tsml_ajax_pdf', 0);
+add_action('wp_ajax_nopriv_tsml_pdf', 'zenzero_aa_tsml_ajax_pdf', 0);
+add_filter('rewrite_rules_array', 'zenzero_aa_filter_rewrite_rules_array');
 
 function enqueue_parent_styles() {
-   wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
+   wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
 }
 
 function zenzero_aa_scripts() {
-    wp_enqueue_script( 'zenzero-aa-main',  get_stylesheet_directory_uri() . '/js/jquery.zenzero-aa.js', ['zenzero-custom'] );
+    wp_enqueue_script('zenzero-aa-main',  get_stylesheet_directory_uri() . '/js/jquery.zenzero-aa.js', array('zenzero-custom'));
 }
 
 function zenzero_aa_widgets_init() {
-    register_sidebar( [
+    register_sidebar(array(
         'name' => 'Header',
         'id' => 'header_teasers',
         'description' => 'Inside header, between page name and menu',
@@ -26,12 +26,14 @@ function zenzero_aa_widgets_init() {
         'after_widget' => '</div>',
         'before_title' => '<p>',
         'after_title' => '</p>',
-    ] );
+    ));
 }
 
 if (function_exists('tsml_custom_types')) {
     tsml_custom_types(array(
-        'NDA' => 'No Dogs Allowed',
+        'DOGS' => 'Dogs Welcome',
+        'NOWC' => 'No Toilets Available',
+        'NODOGS' => 'No Dogs Allowed',
         'IX' => 'Inter',
     ));
 }
@@ -59,8 +61,8 @@ function zenzero_aa_tsml_ajax_pdf() {
     exit;
 }
 
-function zenzero_aa_filter_rewrite_rules_array( $rules ) {
-    foreach ( $rules as $rule => $rewrite ) {
+function zenzero_aa_filter_rewrite_rules_array($rules) {
+    foreach ($rules as $rule => $rewrite) {
 //        example deleting author permalinks:
 //        if ( preg_match( '#/author/#', $rule ) ) {
 //            unset( $rules[$rule] );
