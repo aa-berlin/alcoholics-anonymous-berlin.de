@@ -2,17 +2,40 @@ version: '3'
 
 services:
 
-  app:
-    image: wordpress:php7.3-apache
+  app-1:
+    # see dockerfile for docs
+    build: ./docker
     environment:
-      WORDPRESS_DB_HOST: $WORDPRESS_DB_HOST
-      WORDPRESS_DB_USER: $WORDPRESS_DB_USER
-      WORDPRESS_DB_PASSWORD: $WORDPRESS_DB_PASSWORD
-      WORDPRESS_DB_NAME: $WORDPRESS_DB_NAME
+      WEB_DOCUMENT_ROOT: /app
+      WEB_DOCUMENT_INDEX: index.php
+      PHP_DEBUGGER: $PHP_DEBUGGER
+      ACTIVE_WP_CONFIG: ./wp-config-app-1.php
+      WORDPRESS_DB_HOST: $WORDPRESS_DB_HOST_1
+      WORDPRESS_DB_USER: $WORDPRESS_DB_USER_1
+      WORDPRESS_DB_PASSWORD: $WORDPRESS_DB_PASSWORD_1
+      WORDPRESS_DB_NAME: $WORDPRESS_DB_NAME_1
     volumes:
-      - ./wp-content:/var/www/html/wp-content
+      - ./:/app
     labels:
-      traefik.http.routers.aa-berlin.rule: 'Host(`www.alcoholics-anonymous-berlin.de`)'
-      traefik.http.routers.aa-berlin.tls: 'true'
-      traefik.http.services.aa-berlin.loadbalancer.server.port: 80
+      traefik.http.routers.aa-berlin-1.rule: Host(`app-1.dev.alcoholics-anonymous-berlin.de`)
+      traefik.http.routers.aa-berlin-1.tls: true
+      traefik.enable: true
+
+  app-2:
+    # see dockerfile for docs
+    build: ./docker
+    environment:
+      WEB_DOCUMENT_ROOT: /app
+      WEB_DOCUMENT_INDEX: index.php
+      PHP_DEBUGGER: $PHP_DEBUGGER
+      ACTIVE_WP_CONFIG: ./wp-config-app-2.php
+      WORDPRESS_DB_HOST: $WORDPRESS_DB_HOST_2
+      WORDPRESS_DB_USER: $WORDPRESS_DB_USER_2
+      WORDPRESS_DB_PASSWORD: $WORDPRESS_DB_PASSWORD_2
+      WORDPRESS_DB_NAME: $WORDPRESS_DB_NAME_2
+    volumes:
+      - ./:/app
+    labels:
+      traefik.http.routers.aa-berlin-2.rule: Host(`app-2.dev.alcoholics-anonymous-berlin.de`)
+      traefik.http.routers.aa-berlin-2.tls: true
       traefik.enable: true

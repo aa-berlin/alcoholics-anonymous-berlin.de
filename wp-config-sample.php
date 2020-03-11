@@ -83,7 +83,12 @@ define('DISABLE_WP_CRON', true);
  *
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
-define('WP_DEBUG', false);
+define('WP_DEBUG', true);
+define('WP_DEBUG_LOG', '/dev/stderr');
+define('WP_DEBUG_DISPLAY', false);
+@ini_set( 'display_errors', 0 );
+define('SCRIPT_DEBUG', true);
+define('SAVEQUERIES', false);
 
 /* That's all, stop editing! Happy publishing. */
 

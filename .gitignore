@@ -6,6 +6,8 @@
 .env
 /.htaccess
 docker-compose.override.yml
+/wp-config-app-1.php
+/wp-config-app-2.php
 /wp-content/tsml-cache-*
 /wp-content/plugins/akismet
 /wp-content/plugins/wp-crontrol
