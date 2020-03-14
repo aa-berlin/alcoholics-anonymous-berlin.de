@@ -35,7 +35,7 @@ if (function_exists('tsml_custom_types')) {
         'IX' => 'Inter',
         'NOX' => 'No Wheelchair Access',
         'NODF' => 'No Dogs Allowed',
-        'ONLINE' => 'Join Online or via Phone',
+        'ONLINE' => 'Join Online',
         'TOP' => 'Topic',
     ));
 }
