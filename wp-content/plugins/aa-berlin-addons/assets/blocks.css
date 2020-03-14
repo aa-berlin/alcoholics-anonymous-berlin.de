@@ -1,0 +1,27 @@
+.aa-berlin-addons-notice-block {
+    border: 1px #003f7a solid;
+    background: rgba(0, 63, 122, 0.05);
+    border-radius: 2px;
+    border-left-width: 5px;
+    padding: 15px 20px 20px 20px;
+    margin-bottom: 2em;
+}
+
+.aa-berlin-addons-notice-block.type-success {
+    border-color: #00A265;
+    background: rgba(0, 162, 101, 0.05);
+}
+
+.aa-berlin-addons-notice-block.type-warning {
+    border-color: #D40047;
+    background: rgba(212, 0, 71, 0.05);
+}
+
+.aa-berlin-addons-notice-block h4 {
+    text-transform: uppercase;
+    margin: 0 0 0.5em 0;
+}
+
+.aa-berlin-addons-notice-block p {
+    margin: 0;
+}

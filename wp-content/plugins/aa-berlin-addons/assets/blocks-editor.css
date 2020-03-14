@@ -1,0 +1,19 @@
+@import "./blocks.css";
+
+.editor-styles-wrapper .aa-berlin-addons-notice-block select {
+    float: right;
+    width: 100px;
+    margin-left: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.editor-styles-wrapper .aa-berlin-addons-notice-block h4.rich-text {
+    text-transform: uppercase;
+    margin: 0 0 0.5em 0;
+    font-weight: normal;
+}
+
+.editor-styles-wrapper .aa-berlin-addons-notice-block p.rich-text {
+    margin: 0;
+}
