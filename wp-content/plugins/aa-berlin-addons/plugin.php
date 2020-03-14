@@ -6,7 +6,7 @@
  * Description: Contains several optimizations and customizations to both WordPress itself and the 12-step-meeting-list plugin.
  * Text Domain: aa-berlin-addons
  * Domain Path: /languages/
- * Version: 0.1.0
+ * Version: 0.2.0
  */
 
 add_action('enqueue_block_editor_assets', 'aa_berlin_enqueue_block_editor_assets');
@@ -44,13 +44,13 @@ function aa_berlin_wp_enqueue_scripts() {
 
     wp_enqueue_script(
         'aa-berlin-auto-highlight-notices',
-        plugins_url('assets/auto-highlight-notices.js', __FILE__),
+        plugins_url('assets/auto-augment-page.js', __FILE__),
         array()
     );
 
     wp_enqueue_style(
         'aa-berlin-auto-highlight-notices',
-        plugins_url('assets/auto-highlight-notices.css', __FILE__),
+        plugins_url('assets/auto-augment-page.css', __FILE__),
         array()
     );
 }
