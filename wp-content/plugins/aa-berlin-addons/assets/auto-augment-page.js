@@ -23,7 +23,7 @@ jQuery(function ($) {
         html = html.replace(/https:\/\/([^/]+)([\S]+)/ig, function (link, domain, uri) {
             link = link.replace(/[.?!]$/, '');
 
-            var isExternal = domain !== location.host;
+            const isExternal = domain !== location.host;
 
             return [
                 '<a href="',
@@ -37,5 +37,15 @@ jQuery(function ($) {
         });
 
         paragraph.html(html);
+    });
+
+    $('.wp-block-latest-posts').each(function (i, latestPosts) {
+        latestPosts = $(latestPosts);
+
+        if (latestPosts.children().length !== 1) {
+            return;
+        }
+
+        latestPosts.find('> * > a[href]:first-child').insertBefore(latestPosts).wrap('<h2 class="aa-berlin-addons-auto-headline">');
     });
 });
