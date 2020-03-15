@@ -252,6 +252,10 @@ h1.page-title,
     font-size: 18px;
 }
 
+#tsml .aa-berlin-addons-notice-block h4 {
+    font-weight: bold;
+}
+
 #tsml #location .page-header,
 #tsml #meeting .page-header,
 #tsml #meetings .page-header {
