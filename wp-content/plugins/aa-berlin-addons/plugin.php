@@ -21,7 +21,7 @@ function aa_berlin_enqueue_block_editor_assets() {
 
     wp_enqueue_script(
         'aa-berlin-blocks-editor',
-        plugins_url('assets/blocks.js', __FILE__),
+        plugins_url('assets/blocks-editor.js', __FILE__),
         array(
             'wp-blocks',
             'wp-element',
@@ -45,7 +45,9 @@ function aa_berlin_wp_enqueue_scripts() {
     wp_enqueue_script(
         'aa-berlin-auto-highlight-notices',
         plugins_url('assets/auto-augment-page.js', __FILE__),
-        array()
+        array(
+            'jquery',
+        )
     );
 
     wp_enqueue_style(
