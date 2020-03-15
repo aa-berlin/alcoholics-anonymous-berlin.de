@@ -236,6 +236,10 @@ h1.page-title,
     line-height: 1.2;
 }
 
+.entry-content li > a {
+    border-bottom: 1px dotted;
+}
+
 #toTop.showTop.withS {
     bottom: 7em;
     font-size: 25px;
