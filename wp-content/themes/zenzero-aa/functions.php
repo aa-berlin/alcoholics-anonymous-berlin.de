@@ -14,7 +14,13 @@ function enqueue_parent_styles() {
 }
 
 function zenzero_aa_scripts() {
-    wp_enqueue_script('zenzero-aa-main',  get_stylesheet_directory_uri() . '/js/jquery.zenzero-aa.js', array('zenzero-custom'));
+    wp_enqueue_script(
+        'zenzero-aa-main',
+        get_stylesheet_directory_uri() . '/js/jquery.zenzero-aa.js',
+        array(
+            'zenzero-custom',
+        )
+    );
 }
 
 function zenzero_aa_widgets_init() {
