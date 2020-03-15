@@ -6,6 +6,18 @@ It contains the site's theme including customizations of the `12-step-meeting-li
 
 The theme is based on [CrestaProject's Zenzero](./wp-content/themes/zenzero/readme.txt)
 
+## Cloning
+
+Be sure to initialize sub-modules:
+
+```bash
+$ git submodule init
+$ git submodule update
+$ cd wp-content/plugins/12-step-meeting-list
+$ git remote add upstream git@github.com:code4recovery/12-step-meeting-list.git
+$ git fetch --all
+ ```
+
 ## Installation
 
 Do not forget to merge these into your respctive local files:
