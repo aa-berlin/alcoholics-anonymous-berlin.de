@@ -25,6 +25,15 @@
     opacity: 0.5;
 }
 
+.aa-berlin-addons-auto-link {
+    display: inline-block;
+}
+
+.aa-berlin-addons-auto-link .glyphicon {
+    /* using padding to circumvent tsml selector specificity */
+    padding-right: 5px;
+}
+
 .aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-link,
 #tsml .aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-link {
     color: #D40047;

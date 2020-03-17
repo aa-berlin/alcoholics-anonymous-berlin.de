@@ -41,6 +41,7 @@
                     '" title="',
                     isExternal ? externalLinkText : '',
                     '" class="aa-berlin-addons-auto-link">',
+                    domain === 'zoom.us' ? '<span class="glyphicon glyphicon-headphones"></span>' : '',
                     domain,
                     '</a>'
                 ].join('');
