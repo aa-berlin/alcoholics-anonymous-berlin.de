@@ -1,51 +1,61 @@
-jQuery(function ($) {
-    $('p:contains("IMPORTANT:"), p:contains("UPDATE:")').each(function (i, paragraph) {
-        paragraph = $(paragraph);
-        paragraph.addClass('aa-berlin-addons-auto-highlight-notice');
+(function (jQuery, __) {
 
-        if (paragraph.is(':contains("IMPORTANT:")')) {
-            paragraph.addClass('type-warning');
-        } else {
-            paragraph.addClass('type-success');
-        }
-    });
+    const markerTextImportant= __('IMPORTANT:', 'aa-berlin-addons');
+    const markerTextUpdate= __('UPDATE:', 'aa-berlin-addons');
 
-    $('p:contains("https://")').each(function (i, paragraph) {
-        paragraph = $(paragraph);
+    jQuery(function ($) {
+        $('p:contains("' + markerTextImportant + '"), p:contains("' + markerTextUpdate + '")').each(function (i, paragraph) {
+            paragraph = $(paragraph);
+            paragraph.addClass('aa-berlin-addons-auto-highlight-notice');
 
-        if (paragraph.children().length) {
-            // will not try replace urls with auto links, if other markup present (an editor wrote it this way)
-            return;
-        }
-        paragraph.addClass('aa-berlin-addons-contains-auto-link');
-
-        let html = paragraph.text();
-        html = html.replace(/https:\/\/([^/]+)([\S]+)/ig, function (link, domain, uri) {
-            link = link.replace(/[.?!]$/, '');
-
-            const isExternal = domain !== location.host;
-
-            return [
-                '<a href="',
-                link,
-                '" title="',
-                isExternal ? 'External link to ' + domain : '',
-                '" class="aa-berlin-addons-auto-link">',
-                domain,
-                '</a>'
-            ].join('');
+            if (paragraph.is(':contains("IMPORTANT:")')) {
+                paragraph.addClass('type-warning');
+            } else {
+                paragraph.addClass('type-success');
+            }
         });
 
-        paragraph.html(html);
+        $('p:contains("https://")').each(function (i, paragraph) {
+            paragraph = $(paragraph);
+
+            if (paragraph.children().length) {
+                // will not try replace urls with auto links, if other markup present (an editor wrote it this way)
+                return;
+            }
+            paragraph.addClass('aa-berlin-addons-contains-auto-link');
+
+            let html = paragraph.text();
+            html = html.replace(/https:\/\/([^/]+)([\S]+)/ig, function (link, domain, uri) {
+                // translators: %s is the link's generated text (usually it's host part)
+                const externalLinkText = sprintf(__('External link to %s', 'aa-berlin-addons'), domain);
+
+                link = link.replace(/[.?!]$/, '');
+
+                const isExternal = domain !== location.host;
+
+                return [
+                    '<a href="',
+                    link,
+                    '" title="',
+                    isExternal ? externalLinkText : '',
+                    '" class="aa-berlin-addons-auto-link">',
+                    domain,
+                    '</a>'
+                ].join('');
+            });
+
+            paragraph.html(html);
+        });
+
+        $('.wp-block-latest-posts').each(function (i, latestPosts) {
+            latestPosts = $(latestPosts);
+
+            if (latestPosts.children().length !== 1) {
+                return;
+            }
+
+            latestPosts.find('> * > a[href]:first-child').insertBefore(latestPosts).wrap('<h2 class="aa-berlin-addons-auto-headline">');
+        });
     });
 
-    $('.wp-block-latest-posts').each(function (i, latestPosts) {
-        latestPosts = $(latestPosts);
-
-        if (latestPosts.children().length !== 1) {
-            return;
-        }
-
-        latestPosts.find('> * > a[href]:first-child').insertBefore(latestPosts).wrap('<h2 class="aa-berlin-addons-auto-headline">');
-    });
-});
+})(jQuery, wp.i18n.__, wp.i18n.sprintf);

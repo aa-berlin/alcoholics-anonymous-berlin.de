@@ -43,15 +43,17 @@ function aa_berlin_wp_enqueue_scripts() {
     );
 
     wp_enqueue_script(
-        'aa-berlin-auto-highlight-notices',
+        'aa-berlin-auto-augment-page',
         plugins_url('assets/auto-augment-page.js', __FILE__),
         array(
             'jquery',
+            'wp-i18n',
         )
     );
+    wp_set_script_translations('aa-berlin-auto-augment-page', 'aa-berlin-addons');
 
     wp_enqueue_style(
-        'aa-berlin-auto-highlight-notices',
+        'aa-berlin-auto-augment-page',
         plugins_url('assets/auto-augment-page.css', __FILE__),
         array()
     );

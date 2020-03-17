@@ -1,0 +1,40 @@
+# Copyright (C) 2020 AA Berlin <ecomm.berlin@aamail.org>
+# This file is distributed under the same license as the AA Berlin Addons plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: AA Berlin Addons 0.2.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/aa-berlin-addons\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-03-17T18:13:43+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: aa-berlin-addons\n"
+
+#. Plugin Name of the plugin
+msgid "AA Berlin Addons"
+msgstr ""
+
+#. Description of the plugin
+msgid "Contains several optimizations and customizations to both WordPress itself and the 12-step-meeting-list plugin."
+msgstr ""
+
+#. Author of the plugin
+msgid "AA Berlin <ecomm.berlin@aamail.org>"
+msgstr ""
+
+#: assets/auto-augment-page.js:3
+msgid "IMPORTANT:"
+msgstr ""
+
+#: assets/auto-augment-page.js:4
+msgid "UPDATE:"
+msgstr ""
+
+#. translators: %s is the link's generated text (usually it's host part)
+#: assets/auto-augment-page.js:30
+msgid "External link to %s"
+msgstr ""
