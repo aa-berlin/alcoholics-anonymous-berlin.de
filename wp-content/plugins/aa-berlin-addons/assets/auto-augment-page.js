@@ -69,13 +69,9 @@
                 return;
             }
 
-            if (time.getDay() !== now.getDay()) {
-                return;
-            }
-
-            let msTillActivation = time.getTime() - now;
+            const msPerDay = 24 * 3600 * 1000;
             // date probably has been rendered for the meeting next week
-            msTillActivation = msTillActivation % (24 * 3600 * 1000);
+            let msTillActivation = time.getTime() % msPerDay - now.getTime() % msPerDay;
             msTillActivation = msTillActivation - msBeforeActivationOfStreams;
 
             if (msTillActivation <= 0) {
@@ -89,6 +85,10 @@
             });
             link.removeAttr('href');
             link.parent().addClass('aa-berlin-addons-contains-disabled-auto-link');
+
+            if (time.getDay() !== now.getDay()) {
+                return;
+            }
 
             setTimeout(function () {
                 link.attr('href', link.attr('stream-href'));
