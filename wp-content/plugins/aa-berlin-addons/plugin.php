@@ -11,6 +11,8 @@
 
 add_action('enqueue_block_editor_assets', 'aa_berlin_enqueue_block_editor_assets');
 add_action('wp_enqueue_scripts', 'aa_berlin_wp_enqueue_scripts');
+add_action('widgets_init', 'aa_berlin_addons_widgets_init');
+add_action('wp_footer', 'aa_berlin_addons_render_common_widgets');
 
 function aa_berlin_enqueue_block_editor_assets() {
     wp_enqueue_style(
@@ -57,4 +59,31 @@ function aa_berlin_wp_enqueue_scripts() {
         plugins_url('assets/auto-augment-page.css', __FILE__),
         array()
     );
+}
+
+function aa_berlin_addons_widgets_init() {
+    register_sidebar(array(
+        'id' => 'aa_berlin_addons_hint_for_augmented_links',
+        'name' => __('Hint for Augmented Links', 'aa-berlin-addons'),
+        'description' => __('This displays next to automatically transformed links. E.g. in meeting details.', 'aa-berlin-addons'),
+        'before_widget' => '<div class="aa-berlin-addons-hint-for-augmented-links-widget">',
+        'after_widget' => '</div>',
+        'before_title' => '<p class="aa-berlin-addons-widget-headline">',
+        'after_title' => '</p>',
+    ));
+}
+
+/**
+ * @see aa_berlin_addons_widgets_init()
+ */
+function aa_berlin_addons_render_common_widgets() {
+    if (is_active_sidebar('aa_berlin_addons_hint_for_augmented_links')):
+        ?>
+        <template id="aa-berlin-addons-hint-for-augmented-links" class="aa-berlin-addons-template">
+            <?php
+            dynamic_sidebar('aa_berlin_addons_hint_for_augmented_links');
+            ?>
+        </template>
+        <?php
+    endif;
 }

@@ -15,3 +15,8 @@
     border-color: #D40047;
     background: rgba(212, 0, 71, 0.05);
 }
+
+/* for older browsers: hide template tags */
+.aa-berlin-addons-template {
+    display: none !important;
+}

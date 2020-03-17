@@ -15,6 +15,7 @@
             }
         });
 
+        const augmentedLinkHintTemplate = $('#aa-berlin-addons-hint-for-augmented-links');
         $('p:contains("https://")').each(function (i, paragraph) {
             paragraph = $(paragraph);
 
@@ -45,6 +46,7 @@
             });
 
             paragraph.html(html);
+            $(augmentedLinkHintTemplate.html()).insertAfter(paragraph);
         });
 
         $('.wp-block-latest-posts').each(function (i, latestPosts) {
