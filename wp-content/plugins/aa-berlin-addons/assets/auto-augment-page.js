@@ -1,14 +1,14 @@
 (function (jQuery, __) {
 
-    const markerTextImportant= __('IMPORTANT:', 'aa-berlin-addons');
-    const markerTextUpdate= __('UPDATE:', 'aa-berlin-addons');
+    const markerTextImportant = __('IMPORTANT:', 'aa-berlin-addons');
+    const markerTextUpdate = __('UPDATE:', 'aa-berlin-addons');
 
     jQuery(function ($) {
         $('p:contains("' + markerTextImportant + '"), p:contains("' + markerTextUpdate + '")').each(function (i, paragraph) {
             paragraph = $(paragraph);
             paragraph.addClass('aa-berlin-addons-auto-highlight-notice');
 
-            if (paragraph.is(':contains("IMPORTANT:")')) {
+            if (paragraph.is(':contains("' + markerTextImportant + '")')) {
                 paragraph.addClass('type-warning');
             } else {
                 paragraph.addClass('type-success');
