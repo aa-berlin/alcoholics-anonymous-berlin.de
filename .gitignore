@@ -29,7 +29,9 @@
 /wp-content/plugins/hello.php
 /wp-content/themes/index.php
 /wp-content/themes/twenty*
+/wp-content/themes/weaver-xtreme
 /wp-content/upgrade
+/wp-content/uploads
 /wp-cron.php
 /wp-includes
 /wp-links-opml.php
