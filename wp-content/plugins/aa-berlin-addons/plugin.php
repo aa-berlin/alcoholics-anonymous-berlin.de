@@ -52,7 +52,8 @@ function aa_berlin_wp_enqueue_scripts() {
             'wp-i18n',
         )
     );
-    wp_set_script_translations('aa-berlin-auto-augment-page', 'aa-berlin-addons');
+    // todo: implement translations (line otherwise fails with Zlib error -2 deflating data)
+    // wp_set_script_translations('aa-berlin-auto-augment-page', 'aa-berlin-addons');
 
     wp_enqueue_style(
         'aa-berlin-auto-augment-page',
