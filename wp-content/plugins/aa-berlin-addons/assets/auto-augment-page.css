@@ -20,3 +20,11 @@
 .aa-berlin-addons-template {
     display: none !important;
 }
+
+.aa-berlin-addons-contains-disabled-auto-link {
+    opacity: 0.5;
+}
+
+.aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-link {
+    color: #D40047;
+}

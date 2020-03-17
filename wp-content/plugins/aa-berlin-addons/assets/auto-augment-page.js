@@ -1,5 +1,6 @@
 (function (jQuery, __) {
 
+    const msBeforeActivationOfStreams = 30 * 60 * 1000;
     const markerTextImportant = __('IMPORTANT:', 'aa-berlin-addons');
     const markerTextUpdate = __('UPDATE:', 'aa-berlin-addons');
 
@@ -47,6 +48,52 @@
 
             paragraph.html(html);
             $(augmentedLinkHintTemplate.html()).insertAfter(paragraph);
+        });
+
+        $('.list-group-item.meeting-info').each(function (i, meetingInfo) {
+            meetingInfo = $(meetingInfo);
+
+            let time = meetingInfo.find('.meeting-time').attr('content');
+            time = new Date(time);
+            const now = new Date();
+
+            if (isNaN(time.getTime())) {
+                // no start time, do nothing
+                return;
+            }
+
+            const link = meetingInfo.find('a[href*="//zoom.us/"]');
+
+            if (!link.length) {
+                return;
+            }
+
+            if (time.getDay() !== now.getDay()) {
+                return;
+            }
+
+            let msTillActivation = time.getTime() - now;
+            // date probably has been rendered for the meeting next week
+            msTillActivation = msTillActivation % (24 * 3600 * 1000);
+            msTillActivation = msTillActivation - msBeforeActivationOfStreams;
+
+            if (msTillActivation <= 0) {
+                return;
+            }
+
+            link.attr({
+                'stream-href': link.attr('href'),
+                'role': 'link',
+                'aria-disabled': true,
+            });
+            link.removeAttr('href');
+            link.parent().addClass('aa-berlin-addons-contains-disabled-auto-link');
+
+            setTimeout(function () {
+                link.attr('href', link.attr('stream-href'));
+                link.removeAttr('aria-disabled');
+                link.parent().removeClass('aa-berlin-addons-contains-disabled-auto-link');
+            }, msTillActivation)
         });
 
         $('.wp-block-latest-posts').each(function (i, latestPosts) {
