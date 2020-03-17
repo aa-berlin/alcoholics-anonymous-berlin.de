@@ -25,6 +25,7 @@
     opacity: 0.5;
 }
 
-.aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-link {
+.aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-link,
+#tsml .aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-link {
     color: #D40047;
 }
