@@ -6,7 +6,7 @@
     const onlineIconTitle = __('You can join this meeting online.', 'aa-berlin-addons');
     const msPerDay = 24 * 3600 * 1000;
 
-    const onlineIconHtml = '<span class="glyphicon glyphicon-headphones" role="presentation" title="' + onlineIconTitle + '"></span>';
+    const onlineIconHtml = '<span class="aa-berlin-addons-stream-icon glyphicon glyphicon-headphones" role="presentation" title="' + onlineIconTitle + '"></span>';
 
     jQuery(function ($) {
         $('p:contains("' + markerTextImportant + '"), p:contains("' + markerTextUpdate + '")').each(function (i, paragraph) {
@@ -121,6 +121,10 @@
                 }, msTillDeactivationAgain);
             }
         });
+
+        $('body.tsml-type-online .page-header h1').prepend(onlineIconHtml);
+        $('.list-group-item-meetings .meeting.type-online > a').prepend(onlineIconHtml);
+        $('tr.type-online td.name > a').prepend(onlineIconHtml);
 
         $('.wp-block-latest-posts').each(function (i, latestPosts) {
             latestPosts = $(latestPosts);

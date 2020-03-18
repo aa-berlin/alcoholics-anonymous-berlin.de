@@ -29,6 +29,17 @@
     display: inline-block;
 }
 
+.aa-berlin-addons-stream-icon {
+    display: inline-block;
+    padding-right: 0.4em;
+}
+
+#tsml #location .panel .list-group .list-group-item.list-group-item-meetings .aa-berlin-addons-stream-icon {
+    width: auto;
+    position: static;
+    display: inline-block;
+}
+
 .aa-berlin-addons-auto-link .glyphicon {
     /* using padding to circumvent tsml selector specificity */
     padding-right: 5px;
