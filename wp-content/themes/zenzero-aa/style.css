@@ -180,9 +180,28 @@ Domain Path: /languages
     border-bottom: 0;
 }
 
+.main-navigation .zenzero-aa-stream-icon svg {
+    vertical-align: text-top;
+    height: 16px;
+    width: 17px;
+    margin-right: 5px;
+}
+
+.main-navigation .zenzero-aa-stream-icon path {
+    fill: #cddfdf;
+}
+
+.main-navigation a:hover > .zenzero-aa-stream-icon path {
+    fill: #fff;
+}
+
 .main-navigation ul li .indicator {
     border: 0;
     cursor: pointer;
+}
+
+.main-navigation ul ul a {
+    width: 240px;
 }
 
 .main-navigation.toggled .nav-menu {
