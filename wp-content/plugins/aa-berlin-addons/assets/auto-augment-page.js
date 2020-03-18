@@ -3,6 +3,10 @@
     const msBeforeActivationOfStreams = 30 * 60 * 1000;
     const markerTextImportant = __('IMPORTANT:', 'aa-berlin-addons');
     const markerTextUpdate = __('UPDATE:', 'aa-berlin-addons');
+    const onlineIconTitle = __('You can join this meeting online.', 'aa-berlin-addons');
+    const msPerDay = 24 * 3600 * 1000;
+
+    const onlineIconHtml = '<span class="glyphicon glyphicon-headphones" role="presentation" title="' + onlineIconTitle + '"></span>';
 
     jQuery(function ($) {
         $('p:contains("' + markerTextImportant + '"), p:contains("' + markerTextUpdate + '")').each(function (i, paragraph) {
@@ -41,7 +45,7 @@
                     '" title="',
                     isExternal ? externalLinkText : '',
                     '" class="aa-berlin-addons-auto-link">',
-                    domain === 'zoom.us' ? '<span class="glyphicon glyphicon-headphones"></span>' : '',
+                    domain === 'zoom.us' ? onlineIconHtml : '',
                     domain,
                     '</a>'
                 ].join('');
