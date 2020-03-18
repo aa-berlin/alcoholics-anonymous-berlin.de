@@ -55,33 +55,7 @@
             $(augmentedLinkHintTemplate.html()).insertAfter(paragraph);
         });
 
-        $('.list-group-item.meeting-info').each(function (i, meetingInfo) {
-            meetingInfo = $(meetingInfo);
-
-            let time = meetingInfo.find('.meeting-time').attr('content');
-            time = new Date(time);
-            const now = new Date();
-
-            if (isNaN(time.getTime())) {
-                // no start time, do nothing
-                return;
-            }
-
-            const link = meetingInfo.find('a[href*="//zoom.us/"]');
-
-            if (!link.length) {
-                return;
-            }
-
-            const msPerDay = 24 * 3600 * 1000;
-            // date probably has been rendered for the meeting next week
-            let msTillActivation = time.getTime() % msPerDay - now.getTime() % msPerDay;
-            msTillActivation = msTillActivation - msBeforeActivationOfStreams;
-
-            if (msTillActivation <= 0) {
-                return;
-            }
-
+        const deactivateLink = function (link) {
             link.attr({
                 'stream-href': link.attr('href'),
                 'role': 'link',
@@ -89,16 +63,63 @@
             });
             link.removeAttr('href');
             link.parent().addClass('aa-berlin-addons-contains-disabled-auto-link');
+        };
 
-            if (time.getDay() !== now.getDay()) {
+        $('.list-group-item.meeting-info').each(function (i, meetingInfo) {
+            meetingInfo = $(meetingInfo);
+
+            const link = meetingInfo.find('a[href*="//zoom.us/"]');
+
+            if (!link.length) {
                 return;
             }
 
-            setTimeout(function () {
-                link.attr('href', link.attr('stream-href'));
-                link.removeAttr('aria-disabled');
-                link.parent().removeClass('aa-berlin-addons-contains-disabled-auto-link');
-            }, msTillActivation)
+            const now = new Date().getTime();
+
+            let startTime = meetingInfo.find('.meeting-time').attr('content');
+            startTime = new Date(startTime);
+
+            let endTime = meetingInfo.find('.meeting-time').attr('data-end-date');
+            endTime = new Date(endTime);
+
+            if (isNaN(startTime.getTime()) || isNaN(endTime.getTime())) {
+                // no start or end time, do nothing
+                return;
+            }
+
+            startTime = startTime.getTime() - 7 * msPerDay;
+            startTime = startTime - msBeforeActivationOfStreams;
+
+            endTime = endTime.getTime() - 7 * msPerDay;
+            endTime = endTime + msBeforeActivationOfStreams;
+
+            if (endTime < startTime) {
+                endTime += msPerDay;
+            }
+
+            const isActive = now >= startTime && now <= endTime;
+
+            const duration = endTime - startTime;
+            const msTillActivation = startTime - msBeforeActivationOfStreams - now;
+            const msTillDeactivationAgain = msTillActivation + duration + msBeforeActivationOfStreams;
+
+            if (!isActive) {
+                deactivateLink(link);
+            }
+
+            if (msTillActivation > 0) {
+                setTimeout(function () {
+                    link.attr('href', link.attr('stream-href'));
+                    link.removeAttr('aria-disabled');
+                    link.parent().removeClass('aa-berlin-addons-contains-disabled-auto-link');
+                }, msTillActivation);
+            }
+
+            if (msTillDeactivationAgain > 0) {
+                setTimeout(function () {
+                    deactivateLink(link);
+                }, msTillDeactivationAgain);
+            }
         });
 
         $('.wp-block-latest-posts').each(function (i, latestPosts) {
