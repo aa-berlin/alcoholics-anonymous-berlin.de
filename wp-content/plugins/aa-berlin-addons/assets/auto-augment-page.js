@@ -124,7 +124,17 @@
 
         $('body.tsml-type-online .page-header h1').prepend(onlineIconHtml);
         $('.list-group-item-meetings .meeting.type-online > a').prepend(onlineIconHtml);
-        $('tr.type-online td.name > a').prepend(onlineIconHtml);
+
+        const prependStreamIconInResults = function (tbody) {
+            tbody.find('.type-online td.name > a').prepend(onlineIconHtml);
+        };
+
+        $('#meetings_tbody').on('tsml_meetings_updated', function (e, data) {
+            prependStreamIconInResults(data.tbody);
+        }).each(function (i, tbody) {
+            prependStreamIconInResults($(tbody));
+        });
+
 
         $('.wp-block-latest-posts').each(function (i, latestPosts) {
             latestPosts = $(latestPosts);
