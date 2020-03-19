@@ -59,9 +59,9 @@
             link.attr({
                 'stream-href': link.attr('href'),
                 'role': 'link',
-                'aria-disabled': true,
+                //'aria-disabled': true,
             });
-            link.removeAttr('href');
+            //link.removeAttr('href');
             link.parent().addClass('aa-berlin-addons-contains-disabled-auto-link');
         };
 
@@ -100,8 +100,8 @@
             const isActive = now >= startTime && now <= endTime;
 
             const duration = endTime - startTime;
-            const msTillActivation = startTime - msBeforeActivationOfStreams - now;
-            const msTillDeactivationAgain = msTillActivation + duration + msBeforeActivationOfStreams;
+            const msTillActivation = startTime - now;
+            const msTillDeactivationAgain = endTime - now + msBeforeActivationOfStreams;
 
             if (!isActive) {
                 deactivateLink(link);
