@@ -101,7 +101,7 @@
 
             const duration = endTime - startTime;
             const msTillActivation = startTime - now;
-            const msTillDeactivationAgain = endTime - now + msBeforeActivationOfStreams;
+            const msTillDeactivationAgain = endTime - now;
 
             if (!isActive) {
                 deactivateLink(link);
