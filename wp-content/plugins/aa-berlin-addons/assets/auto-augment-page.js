@@ -59,9 +59,9 @@
             link.attr({
                 'stream-href': link.attr('href'),
                 'role': 'link',
-                //'aria-disabled': true,
+                'aria-disabled': true,
             });
-            //link.removeAttr('href');
+            link.removeAttr('href');
             link.parent().addClass('aa-berlin-addons-contains-disabled-auto-link');
         };
 
