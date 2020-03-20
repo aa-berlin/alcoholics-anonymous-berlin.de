@@ -8,6 +8,9 @@ add_action('widgets_init', 'zenzero_aa_widgets_init');
 add_action('wp_ajax_tsml_pdf', 'zenzero_aa_tsml_ajax_pdf', 0);
 add_action('wp_ajax_nopriv_tsml_pdf', 'zenzero_aa_tsml_ajax_pdf', 0);
 add_filter('rewrite_rules_array', 'zenzero_aa_filter_rewrite_rules_array');
+add_filter('wp_mail_from', 'zenzero_aa_sender_email');
+add_filter('wp_mail_from_name', 'zenzero_aa_sender_name');
+
 
 function enqueue_parent_styles() {
    wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
@@ -78,4 +81,12 @@ function zenzero_aa_filter_rewrite_rules_array($rules) {
     }
 
     return $rules;
+}
+
+function zenzero_aa_sender_email($original_email_address) {
+    return $original_email_address;
+}
+
+function zenzero_aa_sender_name($original_email_from) {
+    return $original_email_from;
 }
