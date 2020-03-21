@@ -54,6 +54,12 @@ if ( function_exists( 'wp_body_open' ) ) {
                 <button class="menu-toggle" aria-label="<?php esc_attr_e( 'Main Menu', 'zenzero' ); ?>"><?php esc_html_e( 'Main Menu', 'zenzero' ); ?><i class="fa fa-align-justify"></i></button>
                 <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
             </nav><!-- #site-navigation -->
+
+            <?php if (current_user_can('read_private_pages')): ?>
+                <div id="zenzero-aa-private-menu" class="zenzero-aa-private-menu">
+                    <?php wp_nav_menu( array( 'theme_location' => 'zenzero_aa_private_menu' ) ); ?>
+                </div>
+            <?php endif; ?>
         </header><!-- #masthead -->
     <?php endif; ?>
     <div id="content" class="site-content">

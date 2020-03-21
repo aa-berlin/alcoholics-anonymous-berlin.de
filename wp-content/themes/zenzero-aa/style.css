@@ -230,6 +230,10 @@ Domain Path: /languages
     padding-right: 0;
 }
 
+.site-header .zenzero-aa-private-menu {
+    display: none;
+}
+
 .wp-block-latest-posts {
     margin-left: 0;
 }
