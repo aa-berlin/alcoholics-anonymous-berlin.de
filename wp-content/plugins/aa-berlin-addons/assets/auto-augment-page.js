@@ -28,13 +28,14 @@
                 // will not try replace urls with auto links, if other markup present (an editor wrote it this way)
                 return;
             }
-            paragraph.addClass('aa-berlin-addons-contains-auto-link');
 
+            let linkWasSubstituted = false;
             let html = paragraph.text();
-            html = html.replace(/https:\/\/([^/]+)([\S]+)/ig, function (link, domain, uri) {
+            html = html.replace(/https:\/\/([^/\s]+)([\S]*)/ig, function (link, domain, uri) {
+                linkWasSubstituted = true;
+
                 // translators: %s is the link's generated text (usually it's host part)
                 const externalLinkText = sprintf(__('External link to %s', 'aa-berlin-addons'), domain);
-
                 link = link.replace(/[.?!]$/, '');
 
                 const isExternal = domain !== location.host;
@@ -51,8 +52,11 @@
                 ].join('');
             });
 
-            paragraph.html(html);
-            $(augmentedLinkHintTemplate.html()).insertAfter(paragraph);
+            if (linkWasSubstituted) {
+                paragraph.addClass('aa-berlin-addons-contains-auto-link');
+                paragraph.html(html);
+                $(augmentedLinkHintTemplate.html()).insertAfter(paragraph);
+            }
         });
 
         const deactivateLink = function (link) {
