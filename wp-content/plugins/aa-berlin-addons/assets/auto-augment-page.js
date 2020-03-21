@@ -29,10 +29,12 @@
                 return;
             }
 
+            let domainEncountered = null;
             let linkWasSubstituted = false;
             let html = paragraph.text();
             html = html.replace(/https:\/\/([^/\s]+)([\S]*)/ig, function (link, domain, uri) {
                 linkWasSubstituted = true;
+                domainEncountered = domain;
 
                 // translators: %s is the link's generated text (usually it's host part)
                 const externalLinkText = sprintf(__('External link to %s', 'aa-berlin-addons'), domain);
@@ -53,9 +55,11 @@
             });
 
             if (linkWasSubstituted) {
+                const hints = $(augmentedLinkHintTemplate.html()).filter(':has([data-if-link-domain-is="' + domainEncountered + '"])');
+
                 paragraph.addClass('aa-berlin-addons-contains-auto-link');
                 paragraph.html(html);
-                $(augmentedLinkHintTemplate.html()).insertAfter(paragraph);
+                hints.insertAfter(paragraph);
             }
         });
 
