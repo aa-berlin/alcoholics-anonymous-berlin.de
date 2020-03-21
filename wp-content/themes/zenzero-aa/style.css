@@ -178,6 +178,22 @@ Domain Path: /languages
 
 .main-navigation a {
     border-bottom: 0;
+    position: relative;
+}
+
+.main-navigation .zenzero-aa-nav-item-background {
+    background: rgb(205, 223, 223);
+    color: rgb(0, 63, 122);
+    border-radius: 2px;
+    padding: 0 4px;
+}
+
+.main-navigation  a:hover .zenzero-aa-nav-item-background {
+    background: #fff;
+}
+
+.main-navigation .zenzero-aa-nav-item-background .zenzero-aa-nav-icon {
+    color: rgb(0, 63, 122);
 }
 
 .main-navigation .zenzero-aa-stream-icon svg {
