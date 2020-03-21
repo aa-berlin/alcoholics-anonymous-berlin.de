@@ -6,7 +6,7 @@
  * Description: Contains several optimizations and customizations to both WordPress itself and the 12-step-meeting-list plugin.
  * Text Domain: aa-berlin-addons
  * Domain Path: /languages/
- * Version: 0.4.1
+ * Version: 0.5.0
  */
 
 add_action('enqueue_block_editor_assets', 'aa_berlin_enqueue_block_editor_assets');
