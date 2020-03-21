@@ -103,7 +103,6 @@
 
             const isActive = now >= startTime && now <= endTime;
 
-            const duration = endTime - startTime;
             const msTillActivation = startTime - now;
             const msTillDeactivationAgain = endTime - now;
 
