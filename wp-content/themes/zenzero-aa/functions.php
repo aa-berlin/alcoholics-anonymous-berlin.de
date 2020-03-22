@@ -42,7 +42,7 @@ if (function_exists('tsml_custom_types')) {
     tsml_custom_types(array(
         'DF' => 'Dog Friendly',
         'IX' => 'Inter',
-        'LGBTQ' => 'LGBTQI',
+        'LGBTQ' => 'LGBTQI+',
         'NOX' => 'No Wheelchair Access',
         'NODF' => 'No Dogs Allowed',
         'ONLINE' => 'Join Online',
