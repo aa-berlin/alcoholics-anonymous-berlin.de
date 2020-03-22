@@ -13,7 +13,12 @@ add_filter('wp_mail_from_name', 'zenzero_aa_sender_name');
 add_action('after_setup_theme', 'zenzero_aa_register_nav_menus', 0);
 
 function enqueue_parent_styles() {
-   wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
+   wp_enqueue_style(
+       'parent-style',
+       get_template_directory_uri() . '/style.css',
+       array(),
+       wp_get_theme()->get('Version')
+   );
 }
 
 function zenzero_aa_scripts() {
@@ -22,7 +27,8 @@ function zenzero_aa_scripts() {
         get_stylesheet_directory_uri() . '/js/jquery.zenzero-aa.js',
         array(
             'zenzero-custom',
-        )
+        ),
+        wp_get_theme()->get('Version')
     );
 }
 
