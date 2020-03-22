@@ -9,6 +9,8 @@
  * Version: 0.5.1
  */
 
+define('AA_BERLIN_ADDONS_VERSION', '0.5.1');
+
 add_action('enqueue_block_editor_assets', 'aa_berlin_enqueue_block_editor_assets');
 add_action('wp_enqueue_scripts', 'aa_berlin_wp_enqueue_scripts');
 add_action('widgets_init', 'aa_berlin_addons_widgets_init');
@@ -18,7 +20,8 @@ function aa_berlin_enqueue_block_editor_assets() {
     wp_enqueue_style(
         'aa-berlin-blocks-frontend',
         plugins_url('assets/blocks.css', __FILE__),
-        array()
+        array(),
+        AA_BERLIN_ADDONS_VERSION
     );
 
     wp_enqueue_script(
@@ -27,13 +30,15 @@ function aa_berlin_enqueue_block_editor_assets() {
         array(
             'wp-blocks',
             'wp-element',
-        )
+        ),
+        AA_BERLIN_ADDONS_VERSION
     );
 
     wp_enqueue_style(
         'aa-berlin-blocks-editor',
         plugins_url('assets/blocks-editor.css', __FILE__),
-        array()
+        array(),
+        AA_BERLIN_ADDONS_VERSION
     );
 }
 
@@ -41,7 +46,8 @@ function aa_berlin_wp_enqueue_scripts() {
     wp_enqueue_style(
         'aa-berlin-blocks-frontend',
         plugins_url('assets/blocks.css', __FILE__),
-        array()
+        array(),
+        AA_BERLIN_ADDONS_VERSION
     );
 
     wp_enqueue_script(
@@ -50,7 +56,8 @@ function aa_berlin_wp_enqueue_scripts() {
         array(
             'jquery',
             'wp-i18n',
-        )
+        ),
+        AA_BERLIN_ADDONS_VERSION
     );
     // todo: implement translations (line otherwise fails with Zlib error -2 deflating data)
     // wp_set_script_translations('aa-berlin-auto-augment-page', 'aa-berlin-addons');
@@ -58,7 +65,8 @@ function aa_berlin_wp_enqueue_scripts() {
     wp_enqueue_style(
         'aa-berlin-auto-augment-page',
         plugins_url('assets/auto-augment-page.css', __FILE__),
-        array()
+        array(),
+        AA_BERLIN_ADDONS_VERSION
     );
 }
 
