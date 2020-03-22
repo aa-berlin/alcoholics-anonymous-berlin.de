@@ -64,6 +64,9 @@
         });
 
         const deactivateLink = function (link) {
+            // FIXME: ran into trouble with daylight saving time of future date, disabling
+            return;
+
             link.attr({
                 'stream-href': link.attr('href'),
                 'role': 'link',
