@@ -132,12 +132,28 @@ function aa_berlin_addons_body_class($classes) {
  * @see aa_berlin_addons_widgets_init()
  */
 function aa_berlin_addons_render_common_widgets() {
+    $hint = aa_berlin_addons_options('stream_link_hint');
+    $type = aa_berlin_addons_options('stream_link_hint_type');
+
+    $domains = aa_berlin_addons_options('stream_domains_pattern');
+    $domains = preg_split('#\s*,\s*#', $domains);
+
     if (is_active_sidebar('aa_berlin_addons_hint_for_augmented_links')):
         ?>
         <template id="aa-berlin-addons-hint-for-augmented-links" class="aa-berlin-addons-template">
             <?php
             dynamic_sidebar('aa_berlin_addons_hint_for_augmented_links');
             ?>
+
+            <?php if ($type): ?>
+                <?php foreach ($domains as $domain): ?>
+                    <div class="aa-berlin-addons-online-meeting-hint">
+                        <div data-if-link-domain-is="<?php echo esc_attr($domain); ?>" class="aa-berlin-addons-auto-highlight-notice type-<?php echo $type; ?>">
+                            <?php echo $hint; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </template>
         <?php
     endif;

@@ -39,9 +39,29 @@ $pages = array(
                     ),
 
                     array(
-                        'title' => __('Disable "online meeting" links if meeting is not scheduled', 'aa-berlin-addons'),
+                        'title' => __('Disable online meeting links, if meeting is not currently on', 'aa-berlin-addons'),
                         'type' => 'checkbox',
+                        'text' => 'Feature currently disabled; Disables online meeting links 30min before and after the meetings scheduled start and end time.',
                         'id' => 'disable_outside_schedule',
+                    ),
+
+                    array(
+                        'title' => __('Common hint to be shown after each online meeting link', 'aa-berlin-addons'),
+                        'type' => 'wp_editor',
+                        'text' => 'Inserted after each online meeting link.',
+                        'id' => 'stream_link_hint',
+                    ),
+
+                    array(
+                        'title' => __('Show the following hint text as a notice', 'aa-berlin-addons'),
+                        'type' => 'select',
+                        'choices' => array(
+                            '' => __('Disable hint', 'aa-berlin-addons'),
+                            'warning' => __('Warning', 'aa-berlin-addons'),
+                            'success' => __('Success', 'aa-berlin-addons'),
+                            'info' => __('Info', 'aa-berlin-addons'),
+                        ),
+                        'id' => 'stream_link_hint_type',
                     ),
                 ),
             ),
