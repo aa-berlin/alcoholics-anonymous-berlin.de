@@ -18,7 +18,7 @@ add_action('wp_enqueue_scripts', 'aa_berlin_wp_enqueue_scripts');
 add_action('widgets_init', 'aa_berlin_addons_widgets_init');
 add_action('wp_footer', 'aa_berlin_addons_render_common_widgets');
 
-function aa_berlin_addons_option($key = null) {
+function aa_berlin_addons_options($key = null) {
     $options = get_option('aa_berlin_addons_options', array());
 
     if (!$key) {
@@ -75,8 +75,15 @@ function aa_berlin_wp_enqueue_scripts() {
         ),
         AA_BERLIN_ADDONS_VERSION
     );
+
     // todo: implement translations (line otherwise fails with Zlib error -2 deflating data)
     // wp_set_script_translations('aa-berlin-auto-augment-page', 'aa-berlin-addons');
+
+    wp_localize_script(
+        'aa-berlin-auto-augment-page',
+        'aa_berlin_addons_options',
+        aa_berlin_addons_options()
+    );
 
     wp_enqueue_style(
         'aa-berlin-auto-augment-page',
