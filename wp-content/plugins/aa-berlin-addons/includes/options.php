@@ -50,24 +50,24 @@ $pages = array(
                     ),
 
                     array(
-                        'title' => __('Warning pattern', 'aa-berlin-addons'),
+                        'title' => __('Warning prefix', 'aa-berlin-addons'),
                         'type' => 'text',
-                        'value' => '^IMPORTANT:',
-                        'id' => 'warning_pattern',
+                        'value' => 'IMPORTANT:',
+                        'id' => 'warning_prefix',
                     ),
 
                     array(
-                        'title' => __('Success pattern', 'aa-berlin-addons'),
+                        'title' => __('Success prefix', 'aa-berlin-addons'),
                         'type' => 'text',
-                        'value' => '^UPDATE:',
-                        'id' => 'success_pattern',
+                        'value' => 'UPDATE:',
+                        'id' => 'success_prefix',
                     ),
 
                     array(
-                        'title' => __('Info pattern', 'aa-berlin-addons'),
+                        'title' => __('Info prefix', 'aa-berlin-addons'),
                         'type' => 'text',
-                        'value' => '^INFO:',
-                        'id' => 'info_pattern',
+                        'value' => 'INFO:',
+                        'id' => 'info_prefix',
                     ),
                 ),
             ),
