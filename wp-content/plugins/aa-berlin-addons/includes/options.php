@@ -116,6 +116,12 @@ $pages = array(
                     ),
 
                     array(
+                        'title' => __('Add "headphones" icon to Online meetings', 'aa-berlin-addons'),
+                        'type' => 'checkbox',
+                        'id' => 'add_stream_icon_to_online_meetings',
+                    ),
+
+                    array(
                         'title' => __('Label of meeting type ONLINE', 'aa-berlin-addons'),
                         'type' => 'text',
                         'value' => 'Join Online',
@@ -154,6 +160,18 @@ $pages = array(
                         'value' => 'This meeting is suspended until further notice.',
                         'text' => 'Should describe why the map is rendered inaccessible; no double-quotes',
                         'id' => 'disable_map_text_tc',
+                    ),
+                ),
+            ),
+
+            'misc' => array(
+                'title' => __('Miscellaneous', 'aa-berlin-addons'),
+
+                'fields' => array(
+                    array(
+                        'title' => __('Wrap leading link of single-post Latest Posts in h2', 'aa-berlin-addons'),
+                        'type' => 'checkbox',
+                        'id' => 'wrap_single_entry_links_with_h2',
                     ),
                 ),
             ),
