@@ -76,7 +76,7 @@ function aa_berlin_wp_enqueue_scripts() {
         AA_BERLIN_ADDONS_VERSION
     );
 
-    // todo: implement translations (line otherwise fails with Zlib error -2 deflating data)
+    // todo: implement translations (line otherwise fails with Zlib error -2 deflating data; missing files? endless loops?)
     // wp_set_script_translations('aa-berlin-auto-augment-page', 'aa-berlin-addons');
 
     wp_localize_script(
