@@ -7,6 +7,7 @@ if (!class_exists('RationalOptionPages')) {
 $pages = array(
     'aa_berlin_addons_options' => array(
         'page_title' => __('AA Berlin Addons', 'aa-berlin-addons'),
+        'menu_slug' => 'aa_berlin_addons_options',
         'parent_slug' => 'options-general.php',
         'icon_url' => 'dashicons-carrot',
         'position' => 61,
@@ -17,19 +18,22 @@ $pages = array(
                 'text' => '<p>' . __('Configures the automatic substitution of anchor elements for fully qualified secure urls.', 'aa-berlin-addons') . '</p>',
 
                 'fields' => array(
-                    'insert_links' => array(
+                    array(
                         'title' => __('Insert links', 'aa-berlin-addons'),
                         'type' => 'checkbox',
+                        'id' => 'insert_links',
                     ),
 
-                    'prepend_stream_icons' => array(
+                    array(
                         'title' => __('Prepend stream icons to zoom.us links', 'aa-berlin-addons'),
                         'type' => 'checkbox',
+                        'id' => 'prepend_stream_icons',
                     ),
 
-                    'disable_outside_schedule' => array(
+                    array(
                         'title' => __('Disable zoom.us links if meeting is not scheduled', 'aa-berlin-addons'),
                         'type' => 'checkbox',
+                        'id' => 'disable_outside_schedule',
                     ),
                 ),
             ),
@@ -39,27 +43,31 @@ $pages = array(
                 'text' => '<p>' . __('Configures the automatic insertion of highlighting notices in paragraphs that do not contain any other tags; e.g. in the meeting notes on the meeting detail.', 'aa-berlin-addons') . '</p>',
 
                 'fields' => array(
-                    'insert_notices' => array(
+                    array(
                         'title' => __('Insert notices', 'aa-berlin-addons'),
                         'type' => 'checkbox',
+                        'id' => 'insert_notices',
                     ),
 
-                    'warning_prefix' => array(
+                    array(
                         'title' => __('Warning prefix', 'aa-berlin-addons'),
                         'type' => 'text',
                         'value' => 'IMPORTANT:',
+                        'id' => 'warning_prefix',
                     ),
 
-                    'success_prefix' => array(
+                    array(
                         'title' => __('Success prefix', 'aa-berlin-addons'),
                         'type' => 'text',
                         'value' => 'UPDATE:',
+                        'id' => 'success_prefix',
                     ),
 
-                    'info_prefix' => array(
+                    array(
                         'title' => __('Info prefix', 'aa-berlin-addons'),
                         'type' => 'text',
                         'value' => 'INFO:',
+                        'id' => 'info_prefix',
                     ),
                 ),
             ),
