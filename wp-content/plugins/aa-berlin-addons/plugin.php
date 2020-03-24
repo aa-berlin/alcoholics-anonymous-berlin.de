@@ -11,6 +11,8 @@
 
 define('AA_BERLIN_ADDONS_VERSION', '0.5.1');
 
+require __DIR__ . '/includes/options.php';
+
 add_action('enqueue_block_editor_assets', 'aa_berlin_enqueue_block_editor_assets');
 add_action('wp_enqueue_scripts', 'aa_berlin_wp_enqueue_scripts');
 add_action('widgets_init', 'aa_berlin_addons_widgets_init');
