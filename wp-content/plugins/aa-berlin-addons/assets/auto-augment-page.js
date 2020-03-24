@@ -1,10 +1,11 @@
 (function (jQuery, __) {
 
+    const regexQuotes = /"/g;
     const options = aa_berlin_addons_options;
     const msBeforeActivationOfStreams = 30 * 60 * 1000;
-    const markerTextWarning = options.warning_prefix;
-    const markerTextSuccess = options.success_prefix;
-    const markerTextInfo = options.info_prefix;
+    const markerTextWarning = String(options.warning_prefix).replace(regexQuotes, '');
+    const markerTextSuccess = String(options.success_prefix).replace(regexQuotes, '');
+    const markerTextInfo = String(options.info_prefix).replace(regexQuotes, '');
     const onlineIconTitle = __('You can join this meeting online.', 'aa-berlin-addons');
     const msPerDay = 24 * 3600 * 1000;
     const streamDomains = String(options.stream_domains_pattern).split(/\s*,\s*/g);
