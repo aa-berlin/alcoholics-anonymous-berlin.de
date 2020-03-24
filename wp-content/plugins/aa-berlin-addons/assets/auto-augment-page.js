@@ -1,22 +1,26 @@
 (function (jQuery, __) {
 
+    const options = aa_berlin_addons_options;
     const msBeforeActivationOfStreams = 30 * 60 * 1000;
-    const markerTextImportant = __('IMPORTANT:', 'aa-berlin-addons');
-    const markerTextUpdate = __('UPDATE:', 'aa-berlin-addons');
+    const markerTextWarning = options.warning_prefix;
+    const markerTextSuccess = options.success_prefix;
+    const markerTextInfo = options.info_prefix;
     const onlineIconTitle = __('You can join this meeting online.', 'aa-berlin-addons');
     const msPerDay = 24 * 3600 * 1000;
 
     const onlineIconHtml = '<span class="aa-berlin-addons-stream-icon glyphicon glyphicon-headphones" role="presentation" title="' + onlineIconTitle + '"></span>';
 
     jQuery(function ($) {
-        $('p:contains("' + markerTextImportant + '"), p:contains("' + markerTextUpdate + '")').each(function (i, paragraph) {
+        $('p:contains("' + markerTextWarning + '"), p:contains("' + markerTextSuccess + '"), p:contains("' + markerTextInfo + '")').each(function (i, paragraph) {
             paragraph = $(paragraph);
             paragraph.addClass('aa-berlin-addons-auto-highlight-notice');
 
-            if (paragraph.is(':contains("' + markerTextImportant + '")')) {
+            if (paragraph.is(':contains("' + markerTextWarning + '")')) {
                 paragraph.addClass('type-warning');
-            } else {
+            } else if (paragraph.is(':contains("' + markerTextSuccess + '")')) {
                 paragraph.addClass('type-success');
+            } else {
+                paragraph.addClass('type-info');
             }
         });
 
