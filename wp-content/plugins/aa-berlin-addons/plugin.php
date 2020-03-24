@@ -18,6 +18,20 @@ add_action('wp_enqueue_scripts', 'aa_berlin_wp_enqueue_scripts');
 add_action('widgets_init', 'aa_berlin_addons_widgets_init');
 add_action('wp_footer', 'aa_berlin_addons_render_common_widgets');
 
+function aa_berlin_addons_option($key = null) {
+    $options = get_option('aa_berlin_addons_options', array());
+
+    if (!$key) {
+        return $options;
+    }
+
+    if (isset($options[$key])) {
+        return $options[$key];
+    }
+
+    return null;
+}
+
 function aa_berlin_enqueue_block_editor_assets() {
     wp_enqueue_style(
         'aa-berlin-blocks-frontend',
