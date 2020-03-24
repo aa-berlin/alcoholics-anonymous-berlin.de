@@ -51,7 +51,6 @@ if (function_exists('tsml_custom_types')) {
         'LGBTQ' => 'LGBTQI+',
         'NOX' => 'No Wheelchair Access',
         'NODF' => 'No Dogs Allowed',
-        'ONLINE' => 'Join Online',
         'TOP' => 'Topic',
     ));
 }

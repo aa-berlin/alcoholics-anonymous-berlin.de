@@ -49,3 +49,30 @@
 #tsml .aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-link {
     color: #D40047;
 }
+
+.aa-berlin-addons-disable-map-if-tc.tsml-type-tc #tsml #meeting #map > div::after,
+.aa-berlin-addons-disable-map-if-online.tsml-type-online #tsml #meeting #map > div::after {
+    display: block;
+    border: 5px solid #D40047;
+    border-radius: 3px;
+    opacity: 0.8;
+    background: #fff;
+    color: #D40047;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.aa-berlin-addons-disable-map-if-tc.tsml-type-tc #tsml #meeting #map > div::after {
+    content: "This meeting is suspended until further notice.";
+}
+
+.aa-berlin-addons-disable-map-if-online.tsml-type-online #tsml #meeting #map > div::after {
+    content: "This meeting ONLY meets online until further notice.";
+}

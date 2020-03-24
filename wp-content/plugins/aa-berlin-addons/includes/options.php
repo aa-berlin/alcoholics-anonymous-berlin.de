@@ -83,6 +83,60 @@ $pages = array(
                     ),
                 ),
             ),
+
+            'type_online' => array(
+                'title' => __('Handling of meeting type Online', 'aa-berlin-addons'),
+                'text' => '<p>' . __('Adds some custom meeting types that have been found to be useful.', 'aa-berlin-addons') . '</p>',
+
+                'fields' => array(
+                    array(
+                        'title' => __('Add meeting type ONLINE', 'aa-berlin-addons'),
+                        'type' => 'checkbox',
+                        'id' => 'add_type_online',
+                    ),
+
+                    array(
+                        'title' => __('Label of meeting type ONLINE', 'aa-berlin-addons'),
+                        'type' => 'text',
+                        'value' => 'Join Online',
+                        'id' => 'label_type_online',
+                    ),
+
+                    array(
+                        'title' => __('Disable map on meeting detail', 'aa-berlin-addons'),
+                        'type' => 'checkbox',
+                        'id' => 'disable_map_if_online',
+                    ),
+
+                    array(
+                        'title' => __('Text of map overlay', 'aa-berlin-addons'),
+                        'type' => 'text',
+                        'value' => 'This meeting ONLY meets online until further notice.',
+                        'text' => 'Should describe why the map is rendered inaccessible; no double-quotes',
+                        'id' => 'disable_map_text_online',
+                    ),
+                ),
+            ),
+
+            'temporary_closure' => array(
+                'title' => __('Handling of meeting type Temporary Closure', 'aa-berlin-addons'),
+
+                'fields' => array(
+                    array(
+                        'title' => __('Disable map on meeting detail', 'aa-berlin-addons'),
+                        'type' => 'checkbox',
+                        'id' => 'disable_map_if_tc',
+                    ),
+
+                    array(
+                        'title' => __('Text of map overlay', 'aa-berlin-addons'),
+                        'type' => 'text',
+                        'value' => 'This meeting is suspended until further notice.',
+                        'text' => 'Should describe why the map is rendered inaccessible; no double-quotes',
+                        'id' => 'disable_map_text_tc',
+                    ),
+                ),
+            ),
         )
     ),
 );

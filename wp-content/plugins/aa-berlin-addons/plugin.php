@@ -15,8 +15,11 @@ require __DIR__ . '/includes/options.php';
 
 add_action('enqueue_block_editor_assets', 'aa_berlin_enqueue_block_editor_assets');
 add_action('wp_enqueue_scripts', 'aa_berlin_wp_enqueue_scripts');
+add_action('init', 'aa_berlin_addons_init');
 add_action('widgets_init', 'aa_berlin_addons_widgets_init');
 add_action('wp_footer', 'aa_berlin_addons_render_common_widgets');
+add_action('wp_footer', 'aa_berlin_addons_render_dynamic_styles');
+add_filter('body_class', 'aa_berlin_addons_body_class');
 
 function aa_berlin_addons_options($key = null) {
     $options = get_option('aa_berlin_addons_options', array());
@@ -30,6 +33,14 @@ function aa_berlin_addons_options($key = null) {
     }
 
     return null;
+}
+
+function aa_berlin_addons_init() {
+    if (aa_berlin_addons_options('add_type_online') && function_exists('tsml_custom_types')) {
+        tsml_custom_types(array(
+            'ONLINE' => aa_berlin_addons_options('label_type_online'),
+        ));
+    }
 }
 
 function aa_berlin_enqueue_block_editor_assets() {
@@ -105,6 +116,18 @@ function aa_berlin_addons_widgets_init() {
     ));
 }
 
+function aa_berlin_addons_body_class($classes) {
+    if (aa_berlin_addons_options('disable_map_if_tc')) {
+        $classes[] = 'aa-berlin-addons-disable-map-if-tc';
+    }
+
+    if (aa_berlin_addons_options('disable_map_if_online')) {
+        $classes[] = 'aa-berlin-addons-disable-map-if-online';
+    }
+
+    return $classes;
+}
+
 /**
  * @see aa_berlin_addons_widgets_init()
  */
@@ -118,4 +141,28 @@ function aa_berlin_addons_render_common_widgets() {
         </template>
         <?php
     endif;
+}
+
+function aa_berlin_addons_render_dynamic_styles() {
+    $textOnline = aa_berlin_addons_options('disable_map_text_online');
+    $textOnline = str_replace('"', '', $textOnline);
+
+    $textTc = aa_berlin_addons_options('disable_map_text_tc');
+    $textTc = str_replace('"', '', $textTc);
+
+    ?>
+    <style type="text/css" id="aa-berlin-addons-dynamic-styles">
+        <?php if (aa_berlin_addons_options('disable_map_if_tc') && $textTc): ?>
+            .aa-berlin-addons-disable-map-if-tc.tsml-type-tc #tsml #meeting #map > div::after {
+                content: "<?php echo $textTc ?>";
+            }
+        <?php endif; ?>
+
+        <?php if (aa_berlin_addons_options('disable_map_if_online') && $textOnline): ?>
+            .aa-berlin-addons-disable-map-if-online.tsml-type-online #tsml #meeting #map > div::after {
+                content: "<?php echo $textOnline ?>";
+            }
+        <?php endif; ?>
+    </style>
+    <?php
 }
