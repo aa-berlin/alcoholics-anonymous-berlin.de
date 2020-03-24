@@ -11,7 +11,7 @@
     const onlineIconHtml = '<span class="aa-berlin-addons-stream-icon glyphicon glyphicon-headphones" role="presentation" title="' + onlineIconTitle + '"></span>';
 
     jQuery(function ($) {
-        $('p:contains("' + markerTextWarning + '"), p:contains("' + markerTextSuccess + '"), p:contains("' + markerTextInfo + '")').each(function (i, paragraph) {
+        options.insert_notices && $('p:contains("' + markerTextWarning + '"), p:contains("' + markerTextSuccess + '"), p:contains("' + markerTextInfo + '")').each(function (i, paragraph) {
             paragraph = $(paragraph);
             paragraph.addClass('aa-berlin-addons-auto-highlight-notice');
 
@@ -25,7 +25,7 @@
         });
 
         const augmentedLinkHintTemplate = $('#aa-berlin-addons-hint-for-augmented-links');
-        $('p:contains("https://")').each(function (i, paragraph) {
+        options.insert_links && $('p:contains("https://")').each(function (i, paragraph) {
             paragraph = $(paragraph);
 
             if (paragraph.children().length) {
@@ -52,7 +52,7 @@
                     '" title="',
                     isExternal ? externalLinkText : '',
                     '" class="aa-berlin-addons-auto-link">',
-                    domain === 'zoom.us' ? onlineIconHtml : '',
+                    options.prepend_stream_icons && domain === 'zoom.us' ? onlineIconHtml : '',
                     domain,
                     '</a>'
                 ].join('');
@@ -80,7 +80,7 @@
             link.parent().addClass('aa-berlin-addons-contains-disabled-auto-link');
         };
 
-        $('.list-group-item.meeting-info').each(function (i, meetingInfo) {
+        options.disable_outside_schedule && $('.list-group-item.meeting-info').each(function (i, meetingInfo) {
             meetingInfo = $(meetingInfo);
 
             const link = meetingInfo.find('a[href*="//zoom.us/"]');
