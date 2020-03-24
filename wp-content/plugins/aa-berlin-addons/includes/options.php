@@ -25,13 +25,21 @@ $pages = array(
                     ),
 
                     array(
-                        'title' => __('Prepend stream icons to zoom.us links', 'aa-berlin-addons'),
+                        'title' => __('Prepend "headphones" icon to online meeting links', 'aa-berlin-addons'),
                         'type' => 'checkbox',
                         'id' => 'prepend_stream_icons',
                     ),
 
                     array(
-                        'title' => __('Disable zoom.us links if meeting is not scheduled', 'aa-berlin-addons'),
+                        'title' => __('Treat links to these domains as "online meeting" links', 'aa-berlin-addons'),
+                        'type' => 'text',
+                        'value' => 'zoom.us',
+                        'text' => 'Separate multiple domains by comma, case-insensitive',
+                        'id' => 'stream_domains_pattern',
+                    ),
+
+                    array(
+                        'title' => __('Disable "online meeting" links if meeting is not scheduled', 'aa-berlin-addons'),
                         'type' => 'checkbox',
                         'id' => 'disable_outside_schedule',
                     ),
@@ -46,6 +54,7 @@ $pages = array(
                     array(
                         'title' => __('Insert notices', 'aa-berlin-addons'),
                         'type' => 'checkbox',
+                        'text' => 'Case-sensitive, no double quotes',
                         'id' => 'insert_notices',
                     ),
 
@@ -53,6 +62,7 @@ $pages = array(
                         'title' => __('Warning prefix', 'aa-berlin-addons'),
                         'type' => 'text',
                         'value' => 'IMPORTANT:',
+                        'text' => 'Case-sensitive, no double quotes',
                         'id' => 'warning_prefix',
                     ),
 
@@ -60,6 +70,7 @@ $pages = array(
                         'title' => __('Success prefix', 'aa-berlin-addons'),
                         'type' => 'text',
                         'value' => 'UPDATE:',
+                        'text' => 'Case-sensitive, no double quotes',
                         'id' => 'success_prefix',
                     ),
 
@@ -67,6 +78,7 @@ $pages = array(
                         'title' => __('Info prefix', 'aa-berlin-addons'),
                         'type' => 'text',
                         'value' => 'INFO:',
+                        'text' => 'Case-sensitive, no double quotes',
                         'id' => 'info_prefix',
                     ),
                 ),

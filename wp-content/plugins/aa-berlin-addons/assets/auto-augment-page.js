@@ -7,6 +7,17 @@
     const markerTextInfo = options.info_prefix;
     const onlineIconTitle = __('You can join this meeting online.', 'aa-berlin-addons');
     const msPerDay = 24 * 3600 * 1000;
+    const streamDomains = String(options.stream_domains_pattern).split(/\s*,\s*/g);
+
+    const isStream = function (domain) {
+        for (let i = 0, length = streamDomains.length; i < length; i ++) {
+            if (domain === streamDomains[i]) {
+                return true;
+            }
+        }
+
+        return false;
+    };
 
     const onlineIconHtml = '<span class="aa-berlin-addons-stream-icon glyphicon glyphicon-headphones" role="presentation" title="' + onlineIconTitle + '"></span>';
 
@@ -52,7 +63,7 @@
                     '" title="',
                     isExternal ? externalLinkText : '',
                     '" class="aa-berlin-addons-auto-link">',
-                    options.prepend_stream_icons && domain === 'zoom.us' ? onlineIconHtml : '',
+                    options.prepend_stream_icons && isStream(domain) ? onlineIconHtml : '',
                     domain,
                     '</a>'
                 ].join('');
@@ -69,7 +80,7 @@
 
         const deactivateLink = function (link) {
             // FIXME: ran into trouble with daylight saving time of future date, disabling
-            return;
+            //return;
 
             link.attr({
                 'stream-href': link.attr('href'),
@@ -83,7 +94,11 @@
         options.disable_outside_schedule && $('.list-group-item.meeting-info').each(function (i, meetingInfo) {
             meetingInfo = $(meetingInfo);
 
-            const link = meetingInfo.find('a[href*="//zoom.us/"]');
+            const link = meetingInfo.find('a[href]').filter(function (i, link) {
+                const domain = new URL(link.href).host;
+
+                return isStream(domain);
+            });
 
             if (!link.length) {
                 return;
