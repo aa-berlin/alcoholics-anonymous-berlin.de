@@ -20,7 +20,11 @@ $ git fetch --all
 
 ## Installation
 
-Do not forget to merge these into your respctive local files:
+Prepare an external `mysql` instance.
+
+Download and unzip a WordPress installation archive in the project root.
+
+Do not forget customize and merge these into your respective local files:
 
 * [.sample.htaccess](./.sample.htaccess) into [.htaccess](./.htaccess)
 * [wp-config-sample.php](./wp-config-sample.php) into [wp-config.php](./wp-config.php)

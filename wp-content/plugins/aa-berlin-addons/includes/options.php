@@ -41,7 +41,7 @@ $pages = array(
                     array(
                         'title' => __('Disable online meeting links, if meeting is not currently on', 'aa-berlin-addons'),
                         'type' => 'checkbox',
-                        'text' => 'Feature currently disabled; Disables online meeting links 30min before and after the meetings scheduled start and end time.',
+                        'text' => 'Feature currently BROKEN due to its handling of daylight savings time; Disables online meeting links 30min before and after the meetings scheduled start and end time.',
                         'id' => 'disable_outside_schedule',
                     ),
 
