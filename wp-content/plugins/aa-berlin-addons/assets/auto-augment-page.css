@@ -34,6 +34,21 @@
     padding-right: 0.4em;
 }
 
+.aa-berlin-addons-standalone-stream-icon {
+    display: inline-block;
+    padding-right: 0.4em;
+}
+
+.aa-berlin-addons-standalone-stream-icon svg {
+    vertical-align: text-top;
+    height: 1em;
+    width: 1.1em;
+}
+
+.aa-berlin-addons-standalone-stream-icon path {
+    fill: currentColor;
+}
+
 #tsml #location .panel .list-group .list-group-item.list-group-item-meetings .aa-berlin-addons-stream-icon {
     width: auto;
     position: static;

@@ -204,11 +204,7 @@ Domain Path: /languages
 }
 
 .main-navigation .zenzero-aa-stream-icon path {
-    fill: #cddfdf;
-}
-
-.main-navigation a:hover > .zenzero-aa-stream-icon path {
-    fill: #fff;
+    fill: currentColor;
 }
 
 .main-navigation ul li .indicator {

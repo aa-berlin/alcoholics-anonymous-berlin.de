@@ -176,6 +176,16 @@
 
             latestPosts.find('> * > a[href]:first-child').insertBefore(latestPosts).wrap('<h2 class="aa-berlin-addons-auto-headline">');
         });
+
+        const standaloneStreamIcon = $('<span class="aa-berlin-addons-standalone-stream-icon">').load('/wp-content/plugins/aa-berlin-addons/assets/images/phones.svg', function () {
+            $('.entry-content a[href]:not(.aa-berlin-addons-auto-link)').each(function (i, link) {
+                const needsOnlineIcon = isStream(new URL(link.href).host) || link.href.indexOf('type=ONLINE') !== -1;
+
+                if (needsOnlineIcon) {
+                    $(link).prepend(standaloneStreamIcon.clone());
+                }
+            });
+        });
     });
 
 })(jQuery, wp.i18n.__, wp.i18n.sprintf);
