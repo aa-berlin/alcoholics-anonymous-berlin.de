@@ -63,7 +63,9 @@
                     link,
                     '" title="',
                     isExternal ? externalLinkText : '',
-                    '" class="aa-berlin-addons-auto-link">',
+                    '" class="aa-berlin-addons-auto-link" ',
+                    isExternal ? 'target="_blank"' : '',
+                    '>',
                     options.prepend_stream_icons && isStream(domain) ? onlineIconHtml : '',
                     domain,
                     '</a>'
