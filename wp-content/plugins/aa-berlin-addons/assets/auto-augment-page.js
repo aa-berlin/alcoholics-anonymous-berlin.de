@@ -7,6 +7,8 @@
     const markerTextSuccess = String(options.success_prefix).replace(regexQuotes, '');
     const markerTextInfo = String(options.info_prefix).replace(regexQuotes, '');
     const onlineIconTitle = __('You can join this meeting online.', 'aa-berlin-addons');
+    const onlineOnlyMarkerText = __('ONLINE ONLY');
+    const onlineOnlySubstituteText = __('ONLINE ONLY');
     const msPerDay = 24 * 3600 * 1000;
     const streamDomains = String(options.stream_domains_pattern).split(/\s*,\s*/g);
 
@@ -21,6 +23,14 @@
     };
 
     const onlineIconHtml = '<span class="aa-berlin-addons-stream-icon glyphicon glyphicon-headphones" role="presentation" title="' + onlineIconTitle + '"></span>';
+
+    const prependStreamIconInResults = function (tbody) {
+        tbody.find('.type-online td.name > a').prepend(onlineIconHtml);
+    };
+
+    const fixOnlineAddressWorkaround = function (tbody) {
+        tbody.find('.type-online td.location:contains("' + onlineOnlyMarkerText + '")').nextAll('.address, .region').andSelf().addClass('aa-berlin-addons-online-only-address').html(onlineOnlySubstituteText);
+    };
 
     jQuery(function ($) {
         options.insert_notices && $('p:contains("' + markerTextWarning + '"), p:contains("' + markerTextSuccess + '"), p:contains("' + markerTextInfo + '")').each(function (i, paragraph) {
@@ -158,14 +168,13 @@
             $('body.tsml-type-online .page-header h1').prepend(onlineIconHtml);
             $('.list-group-item-meetings .meeting.type-online > a').prepend(onlineIconHtml);
 
-            const prependStreamIconInResults = function (tbody) {
-                tbody.find('.type-online td.name > a').prepend(onlineIconHtml);
-            };
-
             $('#meetings_tbody').on('tsml_meetings_updated', function (e, data) {
                 prependStreamIconInResults(data.tbody);
+		fixOnlineAddressWorkaround(data.tbody);
             }).each(function (i, tbody) {
-                prependStreamIconInResults($(tbody));
+		tbody = $(tbody);
+                prependStreamIconInResults(tbody);
+		fixOnlineAddressWorkaround(tbody);
             });
         }
 
