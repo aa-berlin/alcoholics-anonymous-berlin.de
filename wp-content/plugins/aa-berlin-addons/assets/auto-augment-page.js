@@ -203,11 +203,11 @@
 
             $('#meetings_tbody').on('tsml_meetings_updated', function (e, data) {
                 prependStreamIconInResults(data.tbody);
-		fixOnlineAddressWorkaround(data.tbody);
+                fixOnlineAddressWorkaround(data.tbody);
             }).each(function (i, tbody) {
-		tbody = $(tbody);
+                tbody = $(tbody);
                 prependStreamIconInResults(tbody);
-		fixOnlineAddressWorkaround(tbody);
+                fixOnlineAddressWorkaround(tbody);
             });
         }
 
