@@ -9,10 +9,26 @@
     const onlineIconTitle = __('You can join this meeting online.', 'aa-berlin-addons');
     const onlineOnlyMarkerText = __('ONLINE ONLY');
     const onlineOnlySubstituteText = __('ONLINE ONLY');
+    // translators: %s is the link's generated text (usually its host part)
+    const externalLinkTextTemplate = __('External link to %s', 'aa-berlin-addons');
+    // translators: %s is the link's generated text (usually the phone number)
+    const phoneLinkTextTemplate = __('Call the number %s', 'aa-berlin-addons');
     const msPerDay = 24 * 3600 * 1000;
     const streamDomains = String(options.stream_domains_pattern).split(/\s*,\s*/g);
 
-    const isStream = function (domain) {
+    const regexIsZoomMeeting = /zoom\.us\/j\//;
+    const isStream = function (link) {
+        const domain = new URL(link).host;
+        let preconditionsMet = true;
+
+        if (domain === 'zoom.us') {
+            preconditionsMet = preconditionsMet && regexIsZoomMeeting.test(link);
+        }
+
+        if (!preconditionsMet) {
+            return false;
+        }
+
         for (let i = 0, length = streamDomains.length; i < length; i ++) {
             if (domain === streamDomains[i]) {
                 return true;
@@ -47,7 +63,7 @@
         });
 
         const augmentedLinkHintTemplate = $('#aa-berlin-addons-hint-for-augmented-links');
-        options.insert_links && $('p:contains("https://")').each(function (i, paragraph) {
+        options.insert_links && $('p, li').each(function (i, paragraph) {
             paragraph = $(paragraph);
 
             if (paragraph.children().length) {
@@ -56,14 +72,15 @@
             }
 
             let domainEncountered = null;
-            let linkWasSubstituted = false;
+            let httpLinkWasSubstituted = false;
+            let phoneLinkWasSubstituted = false;
             let html = paragraph.text();
+
             html = html.replace(/https:\/\/([^/\s]+)([\S]*)/ig, function (link, domain, uri) {
-                linkWasSubstituted = true;
+                httpLinkWasSubstituted = true;
                 domainEncountered = domain;
 
-                // translators: %s is the link's generated text (usually it's host part)
-                const externalLinkText = sprintf(__('External link to %s', 'aa-berlin-addons'), domain);
+                const externalLinkText = sprintf(externalLinkTextTemplate, domain);
                 link = link.replace(/[.?!]$/, '');
 
                 const isExternal = domain !== location.host;
@@ -76,18 +93,36 @@
                     '" class="aa-berlin-addons-auto-link" ',
                     isExternal ? 'target="_blank"' : '',
                     '>',
-                    options.prepend_stream_icons && isStream(domain) ? onlineIconHtml : '',
+                    options.prepend_stream_icons && isStream(link) ? onlineIconHtml : '',
                     domain,
                     '</a>'
                 ].join('');
             });
 
-            if (linkWasSubstituted) {
-                const hints = $(augmentedLinkHintTemplate.html()).filter(':has([data-if-link-domain-is="' + domainEncountered + '"])');
+            html = html.replace(/\+\d+(?:\s*\(\d+\))?[\s\d]+(\d)/g, function (number) {
+                phoneLinkWasSubstituted = true;
 
-                paragraph.addClass('aa-berlin-addons-contains-auto-link');
-                paragraph.html(html);
+                const phoneLinkText = sprintf(phoneLinkTextTemplate, number);
+
+                return [
+                    '<a href="tel:',
+                    number,
+                    '" title="',
+                    phoneLinkText,
+                    '" class="aa-berlin-addons-auto-link">',
+                    number,
+                    '</a>'
+                ].join('');
+            });
+
+            if (httpLinkWasSubstituted) {
+                const hints = $(augmentedLinkHintTemplate.html()).filter(':has([data-if-link-domain-is="' + domainEncountered + '"])');
                 hints.insertAfter(paragraph);
+            }
+
+            if (phoneLinkWasSubstituted || httpLinkWasSubstituted) {
+                paragraph.html(html);
+                paragraph.addClass('aa-berlin-addons-contains-auto-link');
             }
         });
 
@@ -108,9 +143,7 @@
             meetingInfo = $(meetingInfo);
 
             const link = meetingInfo.find('a[href]').filter(function (i, link) {
-                const domain = new URL(link.href).host;
-
-                return isStream(domain);
+                return isStream(link);
             });
 
             if (!link.length) {
@@ -190,7 +223,7 @@
 
         const standaloneStreamIcon = $('<span class="aa-berlin-addons-standalone-stream-icon">').load('/wp-content/plugins/aa-berlin-addons/assets/images/phones.svg', function () {
             $('.entry-content a[href]:not(.aa-berlin-addons-auto-link)').each(function (i, link) {
-                const needsOnlineIcon = isStream(new URL(link.href).host) || link.href.indexOf('type=ONLINE') !== -1;
+                const needsOnlineIcon = isStream(link.href) || link.href.indexOf('type=ONLINE') !== -1;
 
                 if (needsOnlineIcon) {
                     $(link).prepend(standaloneStreamIcon.clone());
