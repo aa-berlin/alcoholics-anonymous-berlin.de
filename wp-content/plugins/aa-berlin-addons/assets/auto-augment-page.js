@@ -1,11 +1,15 @@
 (function (jQuery, __) {
 
     const regexQuotes = /"/g;
+    const regexZoomMeetingId = /zoom\.us\/j\/(\d+)/i;
+    const regexTriplets = /(\d{3})/g;
     const options = aa_berlin_addons_options;
     const msBeforeActivationOfStreams = 30 * 60 * 1000;
     const markerTextWarning = String(options.warning_prefix).replace(regexQuotes, '');
     const markerTextSuccess = String(options.success_prefix).replace(regexQuotes, '');
     const markerTextInfo = String(options.info_prefix).replace(regexQuotes, '');
+    // translators: %s is the zoom meeting id
+    const zoomMeetingIdText = __('<abbr title="You can use this to access this meeting via phone.">Zoom Meeting ID #</abbr>:<br><strong>%s</strong><em>xxx-xxx-xxx</em>', 'aa-berlin-addons');
     const onlineIconTitle = __('You can join this meeting online.', 'aa-berlin-addons');
     const onlineOnlyMarkerText = __('ONLINE ONLY');
     const onlineOnlySubstituteText = __('ONLINE ONLY');
@@ -16,13 +20,12 @@
     const msPerDay = 24 * 3600 * 1000;
     const streamDomains = String(options.stream_domains_pattern).split(/\s*,\s*/g);
 
-    const regexIsZoomMeeting = /zoom\.us\/j\//;
     const isStream = function (link) {
         const domain = new URL(link).host;
         let preconditionsMet = true;
 
         if (domain === 'zoom.us') {
-            preconditionsMet = preconditionsMet && regexIsZoomMeeting.test(link);
+            preconditionsMet = preconditionsMet && regexZoomMeetingId.test(link);
         }
 
         if (!preconditionsMet) {
@@ -36,6 +39,16 @@
         }
 
         return false;
+    };
+
+    const extractZoomMeetingId = function (link) {
+        const match = regexZoomMeetingId.exec(link);
+
+        if (match) {
+            return match[1].replace(regexTriplets, '-$1').substr(1);
+        }
+
+        return null;
     };
 
     const onlineIconHtml = '<span class="aa-berlin-addons-stream-icon glyphicon glyphicon-headphones" role="presentation" title="' + onlineIconTitle + '"></span>';
@@ -83,6 +96,16 @@
                 const externalLinkText = sprintf(externalLinkTextTemplate, domain);
                 link = link.replace(/[.?!]$/, '');
 
+                let meetingIdHtml = '';
+                if (options.append_zoom_meeting_id) {
+                    const zoomMeetingId = extractZoomMeetingId(link);
+
+                    if (zoomMeetingId) {
+                        meetingIdHtml = sprintf(zoomMeetingIdText, zoomMeetingId);
+                        meetingIdHtml = '<span class="aa-berlin-addons-auto-meeting-id"><br>' + meetingIdHtml + '</span>';
+                    }
+                }
+
                 const isExternal = domain !== location.host;
 
                 return [
@@ -95,7 +118,8 @@
                     '>',
                     options.prepend_stream_icons && isStream(link) ? onlineIconHtml : '',
                     domain,
-                    '</a>'
+                    '</a>',
+                    meetingIdHtml
                 ].join('');
             });
 

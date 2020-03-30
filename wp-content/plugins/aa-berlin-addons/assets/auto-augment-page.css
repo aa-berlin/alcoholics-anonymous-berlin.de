@@ -34,6 +34,36 @@
     padding-right: 0.4em;
 }
 
+.aa-berlin-addons-auto-meeting-id {
+
+}
+
+.aa-berlin-addons-auto-meeting-id strong,
+#tsml .aa-berlin-addons-auto-meeting-id strong {
+    display: inline-block;
+    white-space: nowrap;
+    font-weight: normal;
+}
+
+.aa-berlin-addons-auto-meeting-id em {
+    display: none;
+    font-style: normal;
+    white-space: nowrap;
+}
+
+.aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-meeting-id abbr {
+    text-decoration: underline dotted;
+}
+
+.aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-meeting-id strong,
+#tsml .aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-meeting-id strong {
+    display: none;
+}
+
+.aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-meeting-id em {
+    display: inline-block;
+}
+
 .aa-berlin-addons-standalone-stream-icon {
     display: inline-block;
     padding-right: 0.4em;

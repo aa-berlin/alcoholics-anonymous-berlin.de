@@ -39,6 +39,13 @@ $pages = array(
                     ),
 
                     array(
+                        'title' => __('Extract meeting id from zoom.us links and append to paragraph as well', 'aa-berlin-addons'),
+                        'type' => 'checkbox',
+                        'text' => 'Finds the meeting id in each zoom link and writes it into the containing paragraph to help people with accessing the meeting via phone.',
+                        'id' => 'append_zoom_meeting_id',
+                    ),
+
+                    array(
                         'title' => __('Disable online meeting links, if meeting is not currently on', 'aa-berlin-addons'),
                         'type' => 'checkbox',
                         'text' => 'Feature currently BROKEN due to its handling of daylight savings time; Disables online meeting links 30min before and after the meetings scheduled start and end time.',
