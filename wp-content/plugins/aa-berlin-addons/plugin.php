@@ -20,6 +20,8 @@ add_action('widgets_init', 'aa_berlin_addons_widgets_init');
 add_action('wp_footer', 'aa_berlin_addons_render_common_widgets');
 add_action('wp_footer', 'aa_berlin_addons_render_dynamic_styles');
 add_filter('body_class', 'aa_berlin_addons_body_class');
+add_shortcode('timezone_info', 'aa_berlin_addons_shortcode_timezone_info');
+add_filter('widget_text', 'do_shortcode');
 
 function aa_berlin_addons_options($key = null) {
     $options = get_option('aa_berlin_addons_options', array());
@@ -133,6 +135,7 @@ function aa_berlin_addons_body_class($classes) {
  */
 function aa_berlin_addons_render_common_widgets() {
     $hint = aa_berlin_addons_options('stream_link_hint');
+    $hint = do_shortcode($hint);
     $type = aa_berlin_addons_options('stream_link_hint_type');
 
     $domains = aa_berlin_addons_options('stream_domains_pattern');
@@ -181,4 +184,12 @@ function aa_berlin_addons_render_dynamic_styles() {
         <?php endif; ?>
     </style>
     <?php
+}
+
+function aa_berlin_addons_shortcode_timezone_info() {
+    $timezoneString = get_option('timezone_string');
+    $timezoneOffset = get_option('gmt_offset');
+    $timezoneSign = $timezoneOffset > 0 ? '+' : '-';
+
+    return '<span class="aa-berlin-addons-shortcode-timezone">' . $timezoneString . ' (GMT ' . $timezoneSign . $timezoneOffset . 'h)</span>';
 }
