@@ -234,6 +234,10 @@ Domain Path: /languages
     margin-left: 0;
 }
 
+.canva-embed:empty {
+    display: none;
+}
+
 h1,
 h2,
 h3 {
