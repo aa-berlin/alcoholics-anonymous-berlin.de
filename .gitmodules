@@ -1,6 +1,6 @@
 [submodule "wp-content/plugins/12-step-meeting-list"]
 	path = wp-content/plugins/12-step-meeting-list
 	url = git@github.com:aa-berlin/12-step-meeting-list.git
-[submodule "wp-content/plugins/aa-berlin-addons/includes/RationalOptionsPages"]
-	path = wp-content/plugins/aa-berlin-addons/includes/RationalOptionsPages
+[submodule "wp-content/plugins/aa-berlin-addons/includes/RationalOptionPages"]
+	path = wp-content/plugins/aa-berlin-addons/includes/RationalOptionPages
 	url = git@github.com:jeremyHixon/RationalOptionPages.git
