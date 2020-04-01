@@ -8,7 +8,8 @@ $pages = array(
     'aa_berlin_addons_options' => array(
         'page_title' => __('AA Berlin Addons', 'aa-berlin-addons'),
         'menu_slug' => 'aa_berlin_addons_options',
-        'parent_slug' => 'options-general.php',
+        // no parent -> top-level item
+        // 'parent_slug' => 'options-general.php',
         'icon_url' => 'dashicons-carrot',
         'position' => 61,
         'sections' => array(

@@ -12,6 +12,7 @@
 define('AA_BERLIN_ZOOMBOT_VERSION', '0.1.0');
 
 register_activation_hook(__FILE__, 'aa_berlin_zoombot_activate');
+add_action('init', 'aa_berlin_zoombot_init');
 
 function aa_berlin_zoombot_activate() {
     if (!function_exists('aa_berlin_addons_init')) {
@@ -22,4 +23,8 @@ function aa_berlin_zoombot_activate() {
             array('back_link' => true)
         );
     }
+}
+
+function aa_berlin_zoombot_init() {
+    require __DIR__ . '/includes/options.php';
 }
