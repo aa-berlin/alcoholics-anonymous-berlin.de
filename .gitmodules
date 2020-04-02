@@ -4,3 +4,6 @@
 [submodule "wp-content/plugins/aa-berlin-addons/includes/RationalOptionPages"]
 	path = wp-content/plugins/aa-berlin-addons/includes/RationalOptionPages
 	url = git@github.com:jeremyHixon/RationalOptionPages.git
+[submodule "wp-content/plugins/wp-router"]
+	path = wp-content/plugins/wp-router
+	url = git@github.com:jbrinley/WP-Router.git
