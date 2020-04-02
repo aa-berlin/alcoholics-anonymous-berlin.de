@@ -80,6 +80,15 @@ function aa_berlin_zoombot_rest_api_init() {
             'callback' => 'aa_berlin_zoombot_route_deauthorize',
         )
     );
+
+    register_rest_route(
+        $namespace,
+        '/command',
+        array(
+            'methods'  => WP_REST_Server::CREATABLE,
+            'callback' => 'aa_berlin_zoombot_route_command',
+        )
+    );
 }
 
 function aa_berlin_zoombot_route_authorize() {
@@ -138,6 +147,15 @@ function aa_berlin_zoombot_route_deauthorize(WP_REST_Request $request) {
     );
 
     $response->set_data($compliance_response);
+
+    return $response;
+}
+
+function aa_berlin_zoombot_route_command(WP_REST_Request $request) {
+    $response = new WP_REST_Response();
+    $response->set_status(200);
+
+    // TODO: implement slash command endpoint
 
     return $response;
 }
