@@ -30,16 +30,28 @@ function aa_berlin_zoombot_options($key = null) {
 }
 
 function aa_berlin_zoombot_activate() {
-    if (!function_exists('aa_berlin_addons_init')) {
-        deactivate_plugins(plugin_basename(__FILE__ ));
+    aa_berlin_zoombot_ensure_dependencies();
+}
 
-        wp_die(
-            __('Please install and activate AA Berlin Addons before activating AA Berlin Zoombot.', 'aa-berlin-zoombot'),
-            'Plugin dependency check',
-            array('back_link' => true)
-        );
+function aa_berlin_zoombot_ensure_dependencies() {
+    $plugin_tests = [
+        'aa_berlin_addons_init' => 'AA Berlin Addons',
+        'WP_Router_load' => 'WP Router',
+    ];
 
-        return;
+    foreach ($plugin_tests as $fn => $plugin) {
+        if (!function_exists($fn)) {
+            deactivate_plugins(plugin_basename(__FILE__ ));
+
+            wp_die(
+                // translators: %s is the readable plugin name
+                sprintf(__('Please install and activate %s before activating AA Berlin Zoombot.', 'aa-berlin-zoombot'), $plugin),
+                'Plugin dependency check',
+                array('back_link' => true)
+            );
+
+            return;
+        }
     }
 }
 
