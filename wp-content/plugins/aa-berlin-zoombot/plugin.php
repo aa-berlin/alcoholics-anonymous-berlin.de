@@ -14,6 +14,7 @@ define('AA_BERLIN_ZOOMBOT_VERSION', '0.1.0');
 register_activation_hook(__FILE__, 'aa_berlin_zoombot_activate');
 add_action('init', 'aa_berlin_zoombot_init');
 add_action('rest_api_init', 'aa_berlin_zoombot_rest_api_init');
+add_action('wp_router_generate_routes', 'aa_berlin_zoombot_generate_routes');
 
 function aa_berlin_zoombot_options($key = null) {
     $options = get_option('aa_berlin_zoombot_options', array());
@@ -68,16 +69,6 @@ function aa_berlin_zoombot_rest_api_init() {
         array(
             'methods'  => WP_REST_Server::READABLE,
             'callback' => 'aa_berlin_zoombot_route_authorize',
-        )
-    );
-
-    // TODO: make a top-level route, text-only
-    register_rest_route(
-        $namespace,
-        '/zoomverify/verifyzoom.html',
-        array(
-            'methods'  => WP_REST_Server::READABLE,
-            'callback' => 'aa_berlin_zoombot_route_zoomverify',
         )
     );
 
@@ -151,6 +142,18 @@ function aa_berlin_zoombot_route_deauthorize(WP_REST_Request $request) {
     return $response;
 }
 
+function aa_berlin_zoombot_generate_routes(WP_Router $router) {
+    $router->add_route(
+        'aa-berlin-zoombot-zoomverify',
+        [
+            'path' => 'zoomverify/verifyzoom.html',
+            'access_callback' => true,
+            'template' => false,
+            'page_callback' => 'aa_berlin_zoombot_route_zoomverify',
+        ]
+    );
+}
+
 function aa_berlin_zoombot_route_zoomverify() {
-    return rest_ensure_response(aa_berlin_zoombot_options('zoom_verification_token'));
+    return aa_berlin_zoombot_options('zoom_verification_token');
 }
