@@ -10,4 +10,8 @@ RUN apt-get install -y mariadb-client
 RUN curl -sL https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar > /usr/local/bin/wp
 RUN chmod +x /usr/local/bin/wp
 
+# For docs see https://ngrok.com/download
+RUN curl -sL https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip > /tmp/ngrok.zip && unzip -p /tmp/ngrok.zip > /usr/local/bin/ngrok && rm /tmp/ngrok.zip
+RUN chmod +x /usr/local/bin/ngrok
+
 WORKDIR /app
