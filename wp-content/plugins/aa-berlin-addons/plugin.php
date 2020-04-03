@@ -38,10 +38,35 @@ function aa_berlin_addons_options($key = null) {
 }
 
 function aa_berlin_addons_init() {
+    global $tsml_conference_providers;
+
     if (aa_berlin_addons_options('add_type_online') && function_exists('tsml_custom_types')) {
         tsml_custom_types(array(
             'ONL' => aa_berlin_addons_options('label_type_online'),
         ));
+    }
+
+    if (aa_berlin_addons_options('allow_type_online_without_link')) {
+        // monkey patch the conference_url handling, so that the ONL type does not get removed for empty links
+        $tsml_conference_providers = [];
+        add_action('save_post', 'aa_berlin_addons_save_post_before_tsml', 9, 3);
+    }
+}
+
+/**
+ * Patches the post so that the the type ONL does not get removed for an empty conference_url.
+ */
+function aa_berlin_addons_save_post_before_tsml($post_id, $post, $update = null) {
+    // scrounged from original impl in tsml_save_post()
+    if (!isset($_POST['post_type']) || ($_POST['post_type'] != 'tsml_meeting')) {
+        return;
+    }
+    if (empty($_POST['types']) || !is_array($_POST['types'])) {
+        $_POST['types'] = array();
+    }
+
+    if (in_array('ONL', $_POST['types'], true) && empty($_POST['conference_url'])) {
+        $_POST['conference_url'] = ' ';
     }
 }
 

@@ -114,13 +114,20 @@ $pages = array(
 
             'type_online' => array(
                 'title' => __('Handling of meeting type Online', 'aa-berlin-addons'),
-                'text' => '<p>' . __('Adds some custom meeting types that have been found to be useful.', 'aa-berlin-addons') . '</p>',
+                'text' => '<p>' . __('Adds some custom behaviour of meetings with type ONL (ONLINE).', 'aa-berlin-addons') . '</p>',
 
                 'fields' => array(
                     array(
                         'title' => __('Rename meeting type ONL(-INE)', 'aa-berlin-addons'),
                         'type' => 'checkbox',
                         'id' => 'add_type_online',
+                    ),
+
+                    array(
+                        'title' => __('Allow manual type ONL(-INE)', 'aa-berlin-addons'),
+                        'type' => 'checkbox',
+                        'text' => 'If checked, you can mark a post as ONL(-INE) without also providing phone or link details.',
+                        'id' => 'allow_type_online_without_link',
                     ),
 
                     array(
