@@ -40,7 +40,7 @@ function aa_berlin_addons_options($key = null) {
 function aa_berlin_addons_init() {
     if (aa_berlin_addons_options('add_type_online') && function_exists('tsml_custom_types')) {
         tsml_custom_types(array(
-            'ONLINE' => aa_berlin_addons_options('label_type_online'),
+            'ONL' => aa_berlin_addons_options('label_type_online'),
         ));
     }
 }
@@ -178,7 +178,7 @@ function aa_berlin_addons_render_dynamic_styles() {
         <?php endif; ?>
 
         <?php if (aa_berlin_addons_options('disable_map_if_online') && $textOnline): ?>
-            .aa-berlin-addons-disable-map-if-online.tsml-type-online #tsml #meeting #map > div::after {
+            .aa-berlin-addons-disable-map-if-online.tsml-type-onl #tsml #meeting #map > div::after {
                 content: "<?php echo $textOnline ?>";
             }
         <?php endif; ?>

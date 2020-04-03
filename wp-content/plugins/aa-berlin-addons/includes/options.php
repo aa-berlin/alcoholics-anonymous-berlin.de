@@ -118,7 +118,7 @@ $pages = array(
 
                 'fields' => array(
                     array(
-                        'title' => __('Add meeting type ONLINE', 'aa-berlin-addons'),
+                        'title' => __('Rename meeting type ONL(-INE)', 'aa-berlin-addons'),
                         'type' => 'checkbox',
                         'id' => 'add_type_online',
                     ),
@@ -130,7 +130,7 @@ $pages = array(
                     ),
 
                     array(
-                        'title' => __('Label of meeting type ONLINE', 'aa-berlin-addons'),
+                        'title' => __('Label of meeting type ONL(-INE)', 'aa-berlin-addons'),
                         'type' => 'text',
                         'value' => 'Join Online',
                         'id' => 'label_type_online',

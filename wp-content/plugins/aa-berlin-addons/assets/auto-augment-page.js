@@ -54,11 +54,11 @@
     const onlineIconHtml = '<span class="aa-berlin-addons-stream-icon glyphicon glyphicon-headphones" role="presentation" title="' + onlineIconTitle + '"></span>';
 
     const prependStreamIconInResults = function (tbody) {
-        tbody.find('.type-online td.name > a').prepend(onlineIconHtml);
+        tbody.find('.type-onl td.name > a').prepend(onlineIconHtml);
     };
 
     const fixOnlineAddressWorkaround = function (tbody) {
-        tbody.find('.type-online td.location:contains("' + onlineOnlyMarkerText + '")').nextAll('.address, .region').andSelf().addClass('aa-berlin-addons-online-only-address').html(onlineOnlySubstituteText);
+        tbody.find('.type-onl td.location:contains("' + onlineOnlyMarkerText + '")').nextAll('.address, .region').andSelf().addClass('aa-berlin-addons-online-only-address').html(onlineOnlySubstituteText);
     };
 
     jQuery(function ($) {
@@ -222,8 +222,8 @@
         });
 
         if (options.add_stream_icon_to_online_meetings) {
-            $('body.tsml-type-online .page-header h1').prepend(onlineIconHtml);
-            $('.list-group-item-meetings .meeting.type-online > a').prepend(onlineIconHtml);
+            $('body.tsml-type-onl .page-header h1').prepend(onlineIconHtml);
+            $('.list-group-item-meetings .meeting.type-onl > a').prepend(onlineIconHtml);
 
             $('#meetings_tbody').on('tsml_meetings_updated', function (e, data) {
                 prependStreamIconInResults(data.tbody);
@@ -247,7 +247,7 @@
 
         const standaloneStreamIcon = $('<span class="aa-berlin-addons-standalone-stream-icon">').load('/wp-content/plugins/aa-berlin-addons/assets/images/phones.svg', function () {
             $('.entry-content a[href]:not(.aa-berlin-addons-auto-link)').each(function (i, link) {
-                const needsOnlineIcon = isStream(link.href) || link.href.indexOf('type=ONLINE') !== -1;
+                const needsOnlineIcon = isStream(link.href) || link.href.indexOf('type=ONL') !== -1;
 
                 if (needsOnlineIcon) {
                     $(link).prepend(standaloneStreamIcon.clone());
