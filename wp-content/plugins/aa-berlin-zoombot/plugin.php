@@ -109,7 +109,7 @@ function aa_berlin_zoombot_route_deauthorize(WP_REST_Request $request) {
     $response = new WP_REST_Response();
     $response->set_status(200);
 
-    if ($request->get_header('Authorization') !== aa_berlin_addons_options('zoom_verification_token')) {
+    if ($request->get_header('Authorization') !== aa_berlin_zoombot_options('zoom_verification_token')) {
         $response->set_status(401);
         $response->set_data([
             'status' => 401,
@@ -131,15 +131,14 @@ function aa_berlin_zoombot_route_deauthorize(WP_REST_Request $request) {
         'deauthorization_event_received' => $payload,
     ];
 
-    $zoom_client_id = aa_berlin_addons_options('zoom_client_id');
-    $zoom_client_secret = aa_berlin_addons_options('zoom_client_secret');
+    $auth_header = aa_berlin_zoombot_get_client_basic_auth();
 
     $compliance_response = wp_remote_post(
         $compliance_url,
         [
             'headers' => [
                 'Content-Type' => 'application/json',
-                'Authorization' => 'Basic ' . base64_encode($zoom_client_id . ':' . $zoom_client_secret),
+                'Authorization' => $auth_header,
                 'Cache-Control' => 'no-cache',
             ],
             'body' => json_encode($compliance_body),
@@ -155,9 +154,68 @@ function aa_berlin_zoombot_route_command(WP_REST_Request $request) {
     $response = new WP_REST_Response();
     $response->set_status(200);
 
-    // TODO: implement slash command endpoint
+    $body = $request->get_json_params();
+    $payload = $body['payload'];
+
+    $chat_messages_url = 'https://api.zoom.us/v2/im/chat/messages';
+    $access_token = aa_berlin_zoombot_fetch_access_token();
+
+    $reply_body = json_encode([
+        'robot_jid' => aa_berlin_zoombot_options('zoom_bot_jid'),
+        'to_jid' => $payload['toJid'],
+        'account_id' => $payload['accountId'],
+        'content' => [
+            'head' => [
+                'text' => 'Sober?',
+            ],
+            'body' => [
+                [
+                    'type' => 'message',
+                    'text' => 'Wooh! Sober for ' . $payload['cmd'],
+                ],
+            ],
+        ],
+    ]);
+
+    $chat_messages_response = wp_remote_post(
+        $chat_messages_url,
+        [
+            'body' => $reply_body,
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . $access_token,
+                'Cache-Control' => 'no-cache',
+            ],
+        ]
+    );
 
     return $response;
+}
+
+function aa_berlin_zoombot_fetch_access_token() {
+    $token_url = 'https://api.zoom.us/oauth/token?grant_type=client_credentials';
+    $auth_header = aa_berlin_zoombot_get_client_basic_auth();
+
+    $token_response = wp_remote_post(
+        $token_url,
+        [
+            'headers' => [
+                'Authorization' => $auth_header,
+                'Cache-Control' => 'no-cache',
+            ],
+        ]
+    );
+
+    $token_body = json_decode($token_response['body'], true);
+
+    return $token_body['access_token'];
+}
+
+function aa_berlin_zoombot_get_client_basic_auth() {
+    $zoom_client_id = aa_berlin_zoombot_options('zoom_client_id');
+    $zoom_client_secret = aa_berlin_zoombot_options('zoom_client_secret');
+
+    return 'Basic ' . base64_encode($zoom_client_id . ':' . $zoom_client_secret);
 }
 
 function aa_berlin_zoombot_generate_routes(WP_Router $router) {
