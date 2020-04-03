@@ -164,6 +164,13 @@ $pages = array(
 
                 'fields' => array(
                     array(
+                        'title' => __('Mute address in listing, if both ONL(-INE) and TC', 'aa-berlin-addons'),
+                        'type' => 'checkbox',
+                        'text' => 'If a meeting is both Online and Temporary Closure, then show its address in faded and strike-through in the listing',
+                        'id' => 'muted_address_in_listing_if_tc_and_onl',
+                    ),
+
+                    array(
                         'title' => __('Disable map on meeting detail', 'aa-berlin-addons'),
                         'type' => 'checkbox',
                         'id' => 'disable_map_if_tc',

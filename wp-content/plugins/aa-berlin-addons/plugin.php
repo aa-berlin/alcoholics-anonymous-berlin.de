@@ -177,6 +177,10 @@ function aa_berlin_addons_body_class($classes) {
         $classes[] = 'aa-berlin-addons-disable-map-if-online';
     }
 
+    if (aa_berlin_addons_options('muted_address_in_listing_if_tc_and_onl')) {
+        $classes[] = 'aa-berlin-addons-muted-address-if-tc-and-onl';
+    }
+
     return $classes;
 }
 
