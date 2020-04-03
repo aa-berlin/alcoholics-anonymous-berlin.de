@@ -188,6 +188,14 @@ $pages = array(
                         'type' => 'checkbox',
                         'id' => 'wrap_single_entry_links_with_h2',
                     ),
+
+                    array(
+                        'title' => __('Custom set of type flags', 'aa-berlin-addons'),
+                        'type' => 'text',
+                        'value' => 'M,W,TC,ONL',
+                        'text' => 'List of meeting types (keys only) that should be promoted as textual flags next to the meeting name; separated by comma',
+                        'id' => 'custom_type_flags',
+                    ),
                 ),
             ),
         )

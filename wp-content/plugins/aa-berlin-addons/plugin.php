@@ -46,6 +46,12 @@ function aa_berlin_addons_init() {
         ));
     }
 
+    if (aa_berlin_addons_options('custom_type_flags') && function_exists('tsml_custom_flags')) {
+        $custom_type_flags = aa_berlin_addons_options('custom_type_flags');
+        $custom_type_flags = preg_split('#\s*,\s*#', $custom_type_flags);
+        tsml_custom_flags($custom_type_flags);
+    }
+
     if (aa_berlin_addons_options('allow_type_online_without_link')) {
         // monkey patch the conference_url handling, so that the ONL type does not get removed for empty links
         $tsml_conference_providers = [];
