@@ -39,6 +39,13 @@ function aa_berlin_addons_options($key = null) {
 
 function aa_berlin_addons_init() {
     global $tsml_conference_providers;
+    global $tsml_programs, $tsml_program;
+
+    $existing_type_flags = array();
+
+    if (!empty($tsml_programs[$tsml_program]['flags'])) {
+        $existing_type_flags = $tsml_programs[$tsml_program]['flags'];
+    }
 
     if (aa_berlin_addons_options('add_type_online') && function_exists('tsml_custom_types')) {
         tsml_custom_types(array(
@@ -46,15 +53,27 @@ function aa_berlin_addons_init() {
         ));
     }
 
-    if (aa_berlin_addons_options('custom_type_flags') && function_exists('tsml_custom_flags')) {
-        $custom_type_flags = aa_berlin_addons_options('custom_type_flags');
+    if (aa_berlin_addons_options('custom_type_flags_add') && function_exists('tsml_custom_flags')) {
+        $custom_type_flags = aa_berlin_addons_options('custom_type_flags_add');
         $custom_type_flags = preg_split('#\s*,\s*#', $custom_type_flags);
+        $custom_type_flags = array_merge($custom_type_flags, $existing_type_flags);
+        $custom_type_flags = array_unique($custom_type_flags);
+
+        $existing_type_flags = $custom_type_flags;
+        tsml_custom_flags($custom_type_flags);
+    }
+
+    if (aa_berlin_addons_options('custom_type_flags_remove') && function_exists('tsml_custom_flags')) {
+        $custom_type_flags = aa_berlin_addons_options('custom_type_flags_remove');
+        $custom_type_flags = preg_split('#\s*,\s*#', $custom_type_flags);
+        $custom_type_flags = array_diff($existing_type_flags, $custom_type_flags);
+
         tsml_custom_flags($custom_type_flags);
     }
 
     if (aa_berlin_addons_options('allow_type_online_without_link')) {
         // monkey patch the conference_url handling, so that the ONL type does not get removed for empty links
-        $tsml_conference_providers = [];
+        $tsml_conference_providers = array();
         add_action('save_post', 'aa_berlin_addons_save_post_before_tsml', 9, 3);
     }
 }

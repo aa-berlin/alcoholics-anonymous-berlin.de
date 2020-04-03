@@ -190,11 +190,18 @@ $pages = array(
                     ),
 
                     array(
-                        'title' => __('Custom set of type flags', 'aa-berlin-addons'),
+                        'title' => __('Add custom set of type flags', 'aa-berlin-addons'),
                         'type' => 'text',
                         'value' => 'M,W,TC,ONL',
                         'text' => 'List of meeting types (keys only) that should be promoted as textual flags next to the meeting name; separated by comma',
-                        'id' => 'custom_type_flags',
+                        'id' => 'custom_type_flags_add',
+                    ),
+
+                    array(
+                        'title' => __('Remove from set of type flags', 'aa-berlin-addons'),
+                        'type' => 'text',
+                        'text' => 'List of meeting types (keys only) that should never be promoted as textual flags next to the meeting name; separated by comma; use this to switch certain types off',
+                        'id' => 'custom_type_flags_remove',
                     ),
                 ),
             ),
