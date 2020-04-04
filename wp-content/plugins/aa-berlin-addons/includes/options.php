@@ -20,8 +20,9 @@ $pages = array(
 
                 'fields' => array(
                     array(
-                        'title' => __('Insert links', 'aa-berlin-addons'),
+                        'title' => __('Insert links for urls and phone numbers', 'aa-berlin-addons'),
                         'type' => 'checkbox',
+                        'text' => 'If a paragraph or list item does not have any other tags, then full urls "https://example.com/wow/look" and phone numbers "+41 (0) 123 456" will be turned into links.',
                         'id' => 'insert_links',
                     ),
 
@@ -54,14 +55,7 @@ $pages = array(
                     ),
 
                     array(
-                        'title' => __('Common hint to be shown after each online meeting link', 'aa-berlin-addons'),
-                        'type' => 'wp_editor',
-                        'text' => 'Inserted after each online meeting link.',
-                        'id' => 'stream_link_hint',
-                    ),
-
-                    array(
-                        'title' => __('Show the following hint text as a notice', 'aa-berlin-addons'),
+                        'title' => __('Show the following hint text as a notice of this severity', 'aa-berlin-addons'),
                         'type' => 'select',
                         'choices' => array(
                             '' => __('Disable hint', 'aa-berlin-addons'),
@@ -70,6 +64,13 @@ $pages = array(
                             'info' => __('Info', 'aa-berlin-addons'),
                         ),
                         'id' => 'stream_link_hint_type',
+                    ),
+
+                    array(
+                        'title' => __('Common hint to be shown after each online meeting link', 'aa-berlin-addons'),
+                        'type' => 'wp_editor',
+                        'text' => 'Inserted after each online meeting link.',
+                        'id' => 'stream_link_hint',
                     ),
                 ),
             ),
@@ -124,6 +125,13 @@ $pages = array(
                     ),
 
                     array(
+                        'title' => __('Label of meeting type ONL(-INE)', 'aa-berlin-addons'),
+                        'type' => 'text',
+                        'value' => 'Join Online',
+                        'id' => 'label_type_online',
+                    ),
+
+                    array(
                         'title' => __('Allow manual type ONL(-INE)', 'aa-berlin-addons'),
                         'type' => 'checkbox',
                         'text' => 'If checked, you can mark a post as ONL(-INE) without also providing phone or link details.',
@@ -134,13 +142,6 @@ $pages = array(
                         'title' => __('Add "headphones" icon to Online meetings', 'aa-berlin-addons'),
                         'type' => 'checkbox',
                         'id' => 'add_stream_icon_to_online_meetings',
-                    ),
-
-                    array(
-                        'title' => __('Label of meeting type ONL(-INE)', 'aa-berlin-addons'),
-                        'type' => 'text',
-                        'value' => 'Join Online',
-                        'id' => 'label_type_online',
                     ),
 
                     array(
