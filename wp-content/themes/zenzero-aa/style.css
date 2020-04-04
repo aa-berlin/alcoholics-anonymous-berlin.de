@@ -285,10 +285,6 @@ h1.page-title,
     font-size: 25px;
 }
 
-.single .byline {
-    display: none !important;
-}
-
 .showSide, 
 .showSearch {
     border-top-right-radius: 2px;
