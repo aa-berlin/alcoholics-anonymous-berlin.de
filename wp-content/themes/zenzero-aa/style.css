@@ -276,6 +276,10 @@ h1.page-title,
     line-height: 1.2;
 }
 
+.entry-featuredImg {
+    display: none;
+}
+
 .entry-content li > a {
     border-bottom: 1px dotted;
 }
@@ -423,6 +427,10 @@ figcaption {
 
 #tsml #meetings .results table thead th {
     padding-top: 5px;
+}
+
+#tsml #meetings .results table tbody tr td.name small {
+    white-space: normal;
 }
 
 #tsml #location .main,
