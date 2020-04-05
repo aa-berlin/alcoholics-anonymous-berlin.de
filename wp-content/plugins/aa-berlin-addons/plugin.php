@@ -250,5 +250,5 @@ function aa_berlin_addons_shortcode_timezone_info() {
     $timezoneOffset = get_option('gmt_offset');
     $timezoneSign = $timezoneOffset > 0 ? '+' : '-';
 
-    return '<span class="aa-berlin-addons-shortcode-timezone">' . $timezoneString . ' (GMT ' . $timezoneSign . $timezoneOffset . 'h)</span>';
+    return '<span class="aa-berlin-addons-shortcode-timezone">' . $timezoneString . ' (UTC ' . $timezoneSign . $timezoneOffset . 'h)</span>';
 }
