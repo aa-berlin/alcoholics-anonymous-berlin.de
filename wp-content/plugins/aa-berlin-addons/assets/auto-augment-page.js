@@ -48,6 +48,27 @@
         return false;
     };
 
+    let currentElementId = 0;
+    const getId = function (el) {
+        el = jQuery(el).eq(0);
+
+        if (!el) {
+            return null;
+        }
+
+        if (el.attr('id')) {
+            return el.attr('id');
+        }
+
+        currentElementId = currentElementId + 1;
+
+        const id = 'aa-berlin-addons-id-' + currentElementId;
+
+        el.attr('id', id);
+
+        return id;
+    };
+
     const extractZoomMeetingId = function (link) {
         const match = regexZoomMeetingId.exec(link);
 
@@ -146,14 +167,21 @@
                 ].join('');
             });
 
+
+            let hintId = null;
             if (httpLinkWasSubstituted) {
                 const hints = $(augmentedLinkHintTemplate.html()).filter(':has([data-if-link-domain-is="' + domainEncountered + '"])');
+                hintId = getId(hints);
                 hints.insertAfter(paragraph);
             }
 
             if (phoneLinkWasSubstituted || httpLinkWasSubstituted) {
                 paragraph.html(html);
                 paragraph.addClass('aa-berlin-addons-contains-auto-link');
+            }
+
+            if (httpLinkWasSubstituted && hintId) {
+                paragraph.find('a').attr('aria-describedBy', hintId);
             }
         });
 
