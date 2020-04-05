@@ -296,6 +296,18 @@ table tfoot td {
     background: rgba(0,0,0,.08);
 }
 
+figcaption {
+    font-style: italic;
+}
+
+.wp-block-table figcaption {
+    margin-top: -1em;
+}
+
+.wp-block-embed figcaption {
+    margin-top: -0.3em;
+}
+
 #tsml .aa-berlin-addons-notice-block h4 {
     font-weight: bold;
 }
@@ -437,7 +449,6 @@ table tfoot td {
     color: inherit;
     line-height: 1.3;
 }
-
 
 @media all and (min-width: 992px) {
 
