@@ -292,6 +292,10 @@ h1.page-title,
     font-size: 18px;
 }
 
+table tfoot td {
+    background: rgba(0,0,0,.08);
+}
+
 #tsml .aa-berlin-addons-notice-block h4 {
     font-weight: bold;
 }
