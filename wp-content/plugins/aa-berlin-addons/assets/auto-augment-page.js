@@ -5,6 +5,8 @@
     const regexTriplets = /(\d{3})/g;
     const options = aa_berlin_addons_options;
     const msBeforeActivationOfStreams = 30 * 60 * 1000;
+    const now = new Date(options.server_time).getTime();
+    const nowPlusOneWeek = new Date(options.server_time_plus_one_week).getTime();
     const markerTextWarning = String(options.warning_prefix).replace(regexQuotes, '');
     const markerTextSuccess = String(options.success_prefix).replace(regexQuotes, '');
     const markerTextInfo = String(options.info_prefix).replace(regexQuotes, '');
@@ -174,8 +176,6 @@
                 return;
             }
 
-            const now = new Date().getTime();
-
             let startTime = meetingInfo.find('.meeting-time').attr('content');
             startTime = new Date(startTime);
 
@@ -187,20 +187,20 @@
                 return;
             }
 
-            startTime = startTime.getTime() - 7 * msPerDay;
+            startTime = startTime.getTime();
             startTime = startTime - msBeforeActivationOfStreams;
 
-            endTime = endTime.getTime() - 7 * msPerDay;
+            endTime = endTime.getTime();
             endTime = endTime + msBeforeActivationOfStreams;
 
             if (endTime < startTime) {
                 endTime += msPerDay;
             }
 
-            const isActive = now >= startTime && now <= endTime;
+            const isActive = nowPlusOneWeek >= startTime && nowPlusOneWeek <= endTime;
 
-            const msTillActivation = startTime - now;
-            const msTillDeactivationAgain = endTime - now;
+            const msTillActivation = startTime - nowPlusOneWeek;
+            const msTillDeactivationAgain = endTime - nowPlusOneWeek;
 
             if (!isActive) {
                 deactivateLink(link);
