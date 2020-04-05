@@ -6,10 +6,10 @@
  * Description: Contains several optimizations and customizations to both WordPress itself and the 12-step-meeting-list plugin.
  * Text Domain: aa-berlin-addons
  * Domain Path: /languages/
- * Version: 0.10.2
+ * Version: 0.10.3
  */
 
-define('AA_BERLIN_ADDONS_VERSION', '0.10.2');
+define('AA_BERLIN_ADDONS_VERSION', '0.10.3');
 
 require __DIR__ . '/includes/options.php';
 
