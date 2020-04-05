@@ -3,13 +3,20 @@
     const regexQuotes = /"/g;
     const regexZoomMeetingId = /zoom\.us\/j\/(\d+)/i;
     const regexTriplets = /(\d{3})/g;
+
     const options = aa_berlin_addons_options;
+
+    const streamDomains = String(options.stream_domains_pattern).split(/\s*,\s*/g);
+    const msPerDay = 24 * 3600 * 1000;
     const msBeforeActivationOfStreams = 30 * 60 * 1000;
+
     const now = new Date(options.server_time).getTime();
     const nowPlusOneWeek = new Date(options.server_time_plus_one_week).getTime();
+
     const markerTextWarning = String(options.warning_prefix).replace(regexQuotes, '');
     const markerTextSuccess = String(options.success_prefix).replace(regexQuotes, '');
     const markerTextInfo = String(options.info_prefix).replace(regexQuotes, '');
+
     // translators: %s is the zoom meeting id
     const zoomMeetingIdText = __('<abbr title="You can use this to access this meeting via phone.">Zoom Meeting ID #</abbr>:<br><strong>%s</strong><em>xxx-xxx-xxx</em>', 'aa-berlin-addons');
     const onlineIconTitle = __('You can join this meeting online.', 'aa-berlin-addons');
@@ -19,8 +26,6 @@
     const externalLinkTextTemplate = __('External link to %s', 'aa-berlin-addons');
     // translators: %s is the link's generated text (usually the phone number)
     const phoneLinkTextTemplate = __('Call the number %s', 'aa-berlin-addons');
-    const msPerDay = 24 * 3600 * 1000;
-    const streamDomains = String(options.stream_domains_pattern).split(/\s*,\s*/g);
 
     const isStream = function (link) {
         const domain = new URL(link).host;
