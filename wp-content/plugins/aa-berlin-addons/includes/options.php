@@ -69,8 +69,31 @@ $pages = array(
                     array(
                         'title' => __('Common hint to be shown after each online meeting link', 'aa-berlin-addons'),
                         'type' => 'wp_editor',
+                        'value' => '',
                         'text' => 'Inserted after each online meeting link.',
                         'id' => 'stream_link_hint',
+                    ),
+
+                    array(
+                        'title' => __('Common hint to be shown after each online link for meetings of type "Password-less"', 'aa-berlin-addons'),
+                        'type' => 'select',
+                        'choices' => array(
+                            '' => __('Disable hint', 'aa-berlin-addons'),
+                            'neither' => __('Disable hint, diable default', 'aa-berlin-addons'),
+                            'warning' => __('Warning', 'aa-berlin-addons'),
+                            'success' => __('Success', 'aa-berlin-addons'),
+                            'info' => __('Info', 'aa-berlin-addons'),
+                        ),
+                        'text' => 'For meetings of type "Password-less", overrides the default online link hint with the following hint text as a notice of this severity',
+                        'id' => 'passwordless_stream_link_hint_type',
+                    ),
+
+                    array(
+                        'title' => __('Common hint to be shown after each online link for meetings of type "Password-less"', 'aa-berlin-addons'),
+                        'type' => 'wp_editor',
+                        'value' => '',
+                        'text' => 'Inserted after each online meeting link, if meeting is of type "Password-less".',
+                        'id' => 'passwordless_stream_link_hint',
                     ),
                 ),
             ),
@@ -183,6 +206,19 @@ $pages = array(
                         'value' => 'This meeting is suspended until further notice.',
                         'text' => 'Should describe why the map is rendered inaccessible; no double-quotes',
                         'id' => 'disable_map_text_tc',
+                    ),
+                ),
+            ),
+
+            'password_less' => array(
+                'title' => __('Handling of meeting type Password-less', 'aa-berlin-addons'),
+
+                'fields' => array(
+                    array(
+                        'title' => __('Add meeting type Password-less', 'aa-berlin-addons'),
+                        'type' => 'checkbox',
+                        'text' => 'Add a type Password-less that can be used to denote Meetings whose online links do not use password to secure themselves.',
+                        'id' => 'add_type_passwordless',
                     ),
                 ),
             ),

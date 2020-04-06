@@ -58,6 +58,12 @@ function aa_berlin_addons_init() {
         ));
     }
 
+    if (aa_berlin_addons_options('add_type_passwordless') && function_exists('tsml_custom_types')) {
+        tsml_custom_types(array(
+            'NOPW' => __('Password-less, if also online', 'aa-berlin-addons'),
+        ));
+    }
+
     if (aa_berlin_addons_options('custom_type_flags_add') && function_exists('tsml_custom_flags')) {
         $custom_type_flags = aa_berlin_addons_options('custom_type_flags_add');
         $custom_type_flags = preg_split('#\s*,\s*#', $custom_type_flags);
@@ -197,6 +203,30 @@ function aa_berlin_addons_render_common_widgets() {
     $hint = do_shortcode($hint);
     $type = aa_berlin_addons_options('stream_link_hint_type');
 
+    if (!$type) {
+        $hint = '';
+    }
+
+    $current_meeting_detail_is_passwordless = false;
+    $current_post = get_post();
+    if ($current_post && $current_post->post_type == 'tsml_meeting') {
+        $meeting = tsml_get_meeting();
+        $current_meeting_detail_is_passwordless = in_array('NOPW', $meeting->types, true);
+    }
+
+    if ($current_meeting_detail_is_passwordless) {
+        $passwordlessHint = aa_berlin_addons_options('passwordless_stream_link_hint');
+        $passwordlessHint = do_shortcode($passwordlessHint);
+        $passwordlessType = aa_berlin_addons_options('passwordless_stream_link_hint_type');
+
+        if ($passwordlessType == 'neither') {
+            $hint = '';
+        } elseif ($passwordlessType) {
+            $hint = $passwordlessHint;
+            $type = $passwordlessType;
+        }
+    }
+
     $domains = aa_berlin_addons_options('stream_domains_pattern');
     $domains = preg_split('#\s*,\s*#', $domains);
 
@@ -208,7 +238,7 @@ function aa_berlin_addons_render_common_widgets() {
         endif;
         ?>
 
-        <?php if ($type): ?>
+        <?php if ($hint): ?>
             <?php foreach ($domains as $domain): ?>
                 <div class="aa-berlin-addons-online-meeting-hint">
                     <div data-if-link-domain-is="<?php echo esc_attr($domain); ?>" class="aa-berlin-addons-auto-highlight-notice type-<?php echo $type; ?>">
