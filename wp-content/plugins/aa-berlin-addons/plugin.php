@@ -179,9 +179,34 @@ function aa_berlin_addons_widgets_init() {
     ));
 }
 
+function aa_berlin_addons_remove_type_passwordless_from_meeting(WP_Post $meeting) {
+    $meeting->types = array_filter($meeting->types, function ($type) {
+        return $type !== 'NOPW';
+    });
+
+    $meeting->types_expanded = array_filter($meeting->types_expanded, function ($type) {
+        return stripos($type, 'password') === false;
+    });
+
+    if ($meeting->location_meetings) {
+        foreach ($meeting->location_meetings as &$location_meeting) {
+            $location_meeting['types'] = array_filter($location_meeting['types'], function ($type) {
+                return $type !== 'NOPW';
+            });
+        }
+    }
+}
+
 function aa_berlin_addons_body_class($classes) {
+    global $meeting;
+
     if (aa_berlin_addons_options('disable_map_if_tc')) {
         $classes[] = 'aa-berlin-addons-disable-map-if-tc';
+    }
+
+    if (aa_berlin_addons_options('add_type_passwordless') && $meeting && $meeting && is_a($meeting, 'WP_Post')) {
+        // HACK: prevent the NOPW type from becoming too obvious, at least on the detail page
+        aa_berlin_addons_remove_type_passwordless_from_meeting($meeting);
     }
 
     if (aa_berlin_addons_options('disable_map_if_online')) {
