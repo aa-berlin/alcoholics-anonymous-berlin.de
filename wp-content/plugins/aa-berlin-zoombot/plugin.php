@@ -17,7 +17,11 @@ add_action('rest_api_init', 'aa_berlin_zoombot_rest_api_init');
 add_action('wp_router_generate_routes', 'aa_berlin_zoombot_generate_routes');
 
 function aa_berlin_zoombot_options($key = null) {
-    $options = get_option('aa_berlin_zoombot_options', array());
+    static $options = null;
+
+    if ($options === null) {
+        $options = get_option('aa_berlin_zoombot_options', array());
+    }
 
     if (!$key) {
         return $options;

@@ -24,7 +24,11 @@ add_shortcode('timezone_info', 'aa_berlin_addons_shortcode_timezone_info');
 add_filter('widget_text', 'do_shortcode');
 
 function aa_berlin_addons_options($key = null) {
-    $options = get_option('aa_berlin_addons_options', array());
+    static $options = null;
+
+    if ($options === null) {
+        $options = get_option('aa_berlin_addons_options', array());
+    }
 
     // use these to initialize dates client side in relation to meeting times
     // to circumvent wrongly configured time zones of client and daylight savings time
