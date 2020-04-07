@@ -210,16 +210,10 @@ $pages = array(
                 ),
             ),
 
-            'misc' => array(
-                'title' => __('Miscellaneous', 'aa-berlin-addons'),
+            'misc_tsml' => array(
+                'title' => __('Miscellaneous: 12 Step Meeting List', 'aa-berlin-addons'),
 
                 'fields' => array(
-                    array(
-                        'title' => __('Wrap leading link of single-post Latest Posts in h2', 'aa-berlin-addons'),
-                        'type' => 'checkbox',
-                        'id' => 'wrap_single_entry_links_with_h2',
-                    ),
-
                     array(
                         'title' => __('Add custom set of type flags', 'aa-berlin-addons'),
                         'type' => 'text',
@@ -233,6 +227,18 @@ $pages = array(
                         'type' => 'text',
                         'text' => 'List of meeting types (keys only) that should never be promoted as textual flags next to the meeting name; separated by comma; use this to switch certain types off',
                         'id' => 'custom_type_flags_remove',
+                    ),
+                ),
+            ),
+
+            'misc_wordpress' => array(
+                'title' => __('Miscellaneous: WordPress', 'aa-berlin-addons'),
+
+                'fields' => array(
+                    array(
+                        'title' => __('Wrap leading link of single-post Latest Posts widgets in H2', 'aa-berlin-addons'),
+                        'type' => 'checkbox',
+                        'id' => 'wrap_single_entry_links_with_h2',
                     ),
                 ),
             ),
