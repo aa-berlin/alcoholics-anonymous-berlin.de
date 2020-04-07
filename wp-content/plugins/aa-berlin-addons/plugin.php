@@ -59,9 +59,8 @@ function aa_berlin_addons_init() {
     }
 
     if (aa_berlin_addons_options('add_type_passwordless') && function_exists('tsml_custom_types')) {
-        tsml_custom_types(array(
-            'NOPW' => __('Password-less, if also online', 'aa-berlin-addons'),
-        ));
+        add_action('do_meta_boxes', 'aa_berlin_addons_add_passwordless_metabox', 9);
+        add_action('save_post', 'aa_berlin_addons_save_passwordless_postdata');
     }
 
     if (aa_berlin_addons_options('custom_type_flags_add') && function_exists('tsml_custom_flags')) {
@@ -179,34 +178,11 @@ function aa_berlin_addons_widgets_init() {
     ));
 }
 
-function aa_berlin_addons_remove_type_passwordless_from_meeting(WP_Post $meeting) {
-    $meeting->types = array_filter($meeting->types, function ($type) {
-        return $type !== 'NOPW';
-    });
-
-    $meeting->types_expanded = array_filter($meeting->types_expanded, function ($type) {
-        return stripos($type, 'password') === false;
-    });
-
-    if ($meeting->location_meetings) {
-        foreach ($meeting->location_meetings as &$location_meeting) {
-            $location_meeting['types'] = array_filter($location_meeting['types'], function ($type) {
-                return $type !== 'NOPW';
-            });
-        }
-    }
-}
-
 function aa_berlin_addons_body_class($classes) {
     global $meeting;
 
     if (aa_berlin_addons_options('disable_map_if_tc')) {
         $classes[] = 'aa-berlin-addons-disable-map-if-tc';
-    }
-
-    if (aa_berlin_addons_options('add_type_passwordless') && $meeting && $meeting && is_a($meeting, 'WP_Post')) {
-        // HACK: prevent the NOPW type from becoming too obvious, at least on the detail page
-        aa_berlin_addons_remove_type_passwordless_from_meeting($meeting);
     }
 
     if (aa_berlin_addons_options('disable_map_if_online')) {
@@ -236,7 +212,7 @@ function aa_berlin_addons_render_common_widgets() {
     $current_post = get_post();
     if ($current_post && $current_post->post_type == 'tsml_meeting') {
         $meeting = tsml_get_meeting();
-        $current_meeting_detail_is_passwordless = in_array('NOPW', $meeting->types, true);
+        $current_meeting_detail_is_passwordless = property_exists($meeting, 'aa_berlin_addons_passwordless') && $meeting->aa_berlin_addons_passwordless;
     }
 
     if ($current_meeting_detail_is_passwordless) {
@@ -306,4 +282,45 @@ function aa_berlin_addons_shortcode_timezone_info() {
     $timezoneSign = $timezoneOffset > 0 ? '+' : '-';
 
     return '<span class="aa-berlin-addons-shortcode-timezone">' . $timezoneString . ' (UTC ' . $timezoneSign . $timezoneOffset . 'h)</span>';
+}
+
+function aa_berlin_addons_add_passwordless_metabox() {
+    add_meta_box('passwordlessmetabox', __('Password-less', 'aa-berlin-addons'), 'aa_berlin_addons_extended_post_submit_meta_box', 'tsml_meeting', 'side');
+}
+
+function aa_berlin_addons_extended_post_submit_meta_box(WP_Post $post, $args = array()) {
+    $is_checked = get_post_meta($post->ID, 'aa_berlin_addons_passwordless', true);
+
+    ?>
+    <div class="misc-pub-section">
+        <input id="aa_berlin_addons_passwordless" name="aa_berlin_addons_passwordless" type="checkbox" value="passwordless" <?php checked($is_checked); ?> />
+        <label for="aa_berlin_addons_passwordless" class="selectit"><?php echo __('If online meeting, show alternate hint next to online meeting links without password prompt', 'aa-berlin-addons'); ?></label>
+        <br />
+    </div>
+    <?php
+}
+
+function aa_berlin_addons_save_passwordless_postdata($post_id, $a=1, $b=2) {
+
+    if (!isset($_POST['post_type'])) {
+        return;
+    }
+
+    $post_type = $_POST['post_type'];
+
+    if ($post_type != 'tsml_meeting' && $post_type != 'tsml_group') {
+        return;
+    }
+
+    $is_passwordless = '0';
+
+    if (array_key_exists('aa_berlin_addons_passwordless', $_POST)) {
+        $is_passwordless = '1';
+    }
+
+    update_post_meta(
+        $post_id,
+        'aa_berlin_addons_passwordless',
+        $is_passwordless
+    );
 }
