@@ -6,10 +6,10 @@
  * Description: Contains several optimizations and customizations to both WordPress itself and the 12-step-meeting-list plugin.
  * Text Domain: aa-berlin-addons
  * Domain Path: /languages/
- * Version: 0.11.1
+ * Version: 0.11.2
  */
 
-define('AA_BERLIN_ADDONS_VERSION', '0.11.1');
+define('AA_BERLIN_ADDONS_VERSION', '0.11.2');
 
 require __DIR__ . '/includes/options.php';
 
@@ -58,10 +58,8 @@ function aa_berlin_addons_init() {
         ));
     }
 
-    if (aa_berlin_addons_options('add_type_passwordless') && function_exists('tsml_custom_types')) {
-        add_action('do_meta_boxes', 'aa_berlin_addons_add_passwordless_metabox', 9);
-        add_action('save_post', 'aa_berlin_addons_save_passwordless_postdata');
-    }
+    add_action('do_meta_boxes', 'aa_berlin_addons_add_passwordless_metabox', 9);
+    add_action('save_post', 'aa_berlin_addons_save_passwordless_postdata');
 
     if (aa_berlin_addons_options('custom_type_flags_add') && function_exists('tsml_custom_flags')) {
         $custom_type_flags = aa_berlin_addons_options('custom_type_flags_add');
