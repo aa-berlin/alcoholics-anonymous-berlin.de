@@ -2,6 +2,11 @@
 RewriteCond %{QUERY_STRING} !cron_key=1234567890-234567890
 RewriteRule wp-cron.php - [F]
 
+# strangely the short tags still exist on live while supposedly running php 7.3
+<IfModule mod_php7.c>
+php_value short_open_tag 0
+</IfModule>
+
 # Compress HTML, CSS, JavaScript, Text, Images, XML and fonts
 AddOutputFilterByType DEFLATE application/atom+xml
 AddOutputFilterByType DEFLATE application/javascript
