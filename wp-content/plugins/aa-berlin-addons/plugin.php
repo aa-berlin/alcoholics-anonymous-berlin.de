@@ -22,6 +22,8 @@ add_action('wp_footer', 'aa_berlin_addons_render_dynamic_styles');
 add_filter('body_class', 'aa_berlin_addons_body_class');
 add_shortcode('timezone_info', 'aa_berlin_addons_shortcode_timezone_info');
 add_filter('widget_text', 'do_shortcode');
+add_filter('wp_mail_from', 'aa_berlin_addons_wp_mail_from');
+add_filter('wp_mail_from_name', 'aa_berlin_addons_wp_mail_from_name');
 
 function aa_berlin_addons_options($key = null) {
     static $options = null;
@@ -325,4 +327,20 @@ function aa_berlin_addons_save_passwordless_postdata($post_id, $a=1, $b=2) {
         'aa_berlin_addons_passwordless',
         $is_passwordless
     );
+}
+
+function aa_berlin_addons_wp_mail_from($original_from_address) {
+    if (!aa_berlin_addons_options('change_default_email_address')) {
+        return $original_from_address;
+    }
+
+    return aa_berlin_addons_options('default_from_email_address');
+}
+
+function aa_berlin_addons_wp_mail_from_name($original_from_name) {
+    if (!aa_berlin_addons_options('change_default_email_address')) {
+        return $original_from_name;
+    }
+
+    return aa_berlin_addons_options('default_from_email_name');
 }

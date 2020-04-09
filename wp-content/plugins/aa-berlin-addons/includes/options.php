@@ -240,6 +240,27 @@ $pages = array(
                         'type' => 'checkbox',
                         'id' => 'wrap_single_entry_links_with_h2',
                     ),
+
+                    array(
+                        'title' => __('Change the default FROM e-mail address', 'aa-berlin-addons'),
+                        'type' => 'checkbox',
+                        'text' => 'BE SURE to test your e-mail settings after changing these!',
+                        'id' => 'change_default_email_address',
+                    ),
+
+                    array(
+                        'title' => __('Default FROM e-mail address', 'aa-berlin-addons'),
+                        'type' => 'text',
+                        'text' => 'BE SURE to test your e-mail settings after changing these!',
+                        'id' => 'default_from_email_address',
+                    ),
+
+                    array(
+                        'title' => __('Default FROM e-mail name', 'aa-berlin-addons'),
+                        'type' => 'text',
+                        'text' => 'BE SURE to test your e-mail settings after changing these!',
+                        'id' => 'default_from_email_name',
+                    ),
                 ),
             ),
         )
