@@ -4,7 +4,7 @@ Theme URI: https://crestaproject.com/downloads/zenzero/
 Author: Rizzo Andrea - CrestaProject.com + alcoholics-anonymous-berlin.de
 Author URI: https://crestaproject.com
 Template: zenzero
-Version: 1.4.0
+Version: 1.4.1
 Text Domain: zenzero-aa
 Domain Path: /languages
 */
@@ -320,8 +320,13 @@ figcaption {
     margin-top: 0;
 }
 
-.wp-block-group.has-background {
+.wp-block-group.has-background .wp-block-group__inner-container {
     padding: 20px;
+    margin-bottom: 1.5em;
+}
+
+.wp-block-group.has-background .wp-block-group__inner-container > :last-child {
+    margin-bottom: 0;
 }
 
 #tsml .aa-berlin-addons-notice-block h4 {
