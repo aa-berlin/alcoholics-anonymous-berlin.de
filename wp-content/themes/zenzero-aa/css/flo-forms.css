@@ -1,0 +1,65 @@
+.app-flo-forms .form-preview .form-group label {
+    font-weight: bold;
+}
+
+.app-flo-forms .form-preview .form-group .helpText {
+    font-weight: normal
+}
+
+.app-flo-forms .form-preview .form-group textarea {
+    min-width: 100%;
+    width: 100%!important;
+    max-width: 100%;
+}
+
+.app-flo-forms .form-preview .form-group .hint {
+    font-size: 0.82em;
+    order: 1;
+}
+
+.app-flo-forms .help-block.errors {
+    color: #d40047;
+    position: static;
+    margin-top: 5px;
+}
+
+.app-flo-forms .form-preview .form-group.field-label {
+    line-height: unset;
+    font-weight: bold;
+}
+
+#main .app-flo-forms .field-submit input[type=submit] {
+    background: #003f7a;
+    font-family: inherit;
+    font-weight: normal;
+    font-size: 16px;
+    border-radius: 2px;
+}
+
+.app-flo-forms input[type="text"],
+.app-flo-forms input[type="email"],
+.app-flo-forms input[type="url"],
+.app-flo-forms input[type="password"],
+.app-flo-forms input[type="search"],
+.app-flo-forms input[type="number"],
+.app-flo-forms input[type="tel"],
+.app-flo-forms input[type="range"],
+.app-flo-forms input[type="date"],
+.app-flo-forms input[type="month"],
+.app-flo-forms input[type="week"],
+.app-flo-forms input[type="time"],
+.app-flo-forms input[type="datetime"],
+.app-flo-forms input[type="datetime-local"],
+.app-flo-forms input[type="color"],
+.app-flo-forms textarea,
+.app-flo-forms select {
+    border: 1px solid rgba(0, 63, 122, 0.55);
+    border-radius: 2px;
+    background: rgba(0,0,0,.03);
+}
+
+.app-flo-forms .error input,
+.app-flo-forms .error textarea,
+.app-flo-forms .error select {
+    border-color: #d40047;
+}
