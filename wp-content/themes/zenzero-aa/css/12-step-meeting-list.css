@@ -147,6 +147,16 @@
 
 @media all and (min-width: 992px) {
 
+    #tsml #meeting .col-md-4,
+    #tsml #location .col-md-4 {
+        width: 40%;
+    }
+
+    #tsml #meeting .col-md-8,
+    #tsml #location .col-md-8 {
+        width: 60%;
+    }
+
     #tsml #location #feedback .panel.expanded,
     #tsml #meeting #feedback .panel.expanded {
         margin-right: -100%;
