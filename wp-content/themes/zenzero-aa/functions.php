@@ -2,8 +2,7 @@
 
 require get_template_directory() . '/inc/template-tags.php';
 
-add_action('wp_enqueue_scripts', 'zenzero_aa_enqueue_parent_styles');
-add_action('wp_enqueue_scripts', 'zenzero_aa_scripts');
+add_action('wp_enqueue_scripts', 'zenzero_aa_enqueue_assets');
 add_action('widgets_init', 'zenzero_aa_widgets_init');
 add_action('wp_ajax_tsml_pdf', 'zenzero_aa_tsml_ajax_pdf', 0);
 add_action('wp_ajax_nopriv_tsml_pdf', 'zenzero_aa_tsml_ajax_pdf', 0);
@@ -12,16 +11,14 @@ add_filter('wp_mail_from', 'zenzero_aa_sender_email');
 add_filter('wp_mail_from_name', 'zenzero_aa_sender_name');
 add_action('after_setup_theme', 'zenzero_aa_register_nav_menus', 0);
 
-function zenzero_aa_enqueue_parent_styles() {
-   wp_enqueue_style(
-       'parent-style',
-       get_template_directory_uri() . '/style.css',
-       array(),
-       wp_get_theme()->get('Version')
-   );
-}
+function zenzero_aa_enqueue_assets() {
+    wp_enqueue_style(
+        'parent-style',
+        get_template_directory_uri() . '/style.css',
+        array(),
+        wp_get_theme()->get('Version')
+    );
 
-function zenzero_aa_scripts() {
     wp_enqueue_script(
         'zenzero-aa-main-js',
         get_stylesheet_directory_uri() . '/js/jquery.zenzero-aa.js',
@@ -34,6 +31,16 @@ function zenzero_aa_scripts() {
     wp_enqueue_style(
         'zenzero-aa-forms-style',
         get_stylesheet_directory_uri() . '/css/flo-forms.css',
+        array(
+            'zenzero-style',
+            'flo-forms-public',
+        ),
+        wp_get_theme()->get('Version')
+    );
+
+    wp_enqueue_style(
+        'zenzero-aa-meeting-list-style',
+        get_stylesheet_directory_uri() . '/css/12-step-meeting-list.css',
         array(
             'zenzero-style',
             'flo-forms-public',
