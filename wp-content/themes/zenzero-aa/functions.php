@@ -117,5 +117,6 @@ function zenzero_aa_sender_name($original_email_from) {
 function zenzero_aa_register_nav_menus() {
     register_nav_menus(array(
         'zenzero_aa_private_menu' => __('Private Pages Navigation', 'zenzero-aa'),
+        'zenzero_aa_service_menu' => __('Service Navigation', 'zenzero-aa'),
     ));
 }

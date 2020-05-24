@@ -232,6 +232,67 @@ Domain Path: /languages
     display: none;
 }
 
+.site-footer {
+    display: block;
+    flex-direction: column;
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+    border-bottom: 1px dotted #cddfdf;
+}
+
+.site-info {
+    line-height: 1.1em;
+    height: 1.2em;
+    overflow: hidden;
+}
+
+.site-info .sep {
+    display: block;
+}
+
+.site-social {
+    display: none;
+}
+
+.service-nav {
+    order: -1;
+    float: right;
+    text-align: center;
+    margin: 0;
+}
+
+@media (max-width: 767px) {
+    .site-footer {
+        display: flex;
+    }
+
+    .service-nav {
+        margin-bottom: 20px;
+        float: none;
+    }
+}
+
+.service-nav > div {
+
+}
+
+.service-nav .menu {
+    list-style-type: none;
+    margin: 0;
+}
+
+.service-nav .menu-item {
+    display: inline-block;
+}
+
+.service-nav .menu-item + .menu-item:before {
+    content: "|";
+    margin: 0 5px;
+    display: inline-block;
+}
+
 .wp-block-latest-posts {
     margin-left: 0;
 }
