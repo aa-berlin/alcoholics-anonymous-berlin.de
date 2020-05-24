@@ -7,6 +7,4 @@
             $(this).prepend(icon.clone());
         });
     });
-
-    $('#zenzero-aa-private-menu li').eq(0).appendTo('#site-navigation .menu');
 });
