@@ -1,66 +1,26 @@
 <?php
-/**
- * The header for our theme.
- *
- * Displays all of the <head> section and everything up till <div id="content">
- *
- * @package zenzero-aa
- */
-?><!DOCTYPE html>
-<html <?php language_attributes(); ?>>
-<head>
-    <meta charset="<?php bloginfo( 'charset' ); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="profile" href="https://gmpg.org/xfn/11">
 
-    <?php wp_head(); ?>
-</head>
-<body <?php body_class(); ?>>
+ob_start();
+include __DIR__ . '/../zenzero/header.php';
+$parent_header = ob_get_clean();
+
+ob_start();
+if (is_active_sidebar('header_teasers')):
+    dynamic_sidebar('header_teasers');
+endif;
+$header_teasers = ob_get_clean();
+
+ob_start();
+if (current_user_can('read_private_pages')):
+    ?>
+    <div id="zenzero-aa-private-menu" class="zenzero-aa-private-menu">
+        <?php wp_nav_menu(array('theme_location' => 'zenzero_aa_private_menu')); ?>
+    </div>
 <?php
-if ( function_exists( 'wp_body_open' ) ) {
-    wp_body_open();
-} else {
-    do_action( 'wp_body_open' );
-}
-?>
-<div id="page" class="hfeed site">
-    <?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'header' ) ) : ?>
-        <header id="masthead" class="site-header">
-            <div class="site-branding">
-                <?php
-                if ( is_front_page() && is_home() ) : ?>
-                    <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-                <?php else : ?>
-                    <p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-                <?php
-                endif;
-                $zenzero_description = get_bloginfo( 'description', 'display' );
-                if ( $zenzero_description || is_customize_preview() ) : ?>
-                    <p class="site-description"><?php echo $zenzero_description; /* // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?></p>
-                <?php
-                endif; ?>
-            </div>
+endif;
+$private_menu = ob_get_clean();
 
-            <?php if ( is_active_sidebar( 'header_teasers' ) ) : ?>
-                <?php dynamic_sidebar( 'header_teasers' ); ?>
-            <?php endif; ?>
+$parent_header = preg_replace('#</header>#', "$0 $private_menu", $parent_header);
+$parent_header = preg_replace('#site-branding.*?</div>#s', "$0 $header_teasers", $parent_header);
 
-            <?php $zenzero_theme_options_socialheader = get_theme_mod('zenzero_theme_options_socialheader', '');
-            if ($zenzero_theme_options_socialheader == 1) : ?>
-                <?php zenzero_social_button(); ?>
-            <?php endif; ?>
-
-            <nav id="site-navigation" class="main-navigation smallPart">
-                <button class="menu-toggle" aria-label="<?php esc_attr_e( 'Main Menu', 'zenzero' ); ?>"><?php esc_html_e( 'Main Menu', 'zenzero' ); ?><i class="fa fa-align-justify"></i></button>
-                <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-            </nav><!-- #site-navigation -->
-
-            <?php if (current_user_can('read_private_pages')): ?>
-                <div id="zenzero-aa-private-menu" class="zenzero-aa-private-menu">
-                    <?php wp_nav_menu( array( 'theme_location' => 'zenzero_aa_private_menu' ) ); ?>
-                </div>
-            <?php endif; ?>
-        </header><!-- #masthead -->
-    <?php endif; ?>
-    <div id="content" class="site-content">
-
+echo $parent_header;
