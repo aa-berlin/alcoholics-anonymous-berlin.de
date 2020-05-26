@@ -22,18 +22,18 @@ $pages = array(
                     array(
                         'title' => __('Insert links for urls and phone numbers', 'aa-berlin-addons'),
                         'type' => 'checkbox',
-                        'text' => 'If a paragraph or list item does not have any other tags, then full urls "https://example.com/wow/look" and phone numbers "+41 (0) 123 456" will be turned into links.',
+                        'text' => 'If a paragraph or list item does not have any other tags, then full urls ´https://example.com/wow/look´ and phone numbers ´+41 (0) 123 456´ will be turned into links.',
                         'id' => 'insert_links',
                     ),
 
                     array(
-                        'title' => __('Prepend "headphones" icon to online meeting links', 'aa-berlin-addons'),
+                        'title' => __('Prepend ´headphones´ icon to online meeting links', 'aa-berlin-addons'),
                         'type' => 'checkbox',
                         'id' => 'prepend_stream_icons',
                     ),
 
                     array(
-                        'title' => __('Treat links to these domains as "online meeting" links', 'aa-berlin-addons'),
+                        'title' => __('Treat links to these domains as ´online meeting´ links', 'aa-berlin-addons'),
                         'type' => 'text',
                         'value' => 'zoom.us',
                         'text' => 'Separate multiple domains by comma, case-insensitive',
@@ -50,7 +50,7 @@ $pages = array(
                     array(
                         'title' => __('Disable online meeting links, if meeting is not currently on', 'aa-berlin-addons'),
                         'type' => 'checkbox',
-                        'text' => 'Feature currently BROKEN due to its handling of daylight savings time; Disables online meeting links 30min before and after the meetings scheduled start and end time.',
+                        'text' => 'Disables online meeting links 30min before and after the meetings scheduled start and end time.',
                         'id' => 'disable_outside_schedule',
                     ),
 
@@ -75,7 +75,7 @@ $pages = array(
                     ),
 
                     array(
-                        'title' => __('Common hint to be shown after each online link for meetings marked as "Password-less"', 'aa-berlin-addons'),
+                        'title' => __('Show the following hint text as a notice of this severity for meetings marked as ´Password-less´', 'aa-berlin-addons'),
                         'type' => 'select',
                         'choices' => array(
                             '' => __('Disable hint', 'aa-berlin-addons'),
@@ -84,15 +84,15 @@ $pages = array(
                             'success' => __('Success', 'aa-berlin-addons'),
                             'info' => __('Info', 'aa-berlin-addons'),
                         ),
-                        'text' => 'For meetings marked as "Password-less", overrides the default online link hint with the following hint text as a notice of this severity',
+                        'text' => 'For meetings marked as ´Password-less´, overrides the default online link hint with the following hint text as a notice of this severity',
                         'id' => 'passwordless_stream_link_hint_type',
                     ),
 
                     array(
-                        'title' => __('Common hint to be shown after each online link for meetings marked as "Password-less"', 'aa-berlin-addons'),
+                        'title' => __('Common hint to be shown after each online link for meetings marked as ´Password-less´', 'aa-berlin-addons'),
                         'type' => 'wp_editor',
                         'value' => '',
-                        'text' => 'Inserted after each online meeting link, if meeting is marked as "Password-less".',
+                        'text' => 'Inserted after each online meeting link, if meeting is marked as ´Password-less´.',
                         'id' => 'passwordless_stream_link_hint',
                     ),
                 ),
@@ -138,32 +138,33 @@ $pages = array(
 
             'type_online' => array(
                 'title' => __('Handling of meeting type Online', 'aa-berlin-addons'),
-                'text' => '<p>' . __('Adds some custom behaviour of meetings with type ONL (ONLINE).', 'aa-berlin-addons') . '</p>',
+                'text' => '<p>' . __('Adds some custom behaviour of meetings with type ONLINE (ONLINEINE).', 'aa-berlin-addons') . '</p>',
 
                 'fields' => array(
                     array(
-                        'title' => __('Rename meeting type ONL(-INE)', 'aa-berlin-addons'),
+                        'title' => __('Rename meeting type ONLINE', 'aa-berlin-addons'),
                         'type' => 'checkbox',
                         'id' => 'add_type_online',
                     ),
 
                     array(
-                        'title' => __('Label of meeting type ONL(-INE)', 'aa-berlin-addons'),
+                        'title' => __('Label of meeting type ONLINE', 'aa-berlin-addons'),
                         'type' => 'text',
                         'value' => 'Join Online',
                         'id' => 'label_type_online',
                     ),
 
                     array(
-                        'title' => __('Allow manual type ONL(-INE)', 'aa-berlin-addons'),
+                        'title' => __('Allow manual type ONLINE', 'aa-berlin-addons'),
                         'type' => 'checkbox',
-                        'text' => 'If checked, you can mark a post as ONL(-INE) without also providing phone or link details.',
+                        'text' => 'If checked, you can mark a post as ONLINE without also providing phone or link details.',
                         'id' => 'allow_type_online_without_link',
                     ),
 
                     array(
-                        'title' => __('Add "headphones" icon to Online meetings', 'aa-berlin-addons'),
+                        'title' => __('Add ´headphones´ icon to Online meetings', 'aa-berlin-addons'),
                         'type' => 'checkbox',
+                        'text' => 'Adds a headphones icon online to meetings´ headlines and links containing the ´online meeting´ filter',
                         'id' => 'add_stream_icon_to_online_meetings',
                     ),
 
@@ -176,7 +177,7 @@ $pages = array(
                     array(
                         'title' => __('Text of map overlay', 'aa-berlin-addons'),
                         'type' => 'text',
-                        'value' => 'This meeting ONLY meets online until further notice.',
+                        'value' => 'This meeting ONLINEY meets online until further notice.',
                         'text' => 'Should describe why the map is rendered inaccessible; no double-quotes',
                         'id' => 'disable_map_text_online',
                     ),
@@ -188,7 +189,7 @@ $pages = array(
 
                 'fields' => array(
                     array(
-                        'title' => __('Mute address in listing, if both ONL(-INE) and TC', 'aa-berlin-addons'),
+                        'title' => __('Mute address in listing, if both ONLINE and TC', 'aa-berlin-addons'),
                         'type' => 'checkbox',
                         'text' => 'If a meeting is both Online and Temporary Closure, then show its address in faded and strike-through in the listing',
                         'id' => 'muted_address_in_listing_if_tc_and_onl',
