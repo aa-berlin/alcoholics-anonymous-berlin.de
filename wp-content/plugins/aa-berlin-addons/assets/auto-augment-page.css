@@ -24,10 +24,6 @@
     display: none !important;
 }
 
-.aa-berlin-addons-contains-disabled-auto-link {
-    opacity: 0.5;
-}
-
 .aa-berlin-addons-auto-link {
     display: inline-block;
 }
@@ -68,17 +64,32 @@
     margin: 0;
 }
 
-.aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-meeting-id abbr {
-    text-decoration: underline dotted;
-}
-
 .aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-meeting-id strong,
-#tsml .aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-meeting-id strong {
+#content #tsml #meeting .aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-meeting-id strong {
     display: none;
 }
 
-.aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-meeting-id em {
+.aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-meeting-id em,
+#content #tsml #meeting .aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-meeting-id em {
     display: inline-block;
+}
+
+.aa-berlin-addons-contains-auto-link .aa-berlin-addons-outside-schedule,
+#content #tsml #meeting .aa-berlin-addons-contains-auto-link .aa-berlin-addons-outside-schedule {
+    display: none;
+    font-weight: bold;
+}
+
+.aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-outside-schedule,
+#content #tsml #meeting .aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-outside-schedule {
+    display: block;
+}
+
+.aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-link,
+#content #tsml #meeting .aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-link {
+    color: inherit;
+    cursor: default;
+    text-decoration: none;
 }
 
 .aa-berlin-addons-standalone-stream-icon {
@@ -105,11 +116,6 @@
 .aa-berlin-addons-auto-link .glyphicon {
     /* using padding to circumvent tsml selector specificity */
     padding-right: 5px;
-}
-
-.aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-link,
-#tsml .aa-berlin-addons-contains-disabled-auto-link .aa-berlin-addons-auto-link {
-    color: #D40047;
 }
 
 .aa-berlin-addons-disable-map-if-tc.tsml-type-tc #tsml #meeting #map > div::after,

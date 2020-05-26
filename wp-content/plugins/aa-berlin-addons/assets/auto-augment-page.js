@@ -9,6 +9,7 @@
     const streamDomains = String(options.stream_domains_pattern).split(/\s*,\s*/g);
     const msPerDay = 24 * 3600 * 1000;
     const msBeforeActivationOfStreams = 30 * 60 * 1000;
+    const readableTimeBeforeActivationOfStreams = '30min';
 
     const now = new Date(options.server_time).getTime();
     const nowPlusOneWeek = new Date(options.server_time_plus_one_week).getTime();
@@ -19,6 +20,8 @@
 
     // translators: %s is the zoom meeting id
     const zoomMeetingIdText = __('<abbr title="You can use this to access this meeting via phone.">Zoom Meeting ID #:</abbr><strong>%s</strong><em>xxx-xxx-xxx</em>', 'aa-berlin-addons');
+    // translators: %s is the time until activation
+    const zoomMeetingOutsideScheduleText = '<span class="aa-berlin-addons-outside-schedule">' + sprintf(__('The Meeting Link and Meeting ID will activate %s before the meeting starts.', 'aa-berlin-addons'), readableTimeBeforeActivationOfStreams) + '</span>';
     const onlineIconTitle = __('You can join this meeting online.', 'aa-berlin-addons');
     const onlineOnlyMarkerText = __('ONLINE ONLY');
     const onlineOnlySubstituteText = __('ONLINE ONLY');
@@ -242,6 +245,8 @@
             if (!isActive) {
                 deactivateLink(link);
             }
+
+            link.parent().prepend(zoomMeetingOutsideScheduleText);
 
             if (msTillActivation > 0) {
                 setTimeout(function () {
