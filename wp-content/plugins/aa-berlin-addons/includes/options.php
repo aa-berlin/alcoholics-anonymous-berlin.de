@@ -169,6 +169,12 @@ $pages = array(
                     ),
 
                     array(
+                        'title' => __('Hide ´Online Only´ addresses in meeting list', 'aa-berlin-addons'),
+                        'type' => 'checkbox',
+                        'id' => 'hide_address_in_results_if_online_only',
+                    ),
+
+                    array(
                         'title' => __('Disable map on meeting detail', 'aa-berlin-addons'),
                         'type' => 'checkbox',
                         'id' => 'disable_map_if_online',

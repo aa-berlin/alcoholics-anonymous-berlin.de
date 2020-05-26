@@ -82,11 +82,15 @@
     const onlineIconHtml = '<span class="aa-berlin-addons-stream-icon glyphicon glyphicon-headphones" role="presentation" title="' + onlineIconTitle + '"></span>';
 
     const prependStreamIconInResults = function (tbody) {
-        tbody.find('.type-onl td.name > a').prepend(onlineIconHtml);
+        if (options.add_stream_icon_to_online_meetings) {
+            tbody.find('.type-onl td.name > a').prepend(onlineIconHtml);
+        }
     };
 
     const fixOnlineAddressWorkaround = function (tbody) {
-        tbody.find('.type-onl td.location:contains("' + onlineOnlyMarkerText + '")').nextAll('.address, .region').andSelf().addClass('aa-berlin-addons-online-only-address').html(onlineOnlySubstituteText);
+        if (options.hide_address_in_results_if_online_only) {
+            tbody.find('.type-onl td.location:contains("' + onlineOnlyMarkerText + '")').nextAll('.address, .region').andSelf().addClass('aa-berlin-addons-online-only-address').html(onlineOnlySubstituteText);
+        }
     };
 
     jQuery(function ($) {
@@ -258,15 +262,6 @@
             $('body.tsml-type-onl .page-header h1').prepend(onlineIconHtml);
             $('.list-group-item-meetings .meeting.type-onl > a').prepend(onlineIconHtml);
 
-            $('#meetings_tbody').on('tsml_meetings_updated', function (e, data) {
-                prependStreamIconInResults(data.tbody);
-                fixOnlineAddressWorkaround(data.tbody);
-            }).each(function (i, tbody) {
-                tbody = $(tbody);
-                prependStreamIconInResults(tbody);
-                fixOnlineAddressWorkaround(tbody);
-            });
-
             const standaloneStreamIcon = $('<span class="aa-berlin-addons-standalone-stream-icon">').load('/wp-content/plugins/aa-berlin-addons/assets/images/phones.svg', function () {
                 $('.entry-content a[href]:not(.aa-berlin-addons-auto-link)').each(function (i, link) {
                     const needsOnlineIcon = isStream(link.href) || link.href.indexOf('type=ONL') !== -1;
@@ -277,6 +272,15 @@
                 });
             });
         }
+
+        $('#meetings_tbody').on('tsml_meetings_updated', function (e, data) {
+            prependStreamIconInResults(data.tbody);
+            fixOnlineAddressWorkaround(data.tbody);
+        }).each(function (i, tbody) {
+            tbody = $(tbody);
+            prependStreamIconInResults(tbody);
+            fixOnlineAddressWorkaround(tbody);
+        });
 
         options.wrap_single_entry_links_with_h2 && $('.wp-block-latest-posts').each(function (i, latestPosts) {
             latestPosts = $(latestPosts);
