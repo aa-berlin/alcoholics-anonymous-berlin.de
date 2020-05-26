@@ -266,6 +266,16 @@
                 prependStreamIconInResults(tbody);
                 fixOnlineAddressWorkaround(tbody);
             });
+
+            const standaloneStreamIcon = $('<span class="aa-berlin-addons-standalone-stream-icon">').load('/wp-content/plugins/aa-berlin-addons/assets/images/phones.svg', function () {
+                $('.entry-content a[href]:not(.aa-berlin-addons-auto-link)').each(function (i, link) {
+                    const needsOnlineIcon = isStream(link.href) || link.href.indexOf('type=ONL') !== -1;
+
+                    if (needsOnlineIcon) {
+                        $(link).prepend(standaloneStreamIcon.clone());
+                    }
+                });
+            });
         }
 
         options.wrap_single_entry_links_with_h2 && $('.wp-block-latest-posts').each(function (i, latestPosts) {
@@ -276,16 +286,6 @@
             }
 
             latestPosts.find('> * > a[href]:first-child').insertBefore(latestPosts).wrap('<h2 class="aa-berlin-addons-auto-headline">');
-        });
-
-        const standaloneStreamIcon = $('<span class="aa-berlin-addons-standalone-stream-icon">').load('/wp-content/plugins/aa-berlin-addons/assets/images/phones.svg', function () {
-            $('.entry-content a[href]:not(.aa-berlin-addons-auto-link)').each(function (i, link) {
-                const needsOnlineIcon = isStream(link.href) || link.href.indexOf('type=ONL') !== -1;
-
-                if (needsOnlineIcon) {
-                    $(link).prepend(standaloneStreamIcon.clone());
-                }
-            });
         });
     });
 
