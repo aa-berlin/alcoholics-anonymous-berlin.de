@@ -18,7 +18,7 @@
     const markerTextInfo = String(options.info_prefix).replace(regexQuotes, '');
 
     // translators: %s is the zoom meeting id
-    const zoomMeetingIdText = __('<abbr title="You can use this to access this meeting via phone.">Zoom Meeting ID #</abbr>:<br><strong>%s</strong><em>xxx-xxx-xxx</em>', 'aa-berlin-addons');
+    const zoomMeetingIdText = __('<abbr title="You can use this to access this meeting via phone.">Zoom Meeting ID #:</abbr><strong>%s</strong><em>xxx-xxx-xxx</em>', 'aa-berlin-addons');
     const onlineIconTitle = __('You can join this meeting online.', 'aa-berlin-addons');
     const onlineOnlyMarkerText = __('ONLINE ONLY');
     const onlineOnlySubstituteText = __('ONLINE ONLY');
@@ -134,7 +134,7 @@
 
                     if (zoomMeetingId) {
                         meetingIdHtml = sprintf(zoomMeetingIdText, zoomMeetingId);
-                        meetingIdHtml = '<span class="aa-berlin-addons-auto-meeting-id"><br>' + meetingIdHtml + '</span>';
+                        meetingIdHtml = '<span class="aa-berlin-addons-auto-meeting-id">' + meetingIdHtml + '</span>';
                     }
                 }
 
