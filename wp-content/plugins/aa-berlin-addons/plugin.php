@@ -19,7 +19,6 @@ add_action('init', 'aa_berlin_addons_init');
 add_action('widgets_init', 'aa_berlin_addons_widgets_init');
 add_action('wp_footer', 'aa_berlin_addons_render_common_widgets');
 add_action('wp_footer', 'aa_berlin_addons_render_dynamic_styles');
-add_action('wp_footer', 'aa_berlin_addons_render_gso_gb_pure_chat');
 add_filter('body_class', 'aa_berlin_addons_body_class');
 add_shortcode('timezone_info', 'aa_berlin_addons_shortcode_timezone_info');
 add_filter('widget_text', 'do_shortcode');
@@ -170,19 +169,12 @@ function aa_berlin_wp_enqueue_scripts() {
         AA_BERLIN_ADDONS_VERSION
     );
 
-    $show_chat = aa_berlin_addons_options('show_gso_gb_pure_chat');
+    $show_chat = aa_berlin_addons_options('show_gso_gb_chat');
 
     if ($show_chat) {
-        wp_enqueue_style(
-            'aa-berlin-gso-gb-pure-chat',
-            plugins_url('assets/gso-gb-pure-chat.css', __FILE__),
-            array(),
-            AA_BERLIN_ADDONS_VERSION
-        );
-
         wp_enqueue_script(
-            'aa-berlin-gso-gb-pure-chat',
-            plugins_url('assets/gso-gb-pure-chat.js', __FILE__),
+            'aa-berlin-gso-gb-chat',
+            plugins_url('assets/gso-gb-chat.js', __FILE__),
             array(
                 'jquery',
             ),
@@ -299,16 +291,6 @@ function aa_berlin_addons_render_dynamic_styles() {
         <?php endif; ?>
     </style>
     <?php
-}
-
-function aa_berlin_addons_render_gso_gb_pure_chat() {
-    $show_chat = aa_berlin_addons_options('show_gso_gb_pure_chat');
-
-    if (!$show_chat) {
-        return;
-    }
-
-    include __DIR__ . '/includes/gso-gb-pure-chat.php';
 }
 
 function aa_berlin_addons_shortcode_timezone_info() {

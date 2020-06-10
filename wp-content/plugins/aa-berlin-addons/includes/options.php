@@ -278,7 +278,7 @@ $pages = array(
                     array(
                         'title' => __('Render a link to and in the vein of the GSO GB Chat Now widget', 'aa-berlin-addons'),
                         'type' => 'checkbox',
-                        'id' => 'show_gso_gb_pure_chat',
+                        'id' => 'show_gso_gb_chat',
                     ),
                 ),
             ),
