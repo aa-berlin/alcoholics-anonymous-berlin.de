@@ -7,11 +7,17 @@ jQuery(function ($) {
         widget.toggleClass('purechat-widget-super-collapsed', minimize);
     };
 
-    widget.on('click', '[data-trigger]', () => {
+    widget.on('click', '[data-trigger="superMinimize"], [data-trigger="collapse"]', () => {
         const minimize = localStorage.getItem(sessionKey) === 'false';
         localStorage.setItem(sessionKey, String(minimize));
 
         updateWidgetState(minimize);
+    });
+
+    widget.on('click', '[data-trigger="expand"], .purechat-widget-title', (e) => {
+        e.preventDefault();
+
+        location.assign('https://www.alcoholics-anonymous.org.uk/Home#chat-now');
     });
 
     if (!localStorage.getItem(sessionKey)) {
