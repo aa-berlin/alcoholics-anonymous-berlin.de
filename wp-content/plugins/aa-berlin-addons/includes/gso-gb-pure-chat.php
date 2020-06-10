@@ -20,7 +20,6 @@
         <div class="purechat-collapsed-outer purechat-display-block">
             <div class="purechat-widget-inner purechat-clearfix">
                 <button data-trigger="collapse" class="purechat-btn purechat-btn-mini purechat-actions purechat-btn-collapse purechat-display-none">
-                    <span class="purechat-missed-message-count purechat-badge purechat-display-none"></span>
                     <svg viewBox="0 0 216 216" class="pc-svgicon pc-svgicon-lg">
                         <use href="#pc-svgicon-arrow-up"></use>
                     </svg>
