@@ -179,6 +179,15 @@ function aa_berlin_wp_enqueue_scripts() {
             array(),
             AA_BERLIN_ADDONS_VERSION
         );
+
+        wp_enqueue_script(
+            'aa-berlin-gso-gb-pure-chat',
+            plugins_url('assets/gso-gb-pure-chat.js', __FILE__),
+            array(
+                'jquery',
+            ),
+            AA_BERLIN_ADDONS_VERSION
+        );
     }
 }
 
