@@ -270,6 +270,18 @@ $pages = array(
                     ),
                 ),
             ),
+
+            'misc_aa' => array(
+                'title' => __('Miscellaneous: Region and GSO', 'aa-berlin-addons'),
+
+                'fields' => array(
+                    array(
+                        'title' => __('Render a link to and in the vein of the GSO GB Chat Now widget', 'aa-berlin-addons'),
+                        'type' => 'checkbox',
+                        'id' => 'show_gso_gb_pure_chat',
+                    ),
+                ),
+            ),
         )
     ),
 );
