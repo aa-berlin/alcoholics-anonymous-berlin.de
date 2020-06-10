@@ -17,6 +17,6 @@ jQuery(function ($) {
     }).attr({
         title: 'Alcoholics Anonymous Chat',
     }).appendTo('body').on('click', function () {
-        location.assign('https://www.alcoholics-anonymous.org.uk/Home#chat-now');
+        location.assign('https://www.alcoholics-anonymous.org.uk/About-AA/Newcomers#chat-now');
     });
 });
