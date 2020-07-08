@@ -33,6 +33,9 @@ function zenzero_setup() {
 	 * provide it for us.
 	 */
 	add_theme_support( 'title-tag' );
+	
+	// Add support for responsive embedded content.
+	add_theme_support( 'responsive-embeds' );
 
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.

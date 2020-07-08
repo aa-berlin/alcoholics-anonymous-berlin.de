@@ -124,9 +124,9 @@ class Zenzero_Admin {
 				<p class="cresta-actions">
 					<a href="<?php echo esc_url( apply_filters( 'zenzero_pro_theme_url', 'https://crestaproject.com/downloads/zenzero/' ) ); ?>" class="button button-secondary" target="_blank"><?php esc_html_e( 'Theme Info', 'zenzero' ); ?></a>
 
-					<a href="<?php echo esc_url( apply_filters( 'zenzero_pro_theme_url', 'http://crestaproject.com/demo/zenzero/' ) ); ?>" class="button button-secondary docs" target="_blank"><?php esc_html_e( 'View Demo', 'zenzero' ); ?></a>
+					<a href="<?php echo esc_url( apply_filters( 'zenzero_pro_theme_url', 'https://crestaproject.com/demo/zenzero/' ) ); ?>" class="button button-secondary docs" target="_blank"><?php esc_html_e( 'View Demo', 'zenzero' ); ?></a>
 
-					<a href="<?php echo esc_url( apply_filters( 'zenzero_pro_theme_url', 'http://crestaproject.com/demo/zenzero-pro/' ) ); ?>" class="button button-primary docs" target="_blank"><?php esc_html_e( 'View PRO version Demo', 'zenzero' ); ?></a>
+					<a href="<?php echo esc_url( apply_filters( 'zenzero_pro_theme_url', 'https://crestaproject.com/demo/zenzero-pro/' ) ); ?>" class="button button-primary docs" target="_blank"><?php esc_html_e( 'View PRO version Demo', 'zenzero' ); ?></a>
 
 					<a href="<?php echo esc_url( apply_filters( 'zenzero_pro_theme_url', 'https://wordpress.org/support/theme/zenzero/reviews/' ) ); ?>" class="button button-secondary docs" target="_blank"><?php esc_html_e( 'Rate this theme', 'zenzero' ); ?></a>
 				</p>
@@ -206,7 +206,7 @@ class Zenzero_Admin {
 						</h3>
 						<p><?php esc_html_e( 'Click below to translate this theme into your own language.', 'zenzero' ) ?></p>
 						<p>
-							<a target="_blank" href="<?php echo esc_url( 'http://translate.wordpress.org/projects/wp-themes/zenzero/' ); ?>" class="button button-secondary">
+							<a target="_blank" href="<?php echo esc_url( 'https://translate.wordpress.org/projects/wp-themes/zenzero/' ); ?>" class="button button-secondary">
 								<?php
 								esc_html_e( 'Translate', 'zenzero' );
 								echo ' ' . esc_html($theme->display( 'Name' ));
@@ -382,7 +382,7 @@ class Zenzero_Admin {
 						<td></td>
 						<td></td>
 						<td class="btn-wrapper">
-							<a href="<?php echo esc_url( apply_filters( 'zenzero_pro_theme_url', 'http://crestaproject.com/demo/zenzero-pro/' ) ); ?>" class="button button-secondary" target="_blank"><?php esc_html_e( 'View PRO version demo', 'zenzero' ); ?></a>
+							<a href="<?php echo esc_url( apply_filters( 'zenzero_pro_theme_url', 'https://crestaproject.com/demo/zenzero-pro/' ) ); ?>" class="button button-secondary" target="_blank"><?php esc_html_e( 'View PRO version demo', 'zenzero' ); ?></a>
 							<a href="<?php echo esc_url( apply_filters( 'zenzero_pro_theme_url', 'https://crestaproject.com/downloads/zenzero/' ) ); ?>" class="button button-secondary" target="_blank"><?php esc_html_e( 'More Information', 'zenzero' ); ?></a>
 						</td>
 					</tr>
