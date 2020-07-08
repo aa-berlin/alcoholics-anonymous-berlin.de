@@ -4,12 +4,14 @@ Theme URI: https://crestaproject.com/downloads/zenzero/
 Author: Rizzo Andrea - CrestaProject.com
 Author URI: https://crestaproject.com
 Description: Zenzero is a modern and Minimal WordPress Theme with generous white space and large legible fonts, one main column e one sidebar column, unlimited colors and theme options by CrestaProject.com. Compatible with Gutenberg. Live demo https://crestaproject.com/demo/zenzero/
-Version: 1.6.9
+Version: 1.7.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: zenzero
 Domain Path: /languages
 Tags: one-column, left-sidebar, custom-background, custom-menu, custom-colors, sticky-post, featured-images, theme-options, translation-ready, blog, news
+Tested up to: 5.4
+Requires PHP: 5.6
 */
 
 /*--------------------------------------------------------------
@@ -1346,7 +1348,8 @@ body.menu-opened .sidebarButton:before {
 	margin-bottom: -1em;
 }
 .site-social i.fa-facebook, .site-social i.fa-twitter, .site-social i.fa-google-plus, .site-social i.fa-linkedin,
-.site-social i.fa-instagram, .site-social i.fa-youtube, .site-social i.fa-pinterest, .site-social i.fa-tumblr, .site-social i.fa-vk, .site-social i.fa-vimeo, .site-social i.fa-imdb, .site-social i.fa-twitch, .site-social i.fa-rss {
+.site-social i.fa-instagram, .site-social i.fa-youtube, .site-social i.fa-pinterest, .site-social i.fa-tumblr,
+.site-social i.fa-vk, .site-social i.fa-vimeo, .site-social i.fa-imdb, .site-social i.fa-twitch, .site-social i.fa-spotify, .site-social i.fa-whatsapp, .site-social i.fa-rss {
 	-o-transition: all .7s ease-in-out;
 	-moz-transition: all .7s ease-in-out;
 	-webkit-transition: all .7s ease-in-out;
@@ -1354,7 +1357,8 @@ body.menu-opened .sidebarButton:before {
 	position: relative;
 }
 .site-social i.fa-facebook:hover, .site-social i.fa-twitter:hover, .site-social i.fa-google-plus:hover, .site-social i.fa-linkedin:hover,
-.site-social i.fa-instagram:hover, .site-social i.fa-youtube:hover, .site-social i.fa-pinterest:hover, .site-social i.fa-tumblr:hover, .site-social i.fa-vk:hover, .site-social i.fa-vimeo:hover, .site-social i.fa-imdb:hover, .site-social i.fa-twitch:hover, .site-social i.fa-rss:hover {
+.site-social i.fa-instagram:hover, .site-social i.fa-youtube:hover, .site-social i.fa-pinterest:hover, .site-social i.fa-tumblr:hover,
+.site-social i.fa-vk:hover, .site-social i.fa-vimeo:hover, .site-social i.fa-imdb:hover, .site-social i.fa-twitch:hover, .site-social i.fa-spotify:hover, .site-social i.fa-whatsapp:hover, .site-social i.fa-rss:hover {
 	-o-transition: all 0s ease-in-out;
 	-moz-transition: all 0s ease-in-out;
 	-webkit-transition: all 0s ease-in-out;
@@ -1373,6 +1377,8 @@ body.menu-opened .sidebarButton:before {
 .site-social i.fa-xing:hover {color: #cfdc00;}
 .site-social i.fa-imdb:hover {color: #ffd606;}
 .site-social i.fa-twitch:hover {color: #6441a5;}
+.site-social i.fa-spotify:hover {color: #1DB954;}
+.site-social i.fa-whatsapp:hover {color: #25d366;}
 .site-social i.fa-rss:hover {color: #ffffff;}
 /*--------------------------------------------------------------
 10.1 Posts and pages
