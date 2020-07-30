@@ -128,6 +128,13 @@
     border-radius: 2px;
 }
 
+#tsml #meeting .panel .panel-heading .panel-title .panel-title-buttons svg {
+    width: 1.5em;
+    height: 1.5em;
+    position: relative;
+    top: -3px;
+}
+
 #tsml #location .panel ul.list-group .list-group-item.list-group-item-meetings ul li,
 #tsml #meeting .panel ul.list-group .list-group-item.list-group-item-meetings ul li {
     padding-left: 80px;
@@ -143,6 +150,32 @@
 #tsml #meeting .panel ul.list-group .list-group-item h3.list-group-item-heading {
     color: inherit;
     line-height: 1.3;
+}
+
+#tsml #meeting .panel ul.list-group .list-group-item .meeting-types li {
+    padding-left: 1.9em;
+    position: relative;
+    line-height: 1.5;
+}
+
+#tsml #meeting .panel ul.list-group .list-group-item .meeting-types li .icon {
+    position: absolute;
+    top: -0.2em;
+    left: -0.2em;
+    width: 2em;
+    height: 2em;
+}
+
+#tsml #meeting .panel ul.list-group .list-group-item li .icon {
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+}
+
+#tsml #meeting .panel ul.list-group .list-group-item .contact-phone .icon {
+    width: 1.3em;
+    height: 1.3em;
+    vertical-align: text-top;
 }
 
 @media all and (min-width: 992px) {
