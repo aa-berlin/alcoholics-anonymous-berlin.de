@@ -28,7 +28,7 @@
 			if ( $( '.showSearch' ).length ) {
 				$('.showTop').addClass('withS');
 			}
-			$('#open-search, a[href*=#search]').click(function(e) {
+			$('#open-search, a[href*=\\#search]').click(function(e) {
 				e.preventDefault();
 				$('#search-full').fadeIn(400);
 				if ( !mobileDetect ) {
