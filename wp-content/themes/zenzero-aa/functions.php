@@ -1,5 +1,6 @@
 <?php
 
+require __DIR__ . '/inc/template-tags.php';
 require get_template_directory() . '/inc/template-tags.php';
 
 add_action('wp_enqueue_scripts', 'zenzero_aa_enqueue_assets');
