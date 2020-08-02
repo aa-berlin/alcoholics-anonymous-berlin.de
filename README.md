@@ -46,3 +46,11 @@ wget -q -O - 'https://<your-website>/wp-cron.php?doing_wp_cron&cron_key=<your-cr
 ```
 
 Where `<your-website>` might just be `www.alcoholics-anonymous-berlin.de` and `<your-cron-key>` must match the pattern in your top-level [.htaccess](./.htaccess).
+
+## Misc
+
+### SQL to create meeting url entries from post content
+
+```sql
+INSERT INTO wp_postmeta(meta_key, meta_value, post_id) SELECT 'conference_url', REGEXP_SUBSTR(p.post_content, 'https:\\S+zoom\\S+') AS url, p.ID FROM wp_posts p WHERE p.post_type = 'tsml_meeting' AND p.post_content REGEXP 'https:\\S+zoom\\S+';
+```
