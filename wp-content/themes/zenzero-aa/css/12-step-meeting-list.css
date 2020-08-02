@@ -102,8 +102,12 @@
     border-radius: 0 2px 2px 0;
 }
 
-#tsml .dropdown-menu {
+#tsml .dropdown .dropdown-menu {
     border-radius: 2px;
+}
+
+#tsml .dropdown .dropdown-menu a:link {
+    border-bottom: 0;
 }
 
 #tsml #meetings .results #table-wrapper {
