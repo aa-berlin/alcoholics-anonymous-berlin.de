@@ -64,6 +64,12 @@ function aa_berlin_addons_init() {
         ));
     }
 
+    if (aa_berlin_addons_options('add_type_f2f') && function_exists('tsml_custom_types')) {
+        tsml_custom_types(array(
+            'F2F' => aa_berlin_addons_options('label_type_f2f'),
+        ));
+    }
+
     add_action('do_meta_boxes', 'aa_berlin_addons_add_passwordless_metabox', 9);
     add_action('save_post', 'aa_berlin_addons_save_passwordless_postdata');
 
@@ -85,28 +91,25 @@ function aa_berlin_addons_init() {
         tsml_custom_flags($custom_type_flags);
     }
 
-    if (aa_berlin_addons_options('allow_type_online_without_link')) {
-        // monkey patch the conference_url handling, so that the ONL type does not get removed for empty links
-        $tsml_conference_providers = array();
-        add_action('save_post', 'aa_berlin_addons_save_post_before_tsml', 9, 3);
-    }
+    add_action('save_post', 'aa_berlin_addons_save_post_before_tsml', 9, 3);
 }
 
 /**
- * Patches the post so that the the type ONL does not get removed for an empty conference_url.
+ * Runs before save handler of tsml.
+ * Manipulate post data here to patch tsml behaviour.
  */
 function aa_berlin_addons_save_post_before_tsml($post_id, $post, $update = null) {
-    // scrounged from original impl in tsml_save_post()
+    // fires for other posts as well
     if (!isset($_POST['post_type']) || ($_POST['post_type'] != 'tsml_meeting')) {
         return;
     }
+
+    // copy of builtin code
     if (empty($_POST['types']) || !is_array($_POST['types'])) {
         $_POST['types'] = array();
     }
 
-    if (in_array('ONL', $_POST['types'], true) && empty($_POST['conference_url'])) {
-        $_POST['conference_url'] = ' ';
-    }
+    // add your fixes here
 }
 
 function aa_berlin_enqueue_block_editor_assets() {

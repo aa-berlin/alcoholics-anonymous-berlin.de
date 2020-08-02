@@ -155,13 +155,6 @@ $pages = array(
                     ),
 
                     array(
-                        'title' => __('Allow manual type ONLINE', 'aa-berlin-addons'),
-                        'type' => 'checkbox',
-                        'text' => 'If checked, you can mark a post as ONLINE without also providing phone or link details.',
-                        'id' => 'allow_type_online_without_link',
-                    ),
-
-                    array(
                         'title' => __('Add ´headphones´ icon to Online meetings', 'aa-berlin-addons'),
                         'type' => 'checkbox',
                         'text' => 'Adds a headphones icon online to meetings´ headlines and links containing the ´online meeting´ filter',
@@ -213,6 +206,25 @@ $pages = array(
                         'value' => 'This meeting is suspended until further notice.',
                         'text' => 'Should describe why the map is rendered inaccessible; no double-quotes',
                         'id' => 'disable_map_text_tc',
+                    ),
+                ),
+            ),
+
+            'type_f2f' => array(
+                'title' => __('Handling of meeting type Face-to-Face / In-Person', 'aa-berlin-addons'),
+
+                'fields' => array(
+                    array(
+                        'title' => __('Add meeting type Face-to-Face', 'aa-berlin-addons'),
+                        'type' => 'checkbox',
+                        'id' => 'add_type_f2f',
+                    ),
+
+                    array(
+                        'title' => __('Label of meeting type Face-to-Face', 'aa-berlin-addons'),
+                        'type' => 'text',
+                        'value' => 'Face to Face',
+                        'id' => 'label_type_f2f',
                     ),
                 ),
             ),
