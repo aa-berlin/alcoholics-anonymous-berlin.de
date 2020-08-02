@@ -170,13 +170,14 @@ $pages = array(
                     array(
                         'title' => __('Disable map on meeting detail', 'aa-berlin-addons'),
                         'type' => 'checkbox',
+                        'text' => 'Overlays the map with a bold red warning, if the meeting is not also marked as "Face-to-Face".',
                         'id' => 'disable_map_if_online',
                     ),
 
                     array(
                         'title' => __('Text of map overlay', 'aa-berlin-addons'),
                         'type' => 'text',
-                        'value' => 'This meeting ONLINEY meets online until further notice.',
+                        'value' => 'This meeting ONLY meets online until further notice.',
                         'text' => 'Should describe why the map is rendered inaccessible; no double-quotes',
                         'id' => 'disable_map_text_online',
                     ),
