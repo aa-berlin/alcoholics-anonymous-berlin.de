@@ -4,7 +4,7 @@ services:
 
   app-1:
     # see dockerfile for docs
-    build: ./docker
+    build: ./dev-ops
     environment:
       WEB_DOCUMENT_ROOT: /app
       WEB_DOCUMENT_INDEX: index.php
@@ -23,7 +23,7 @@ services:
 
   app-2:
     # see dockerfile for docs
-    build: ./docker
+    build: ./dev-ops
     environment:
       WEB_DOCUMENT_ROOT: /app
       WEB_DOCUMENT_INDEX: index.php

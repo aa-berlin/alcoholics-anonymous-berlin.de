@@ -15,3 +15,5 @@ RUN curl -sL https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip >
 RUN chmod +x /usr/local/bin/ngrok
 
 WORKDIR /app
+
+RUN apt-get install -y lftp
