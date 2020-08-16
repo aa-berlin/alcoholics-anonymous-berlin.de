@@ -24,12 +24,12 @@ Prepare an external `mysql` instance.
 
 Download and unzip a WordPress installation archive in the project root.
 
-Do not forget customize and merge these into your respective local files:
+Do not forget to customize and merge these into your respective local files:
 
 * [.sample.htaccess](./.sample.htaccess) into [.htaccess](./.htaccess)
-* [wp-config-sample.php](./wp-config-sample.php) into [wp-config.php](./wp-config.php)
+* [wp-config-sample.php](./wp-config-sample.php) into [wp-config-app-1.php](./wp-config-app-1.php) and [wp-config-app-2.php](./wp-config-app-2.php) respectively.
 
-## Cron-Job
+### Cron-Job
 
 The [sample config](./wp-config-sample.php) in this repo disables the implicit handling of cron jobs by WordPress during requests.
 
@@ -47,7 +47,48 @@ wget -q -O - 'https://<your-website>/wp-cron.php?doing_wp_cron&cron_key=<your-cr
 
 Where `<your-website>` might just be `www.alcoholics-anonymous-berlin.de` and `<your-cron-key>` must match the pattern in your top-level [.htaccess](./.htaccess).
 
+### Optional plugins
+
+We are currently using Wordpress for updating and installing plugins via its GUI.
+
+These plugins might be of interest to you, or are installed on live already:
+
+* 12 Step Meeting List
+* Disable Comments
+* Flo Forms
+* Members
+* Redirection
+* WP Crontrol
+
+## Deployment
+
+Automatic deployment to the live site via FTPS can be done via the `bin/deploy` script:
+
+```shell script
+$ bin/deploy PROD
+```
+
+Configure the connection details in [`.env`](./.env).
+
+Currently only the following folders will be copied, though:
+
+* [`wp-content/themes/zenzero`](wp-content/themes/zenzero)
+* [`wp-content/themes/zenzero-aa`](wp-content/themes/zenzero-aa)
+* [`wp-content/plugins/aa-berlin-addons`](wp-content/plugins/aa-berlin-addons)
+
 ## Misc
+
+### Bumping to a new version and forcing an asset refresh
+
+Make sure to only do this step on a clean working copy, everything having been committed, as it will edit source files in place!
+
+Theme and plugin (`zenzero-aa` and `aa-berlin-addons`) might need a refresh of cached resources in the browser, or generally deserve a new version.
+
+You can and should update them both with the `bin/bump-version` script:
+
+```shell script
+$ bin/bump-version 1.3.5
+```
 
 ### SQL to create meeting url entries from post content
 
