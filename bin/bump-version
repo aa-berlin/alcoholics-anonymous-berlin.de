@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+set -e
+
+# shellcheck disable=SC1090
+source "$(dirname "$0")/../dev-ops/common-bash"
+
+function show_help {
+  cat <<EOD
+Usage: bump-version <version>
+Where version is a semver version, eg. 1.3.2
+EOD
+}
+
+current_version="$(cat .version)"
+new_version="$1"
+
+echo "Current Version: $current_version"
+
+if [[ ! $new_version =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+  echo "Please provide a version."
+  show_help
+  exit 4
+fi
+
+echo "New Version: $new_version"
+echo "$new_version" > .version
+
+echo "Writing aa-berlin-addons version..."
+sed -i "s#\(\* Version: *\)[0-9]\+\.[0-9]\+\.[0-9]\+#\1$new_version#" ./wp-content/plugins/aa-berlin-addons/plugin.php
+sed -i "s#\(define('AA_BERLIN_ADDONS_VERSION', *'\)[0-9]\+\.[0-9]\+\.[0-9]\+\(');\)#\1$new_version\2#" ./wp-content/plugins/aa-berlin-addons/plugin.php
+
+echo "Writing zenzero-aa version..."
+sed -i "s#\(Version: *\)[0-9]\+\.[0-9]\+\.[0-9]\+#\1$new_version#" ./wp-content/themes/zenzero-aa/style.css
+
+git diff
+
+echo "Done."

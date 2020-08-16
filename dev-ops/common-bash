@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# only import from <project-path>/bin!
+# define a variable $ENV elsewhere
+
+set -e
+
+path_before="$(pwd)"
+project_path="$(dirname "$0")/.."
+
+trap on_exit EXIT
+cd "$project_path"
+
+if test ! -e .env; then
+  echo "You need to provide settings in .env file '$(pwd)/.env'..."
+  exit 5
+fi
+
+echo "Importing $(pwd)/.env..."
+env_data="$(sed '/^#/d' .env | grep =)"
+while IFS= read -r line
+do
+  declare "$line"
+done <<< "$env_data"
+
+function on_exit {
+  local exit_code="$?"
+  cd "$path_before" && exit "$exit_code"
+}
+
+function read_var {
+  local var_name="DEPLOY_$1_${ENV}"
+  echo "${!var_name}"
+}

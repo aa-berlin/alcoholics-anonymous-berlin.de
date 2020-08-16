@@ -2,27 +2,8 @@
 
 set -e
 
-path_before="$(pwd)"
-project_path="$(dirname "$0")/.."
-
-function on_exit {
-  cd "$path_before"
-}
-
-trap on_exit EXIT
-cd "$project_path"
-
-if test ! -e .env; then
-  echo "You need to provide settings in .env file '$(pwd)/.env'..."
-  exit 5
-fi
-
-echo "Importing $(pwd)/.env..."
-env_data="$(sed '/^#/d' .env | grep =)"
-while IFS= read -r line
-do
-  declare "$line"
-done <<< "$env_data"
+# shellcheck disable=SC1090
+source "$(dirname "$0")/../dev-ops/common-bash"
 
 function show_help {
   cat <<EOD
@@ -44,12 +25,7 @@ EOD
   echo "Done."
 }
 
-function read_var {
-  local var_name="DEPLOY_$1_${deploy_target}"
-  echo "${!var_name}"
-}
-
-deploy_target="$1"
+ENV="$1"
 is_inside=""
 if test "$2" == "--do-deployment=aye"; then
   is_inside="1"
@@ -62,12 +38,12 @@ if test -z "$is_inside"; then
   fi
 fi
 
-case "$deploy_target" in
+case "$ENV" in
 PROD)
   if test -n "$is_inside"; then
     deploy
   else
-    docker-compose exec -u application app-1 bin/deploy "$deploy_target" --do-deployment=aye
+    docker-compose exec -u application app-1 bin/deploy "$ENV" --do-deployment=aye
   fi
   ;;
 *)
