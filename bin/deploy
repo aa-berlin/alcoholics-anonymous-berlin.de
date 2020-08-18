@@ -20,6 +20,7 @@ function deploy {
   mirror -R ./wp-content/themes/zenzero ./wp-content/themes/zenzero
   mirror -R ./wp-content/themes/zenzero-aa ./wp-content/themes/zenzero-aa
   mirror -R ./wp-content/plugins/aa-berlin-addons ./wp-content/plugins/aa-berlin-addons
+  put .version
 EOD
 
   echo "Done."
