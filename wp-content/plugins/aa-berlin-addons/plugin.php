@@ -12,6 +12,7 @@
 define('AA_BERLIN_ADDONS_VERSION', '1.8.1');
 
 require __DIR__ . '/includes/options.php';
+require_once ABSPATH . WPINC . '/class-phpass.php';
 
 add_action('enqueue_block_editor_assets', 'aa_berlin_enqueue_block_editor_assets');
 add_action('wp_enqueue_scripts', 'aa_berlin_wp_enqueue_scripts');
@@ -26,6 +27,7 @@ add_filter('wp_mail_from', 'aa_berlin_addons_wp_mail_from');
 add_filter('wp_mail_from_name', 'aa_berlin_addons_wp_mail_from_name');
 add_action('check_passwords', 'aa_berlin_addons_wp_mail_from_name');
 add_filter('post_password_expires', 'aa_berlin_addons_password_expires');
+add_filter('post_password_required', 'aa_berlin_addons_password_required');
 
 function aa_berlin_addons_options($key = null) {
     static $options = null;
@@ -71,8 +73,8 @@ function aa_berlin_addons_init() {
         ));
     }
 
-    add_action('do_meta_boxes', 'aa_berlin_addons_add_passwordless_metabox', 9);
-    add_action('save_post', 'aa_berlin_addons_save_passwordless_postdata');
+    add_action('do_meta_boxes', 'aa_berlin_addons_add_metaboxes', 9);
+    add_action('save_post', 'aa_berlin_addons_save_metaboxes_postdata');
 
     if (aa_berlin_addons_options('custom_type_flags_add') && function_exists('tsml_custom_flags')) {
         $custom_type_flags = aa_berlin_addons_options('custom_type_flags_add');
@@ -305,11 +307,25 @@ function aa_berlin_addons_shortcode_timezone_info() {
     return '<span class="aa-berlin-addons-shortcode-timezone">' . $timezoneString . ' (UTC ' . $timezoneSign . $timezoneOffset . 'h)</span>';
 }
 
-function aa_berlin_addons_add_passwordless_metabox() {
-    add_meta_box('passwordlessmetabox', __('Password-less', 'aa-berlin-addons'), 'aa_berlin_addons_extended_post_submit_meta_box', 'tsml_meeting', 'side');
+function aa_berlin_addons_add_metaboxes() {
+    add_meta_box(
+            'aaberlinaddonspasswordlessmetabox',
+            __('AA B. Addons', 'aa-berlin-addons'),
+            'aa_berlin_addons_meetings_post_submit_meta_box',
+            'tsml_meeting',
+            'side'
+    );
+
+    add_meta_box(
+            'aaberlinaddonsextrasmetabox',
+            __('AA B. Addons', 'aa-berlin-addons'),
+            'aa_berlin_addons_posts_post_submit_meta_box',
+            ['page', 'post'],
+            'side'
+    );
 }
 
-function aa_berlin_addons_extended_post_submit_meta_box(WP_Post $post, $args = array()) {
+function aa_berlin_addons_meetings_post_submit_meta_box(WP_Post $post, $args = array()) {
     $is_checked = get_post_meta($post->ID, 'aa_berlin_addons_passwordless', true);
 
     ?>
@@ -321,7 +337,19 @@ function aa_berlin_addons_extended_post_submit_meta_box(WP_Post $post, $args = a
     <?php
 }
 
-function aa_berlin_addons_save_passwordless_postdata($post_id, $a=1, $b=2) {
+function aa_berlin_addons_posts_post_submit_meta_box(WP_Post $post, $args = array()) {
+    $is_checked = get_post_meta($post->ID, 'aa_berlin_addons_allow_global_passwords', true);
+
+    ?>
+    <div class="misc-pub-section">
+        <input id="aa_berlin_addons_allow_global_passwords" name="aa_berlin_addons_allow_global_passwords" type="checkbox" value="allow_global_passwords" <?php checked($is_checked); ?> />
+        <label for="aa_berlin_addons_allow_global_passwords" class="selectit"><?php echo __('If password protected, also allow for use of global passwords', 'aa-berlin-addons'); ?></label>
+        <br />
+    </div>
+    <?php
+}
+
+function aa_berlin_addons_save_metaboxes_postdata($post_id, $a=1, $b=2) {
 
     if (!isset($_POST['post_type'])) {
         return;
@@ -329,21 +357,33 @@ function aa_berlin_addons_save_passwordless_postdata($post_id, $a=1, $b=2) {
 
     $post_type = $_POST['post_type'];
 
-    if ($post_type != 'tsml_meeting' && $post_type != 'tsml_group') {
-        return;
+    if ($post_type == 'tsml_meeting' || $post_type == 'tsml_group') {
+        $is_passwordless = '0';
+
+        if (array_key_exists('aa_berlin_addons_passwordless', $_POST)) {
+            $is_passwordless = '1';
+        }
+
+        update_post_meta(
+            $post_id,
+            'aa_berlin_addons_passwordless',
+            $is_passwordless
+        );
     }
 
-    $is_passwordless = '0';
+    if ($post_type == 'post' || $post_type == 'page') {
+        $allow_global = '0';
 
-    if (array_key_exists('aa_berlin_addons_passwordless', $_POST)) {
-        $is_passwordless = '1';
+        if (array_key_exists('aa_berlin_addons_allow_global_passwords', $_POST)) {
+            $allow_global = '1';
+        }
+
+        update_post_meta(
+            $post_id,
+            'aa_berlin_addons_allow_global_passwords',
+            $allow_global
+        );
     }
-
-    update_post_meta(
-        $post_id,
-        'aa_berlin_addons_passwordless',
-        $is_passwordless
-    );
 }
 
 function aa_berlin_addons_wp_mail_from($original_from_address) {
@@ -366,4 +406,42 @@ function aa_berlin_addons_password_expires($expires) {
     $override = (int) aa_berlin_addons_options('post_password_expires');
 
     return $override ? time() + $override * DAY_IN_SECONDS : $expires;
+}
+
+function aa_berlin_addons_password_required($required) {
+    if (!$required) {
+        return $required;
+    }
+
+    $global_passwords = aa_berlin_addons_options('post_global_passwords');
+    $global_passwords = preg_split('#[\r\n,]+#', $global_passwords);
+    $global_passwords = array_map('trim', $global_passwords);
+    $global_passwords = array_filter($global_passwords);
+
+    if (!$global_passwords) {
+        return $required;
+    }
+
+    // copied from post_password_required() – initialization needs to match!
+    $hasher = new PasswordHash(8, true);
+
+    $cookie_name = 'wp-postpass_' . COOKIEHASH;
+
+    if (!isset($_COOKIE[$cookie_name])) {
+        return $required;
+    }
+
+    $hash = wp_unslash($_COOKIE[$cookie_name]);
+
+    if (0 !== strpos($hash, '$P$B')) {
+        return true;
+    }
+
+    foreach ($global_passwords as $global_password) {
+        if ($hasher->CheckPassword($global_password, $hash)) {
+            return false;
+        }
+    }
+
+    return true;
 }

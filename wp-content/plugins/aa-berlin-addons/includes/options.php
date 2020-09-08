@@ -288,6 +288,14 @@ $pages = array(
                         'value' => 10,
                         'id' => 'post_password_expires',
                     ),
+
+                    array(
+                        'title' => __('Global passwords list', 'aa-berlin-addons'),
+                        'type' => 'text',
+                        'value' => '',
+                        'id' => 'post_global_passwords',
+                        'text' => 'Multiple passwords separated by commas (","); usable on all pages and posts that have a tick at `Allow use of global passwords`.',
+                    ),
                 ),
             ),
 
