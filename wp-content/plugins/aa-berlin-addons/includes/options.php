@@ -296,6 +296,13 @@ $pages = array(
                         'id' => 'post_global_passwords',
                         'text' => 'Multiple passwords separated by commas (","); usable on all pages and posts that have a tick at `Allow use of global passwords`.',
                     ),
+
+                    array(
+                        'title' => __('Global passwords may be entered inaccurately', 'aa-berlin-addons'),
+                        'type' => 'checkbox',
+                        'id' => 'post_global_passwords_may_be_inaccurate',
+                        'text' => 'Check this, if users may enter a password with a typo in every few characters.',
+                    ),
                 ),
             ),
 

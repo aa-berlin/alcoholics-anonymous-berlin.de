@@ -20,11 +20,16 @@ add_action('init', 'aa_berlin_addons_init');
 add_action('widgets_init', 'aa_berlin_addons_widgets_init');
 add_action('wp_footer', 'aa_berlin_addons_render_common_widgets');
 add_action('wp_footer', 'aa_berlin_addons_render_dynamic_styles');
+
 add_filter('body_class', 'aa_berlin_addons_body_class');
+
 add_shortcode('timezone_info', 'aa_berlin_addons_shortcode_timezone_info');
 add_filter('widget_text', 'do_shortcode');
+
 add_filter('wp_mail_from', 'aa_berlin_addons_wp_mail_from');
 add_filter('wp_mail_from_name', 'aa_berlin_addons_wp_mail_from_name');
+
+add_action('login_form_postpass', 'aa_berlin_addons_login_form_postpass');
 add_action('check_passwords', 'aa_berlin_addons_wp_mail_from_name');
 add_filter('post_password_expires', 'aa_berlin_addons_password_expires');
 add_filter('post_password_required', 'aa_berlin_addons_password_required');
@@ -408,22 +413,65 @@ function aa_berlin_addons_password_expires($expires) {
     return $override ? time() + $override * DAY_IN_SECONDS : $expires;
 }
 
-function aa_berlin_addons_password_required($required) {
-    if (!$required) {
-        return $required;
+function aa_berlin_addons_login_form_postpass() {
+    if (empty($_POST['post_password'])) {
+        return;
     }
 
+    $input_password = $_POST['post_password'];
+    $global_passwords = aa_berlin_addons_get_global_passwords();
+
+    $is_match = false;
+
+    // go through our global passwords and see if one matches, maybe allowing for some typos
+    foreach ($global_passwords as $global_password) {
+        $distance = levenshtein($global_password, $input_password);
+        $password_length = strlen($global_password);
+        $required_chars = $password_length;
+
+        if (aa_berlin_addons_options('post_global_passwords_may_be_inaccurate')) {
+            $required_chars = ceil($required_chars * 0.8);
+        }
+
+        $allowed_distance = $password_length - $required_chars;
+
+        if ($distance <= $allowed_distance) {
+            $is_match = true;
+
+            break;
+        }
+    }
+
+    if (!$is_match) {
+        return;
+    }
+
+    // user had a good enough match, override his input with the exact global password to then be hashed and put
+    // into a cookie by wp-login.php
+    $_POST['post_password'] = $global_password;
+}
+
+function aa_berlin_addons_get_global_passwords() {
     $global_passwords = aa_berlin_addons_options('post_global_passwords');
     $global_passwords = preg_split('#[\r\n,]+#', $global_passwords);
     $global_passwords = array_map('trim', $global_passwords);
     $global_passwords = array_filter($global_passwords);
 
+    return $global_passwords;
+}
+
+function aa_berlin_addons_password_required($required) {
+    if (!$required) {
+        return $required;
+    }
+
+    $global_passwords = aa_berlin_addons_get_global_passwords();
+
     if (!$global_passwords) {
         return $required;
     }
 
-    // copied from post_password_required() – initialization needs to match!
-    $hasher = new PasswordHash(8, true);
+    $hasher = aa_berlin_addons_get_hasher();
 
     $cookie_name = 'wp-postpass_' . COOKIEHASH;
 
@@ -444,4 +492,9 @@ function aa_berlin_addons_password_required($required) {
     }
 
     return true;
+}
+
+function aa_berlin_addons_get_hasher() {
+    // copied from post_password_required() – initialization needs to match!
+    return new PasswordHash(8, true);
 }
