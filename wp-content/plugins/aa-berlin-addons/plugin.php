@@ -29,6 +29,7 @@ add_filter('widget_text', 'do_shortcode');
 add_filter('wp_mail_from', 'aa_berlin_addons_wp_mail_from');
 add_filter('wp_mail_from_name', 'aa_berlin_addons_wp_mail_from_name');
 
+add_filter('the_password_form', 'aa_berlin_addons_the_password_form');
 add_action('login_form_postpass', 'aa_berlin_addons_login_form_postpass');
 add_action('check_passwords', 'aa_berlin_addons_wp_mail_from_name');
 add_filter('post_password_expires', 'aa_berlin_addons_password_expires');
@@ -418,6 +419,25 @@ function aa_berlin_addons_login_form_postpass() {
         return;
     }
 
+    if (empty($_POST['aa_berlin_addons_post_id'])) {
+        return;
+    }
+
+    if (empty($_POST['aa_berlin_addons_post_id_hash'])) {
+        return;
+    }
+
+    $id = $_POST['aa_berlin_addons_post_id'];
+    $hash = $_POST['aa_berlin_addons_post_id_hash'];
+
+    if ($hash != aa_berlin_addons_get_post_id_hash($id)) {
+        return;
+    }
+
+    if (!get_post_meta($id, 'aa_berlin_addons_allow_global_passwords', true)) {
+        return;
+    }
+
     $input_password = $_POST['post_password'];
     $global_passwords = aa_berlin_addons_get_global_passwords();
 
@@ -461,7 +481,19 @@ function aa_berlin_addons_get_global_passwords() {
 }
 
 function aa_berlin_addons_password_required($required) {
-    if (!$required) {
+    global $post;
+
+    if (!$required || !$post) {
+        return $required;
+    }
+
+    if (!get_post_meta($post->ID, 'aa_berlin_addons_allow_global_passwords', true)) {
+        return $required;
+    }
+
+    $cookie_name = 'wp-postpass_' . COOKIEHASH;
+
+    if (!isset($_COOKIE[$cookie_name])) {
         return $required;
     }
 
@@ -472,12 +504,6 @@ function aa_berlin_addons_password_required($required) {
     }
 
     $hasher = aa_berlin_addons_get_hasher();
-
-    $cookie_name = 'wp-postpass_' . COOKIEHASH;
-
-    if (!isset($_COOKIE[$cookie_name])) {
-        return $required;
-    }
 
     $hash = wp_unslash($_COOKIE[$cookie_name]);
 
@@ -497,4 +523,34 @@ function aa_berlin_addons_password_required($required) {
 function aa_berlin_addons_get_hasher() {
     // copied from post_password_required() – initialization needs to match!
     return new PasswordHash(8, true);
+}
+
+function aa_berlin_addons_the_password_form($form_html) {
+    global $post;
+
+    if (!$post) {
+        return $form_html;
+    }
+
+    $id = $post->ID;
+
+    if (!get_post_meta($id, 'aa_berlin_addons_allow_global_passwords', true)) {
+        return $form_html;
+    }
+
+    $hash = aa_berlin_addons_get_post_id_hash($id);
+    $append = "<input name='aa_berlin_addons_post_id_hash' id='aaberlinpostidhash-$id' type='hidden' value='$hash'/>";
+    $append .= "<input name='aa_berlin_addons_post_id' id='aaberlinpostid-$id' type='hidden' value='$id'/>";
+    $form_html = preg_replace('#<form\b[^>]+>#', '$0 ' . $append, $form_html);
+
+    return $form_html;
+}
+
+function aa_berlin_addons_get_post_id_hash($id) {
+    return sha1(
+        SECURE_AUTH_SALT
+        . AUTH_SALT
+        . 'aa_berlin_addons_use_global_passwords for post id '
+        . $id
+    );
 }
