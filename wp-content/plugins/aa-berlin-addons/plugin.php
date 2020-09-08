@@ -24,6 +24,8 @@ add_shortcode('timezone_info', 'aa_berlin_addons_shortcode_timezone_info');
 add_filter('widget_text', 'do_shortcode');
 add_filter('wp_mail_from', 'aa_berlin_addons_wp_mail_from');
 add_filter('wp_mail_from_name', 'aa_berlin_addons_wp_mail_from_name');
+add_action('check_passwords', 'aa_berlin_addons_wp_mail_from_name');
+add_filter('post_password_expires', 'aa_berlin_addons_password_expires');
 
 function aa_berlin_addons_options($key = null) {
     static $options = null;
@@ -49,7 +51,6 @@ function aa_berlin_addons_options($key = null) {
 }
 
 function aa_berlin_addons_init() {
-    global $tsml_conference_providers;
     global $tsml_programs, $tsml_program;
 
     $existing_type_flags = array();
@@ -359,4 +360,10 @@ function aa_berlin_addons_wp_mail_from_name($original_from_name) {
     }
 
     return aa_berlin_addons_options('default_from_email_name');
+}
+
+function aa_berlin_addons_password_expires($expires) {
+    $override = (int) aa_berlin_addons_options('post_password_expires');
+
+    return $override ? time() + $override * DAY_IN_SECONDS : $expires;
 }

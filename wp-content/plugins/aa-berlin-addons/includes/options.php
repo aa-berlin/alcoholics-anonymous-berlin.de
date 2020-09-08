@@ -281,6 +281,13 @@ $pages = array(
                         'text' => 'BE SURE to test your e-mail settings after changing these!',
                         'id' => 'default_from_email_name',
                     ),
+
+                    array(
+                        'title' => __('Lifetime of cookies of password-proteced pages in days', 'aa-berlin-addons'),
+                        'type' => 'text',
+                        'value' => 10,
+                        'id' => 'post_password_expires',
+                    ),
                 ),
             ),
 
