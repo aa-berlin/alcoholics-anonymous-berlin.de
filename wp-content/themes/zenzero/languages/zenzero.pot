@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Zenzero\n"
-"POT-Creation-Date: 2020-07-13 17:53+0100\n"
-"PO-Revision-Date: 2020-07-13 17:53+0100\n"
+"POT-Creation-Date: 2020-11-16 15:37+0100\n"
+"PO-Revision-Date: 2020-11-16 15:37+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -359,7 +359,7 @@ msgstr ""
 msgid "Powerful theme options"
 msgstr ""
 
-#: inc/admin/zenzero-admin-page.php:337 inc/zenzero-dynamic.php:364
+#: inc/admin/zenzero-admin-page.php:337 inc/zenzero-dynamic.php:382
 msgid "Loading Page"
 msgstr ""
 
@@ -367,27 +367,27 @@ msgstr ""
 msgid "Font switcher"
 msgstr ""
 
-#: inc/admin/zenzero-admin-page.php:347 inc/zenzero-dynamic.php:368
+#: inc/admin/zenzero-admin-page.php:347 inc/zenzero-dynamic.php:386
 msgid "Breadcrumb"
 msgstr ""
 
-#: inc/admin/zenzero-admin-page.php:352 inc/zenzero-dynamic.php:367
+#: inc/admin/zenzero-admin-page.php:352 inc/zenzero-dynamic.php:385
 msgid "Post views counter"
 msgstr ""
 
-#: inc/admin/zenzero-admin-page.php:357 inc/zenzero-dynamic.php:370
+#: inc/admin/zenzero-admin-page.php:357 inc/zenzero-dynamic.php:388
 msgid "7 Shortcodes"
 msgstr ""
 
-#: inc/admin/zenzero-admin-page.php:362 inc/zenzero-dynamic.php:371
+#: inc/admin/zenzero-admin-page.php:362 inc/zenzero-dynamic.php:389
 msgid "5 Exclusive Widgets"
 msgstr ""
 
-#: inc/admin/zenzero-admin-page.php:367 inc/zenzero-dynamic.php:372
+#: inc/admin/zenzero-admin-page.php:367 inc/zenzero-dynamic.php:390
 msgid "Related Posts Box"
 msgstr ""
 
-#: inc/admin/zenzero-admin-page.php:372 inc/zenzero-dynamic.php:373
+#: inc/admin/zenzero-admin-page.php:372 inc/zenzero-dynamic.php:391
 msgid "Information About Author Box"
 msgstr ""
 
@@ -607,51 +607,55 @@ msgstr ""
 msgid "Show Social Button in the header"
 msgstr ""
 
-#: inc/zenzero-dynamic.php:335
+#: inc/zenzero-dynamic.php:336
+msgid "Enable Smooth Scroll"
+msgstr ""
+
+#: inc/zenzero-dynamic.php:353
 msgid "Copyright Text"
 msgstr ""
 
-#: inc/zenzero-dynamic.php:336
+#: inc/zenzero-dynamic.php:354
 msgid "Get the PRO version to remove CrestaProject credits"
 msgstr ""
 
-#: inc/zenzero-dynamic.php:350
+#: inc/zenzero-dynamic.php:368
 msgid "Get Zenzero PRO WP Theme for only"
 msgstr ""
 
-#: inc/zenzero-dynamic.php:355
+#: inc/zenzero-dynamic.php:373
 msgid "Watch the demo"
 msgstr ""
 
-#: inc/zenzero-dynamic.php:358
+#: inc/zenzero-dynamic.php:376
 msgid "Get Zenzero PRO Theme"
 msgstr ""
 
-#: inc/zenzero-dynamic.php:362
+#: inc/zenzero-dynamic.php:380
 msgid "Advanced Theme Options"
 msgstr ""
 
-#: inc/zenzero-dynamic.php:363
+#: inc/zenzero-dynamic.php:381
 msgid "Logo Upload"
 msgstr ""
 
-#: inc/zenzero-dynamic.php:365
+#: inc/zenzero-dynamic.php:383
 msgid "Font Switcher"
 msgstr ""
 
-#: inc/zenzero-dynamic.php:366
+#: inc/zenzero-dynamic.php:384
 msgid "Unlimited Colors and Skin"
 msgstr ""
 
-#: inc/zenzero-dynamic.php:369
+#: inc/zenzero-dynamic.php:387
 msgid "Post format"
 msgstr ""
 
-#: inc/zenzero-dynamic.php:374
+#: inc/zenzero-dynamic.php:392
 msgid "And much more..."
 msgstr ""
 
-#: inc/zenzero-dynamic.php:380
+#: inc/zenzero-dynamic.php:398
 msgid "More features? Upgrade to PRO"
 msgstr ""
 

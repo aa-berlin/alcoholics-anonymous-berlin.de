@@ -322,6 +322,24 @@ function zenzero_color_primary_register( $wp_customize ) {
     ) );
 	
 	/*
+	Smooth Scroll
+	=====================================================
+	*/
+	$wp_customize->add_setting('zenzero_theme_options_smoothscroll', array(
+        'default'    => '1',
+        'type'       => 'theme_mod',
+        'capability' => 'edit_theme_options',
+		'sanitize_callback' => 'zenzero_sanitize_checkbox'
+    ) );
+	
+	$wp_customize->add_control('zenzero_theme_options_smoothscroll', array(
+        'label'      => __( 'Enable Smooth Scroll', 'zenzero' ),
+        'section'    => 'cresta_zenzero_options',
+        'settings'   => 'zenzero_theme_options_smoothscroll',
+        'type'       => 'checkbox',
+    ) );
+	
+	/*
 	Custom Copyright text
 	=====================================================
 	*/
@@ -351,7 +369,7 @@ function zenzero_color_primary_register( $wp_customize ) {
         		</span>
         	</p>
 			<p style="text-align:center;" class="zenzero-upgrade-button">
-				<a style="margin: 10px;" target="_blank" href="http://crestaproject.com/demo/zenzero-pro/" class="button button-secondary">
+				<a style="margin: 10px;" target="_blank" href="https://crestaproject.com/demo/zenzero-pro/" class="button button-secondary">
 					<?php esc_html_e('Watch the demo', 'zenzero'); ?>
 				</a>
 				<a style="margin: 10px;" target="_blank" href="https://crestaproject.com/downloads/zenzero/" class="button button-secondary">

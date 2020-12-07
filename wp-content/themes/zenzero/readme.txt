@@ -2,8 +2,8 @@
 Contributors: CrestaProject
 Tags: one-column, left-sidebar, custom-background, custom-menu, custom-colors, sticky-post, featured-images, theme-options, translation-ready, blog, news
 Requires at least: 4.5
-Tested up to: 5.4
-Stable tag: 1.7.1
+Tested up to: 5.5
+Stable tag: 1.7.2
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -36,6 +36,10 @@ Zenzero includes support for Infinite Scroll in Jetpack.
 * Image used in Theme Screenshot by PxHere https://pxhere.com/en/photo/927544 licensed under CC0
 
 == Changelog ==
+= Version 1.7.2 =
+* Added an option to enable/disable smooth scroll
+* Minor bug fixes
+
 = Version 1.7.1 =
 * Now copyright text accepts shortcodes
 * Minor bug fixes
