@@ -4,6 +4,11 @@ function zenzero_aa_remove_author($html) {
     return preg_replace('#<span\s+class="byline">.*?</span>.*?</span>#', '', $html);
 }
 
+
+function zenzero_aa_tidy_up_html($html) {
+    return preg_replace('#\bstyle=([\'"]).*?\1#', '', $html);
+}
+
 function zenzero_aa_add_timezone($html) {
     $timezone = wp_timezone()->getName();
 
