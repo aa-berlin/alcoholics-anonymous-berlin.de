@@ -234,3 +234,16 @@
 #tsml #map .tsml_infowindow h3 a {
     border: 0;
 }
+
+/* make highlighting on meeting list behave */
+.tsml-meetings .ui-menu .ui-menu-item-wrapper {
+    position: static;
+    padding: 0;
+    border: 0;
+    font-weight: bold;
+    color: #337ab7;
+}
+
+.tsml-meetings .ui-menu :hover > .ui-menu-item-wrapper {
+    font-weight: bold;
+}
