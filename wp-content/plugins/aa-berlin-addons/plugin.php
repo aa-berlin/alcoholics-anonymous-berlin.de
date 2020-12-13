@@ -14,26 +14,7 @@ define('AA_BERLIN_ADDONS_VERSION', '1.9.1');
 require __DIR__ . '/includes/options.php';
 require_once ABSPATH . WPINC . '/class-phpass.php';
 
-add_action('enqueue_block_editor_assets', 'aa_berlin_enqueue_block_editor_assets');
-add_action('wp_enqueue_scripts', 'aa_berlin_wp_enqueue_scripts');
 add_action('init', 'aa_berlin_addons_init');
-add_action('widgets_init', 'aa_berlin_addons_widgets_init');
-add_action('wp_footer', 'aa_berlin_addons_render_common_widgets');
-add_action('wp_footer', 'aa_berlin_addons_render_dynamic_styles');
-
-add_filter('body_class', 'aa_berlin_addons_body_class');
-
-add_shortcode('timezone_info', 'aa_berlin_addons_shortcode_timezone_info');
-add_filter('widget_text', 'do_shortcode');
-
-add_filter('wp_mail_from', 'aa_berlin_addons_wp_mail_from');
-add_filter('wp_mail_from_name', 'aa_berlin_addons_wp_mail_from_name');
-
-add_filter('the_password_form', 'aa_berlin_addons_the_password_form');
-add_action('login_form_postpass', 'aa_berlin_addons_login_form_postpass');
-add_action('check_passwords', 'aa_berlin_addons_wp_mail_from_name');
-add_filter('post_password_expires', 'aa_berlin_addons_password_expires');
-add_filter('post_password_required', 'aa_berlin_addons_password_required');
 
 function aa_berlin_addons_options($key = null) {
     static $options = null;
@@ -101,6 +82,26 @@ function aa_berlin_addons_init() {
     }
 
     add_action('save_post', 'aa_berlin_addons_save_post_before_tsml', 9, 3);
+
+    add_action('enqueue_block_editor_assets', 'aa_berlin_enqueue_block_editor_assets');
+    add_action('wp_enqueue_scripts', 'aa_berlin_wp_enqueue_scripts');
+    add_action('widgets_init', 'aa_berlin_addons_widgets_init');
+    add_action('wp_footer', 'aa_berlin_addons_render_common_widgets');
+    add_action('wp_footer', 'aa_berlin_addons_render_dynamic_styles');
+
+    add_filter('body_class', 'aa_berlin_addons_body_class');
+
+    add_shortcode('timezone_info', 'aa_berlin_addons_shortcode_timezone_info');
+    add_filter('widget_text', 'do_shortcode');
+
+    add_filter('wp_mail_from', 'aa_berlin_addons_wp_mail_from');
+    add_filter('wp_mail_from_name', 'aa_berlin_addons_wp_mail_from_name');
+
+    add_filter('the_password_form', 'aa_berlin_addons_the_password_form');
+    add_action('login_form_postpass', 'aa_berlin_addons_login_form_postpass');
+    add_action('check_passwords', 'aa_berlin_addons_wp_mail_from_name');
+    add_filter('post_password_expires', 'aa_berlin_addons_password_expires');
+    add_filter('post_password_required', 'aa_berlin_addons_password_required');
 }
 
 /**
@@ -208,8 +209,6 @@ function aa_berlin_addons_widgets_init() {
 }
 
 function aa_berlin_addons_body_class($classes) {
-    global $meeting;
-
     if (aa_berlin_addons_options('disable_map_if_tc')) {
         $classes[] = 'aa-berlin-addons-disable-map-if-tc';
     }
