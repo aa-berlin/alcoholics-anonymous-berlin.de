@@ -185,6 +185,13 @@ function aa_berlin_wp_enqueue_scripts() {
     $show_chat = aa_berlin_addons_options('show_gso_gb_chat');
 
     if ($show_chat) {
+        wp_enqueue_style(
+            'aa-berlin-gso-gb-chat',
+            plugins_url('assets/gso-gb-chat.css', __FILE__),
+            array(),
+            AA_BERLIN_ADDONS_VERSION
+        );
+
         wp_enqueue_script(
             'aa-berlin-gso-gb-chat',
             plugins_url('assets/gso-gb-chat.js', __FILE__),

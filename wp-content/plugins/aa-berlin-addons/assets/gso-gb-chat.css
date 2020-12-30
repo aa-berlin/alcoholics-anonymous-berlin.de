@@ -1,0 +1,65 @@
+.aa-berlin-addons-gso-gb-chat,
+.aa-berlin-addons-gso-gb-chat:hover,
+.aa-berlin-addons-gso-gb-chat:focus {
+    display: block;
+    position: fixed;
+    z-index: 100;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    width: 100%;
+    overflow: visible;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-shadow: none;
+    background: none;
+    font-weight: normal;
+}
+
+.aa-berlin-addons-gso-gb-chat .aa-berlin-addons-text {
+    display: block;
+    position: absolute;
+    white-space: normal;
+    max-width: 255px;
+    border-radius: 3px;
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
+    background: #f5f190;
+    color: #000;
+    font-size: 15px;
+    padding: 5px 30px 5px 10px;
+    bottom: 20px;
+    right: 35px;
+    line-height: 1.4;
+    text-align: left;
+    transition: opacity ease .3s;
+    opacity: 0;
+}
+
+.aa-berlin-addons-gso-gb-chat.hovering .aa-berlin-addons-text {
+    opacity: 1;
+}
+
+.aa-berlin-addons-gso-gb-chat .aa-berlin-addons-icon-bg {
+    position: absolute;
+    display: block;
+    bottom: 15px;
+    right: 15px;
+}
+
+.aa-berlin-addons-gso-gb-chat .aa-berlin-addons-icon-bg path {
+    fill: #28539e;
+}
+
+.aa-berlin-addons-gso-gb-chat .aa-berlin-addons-icon {
+    font-size: 40px;
+    line-height: 1;
+    color: #fff;
+    transform: scaleX(-1);
+    position: absolute;
+    display: block;
+    bottom: 26px;
+    right: 31px;
+}
