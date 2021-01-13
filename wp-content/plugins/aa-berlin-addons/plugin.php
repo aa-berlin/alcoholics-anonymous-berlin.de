@@ -11,6 +11,11 @@
 
 define('AA_BERLIN_ADDONS_VERSION', '1.9.2');
 
+define(
+    'AA_BERLIN_ADDONS_SMTP_CONSTANTS',
+    'SMTP_USER,SMTP_PASS,SMTP_HOST,SMTP_FROM,SMTP_NAME,SMTP_PORT,SMTP_SECURE,SMTP_AUTH,SMTP_DEBUG'
+);
+
 require __DIR__ . '/includes/options.php';
 require_once ABSPATH . WPINC . '/class-phpass.php';
 
@@ -88,6 +93,7 @@ function aa_berlin_addons_init() {
     add_action('widgets_init', 'aa_berlin_addons_widgets_init');
     add_action('wp_footer', 'aa_berlin_addons_render_common_widgets');
     add_action('wp_footer', 'aa_berlin_addons_render_dynamic_styles');
+    add_action('phpmailer_init', 'aa_berlin_addons_send_smtp_email');
 
     add_filter('body_class', 'aa_berlin_addons_body_class');
 
@@ -396,7 +402,23 @@ function aa_berlin_addons_wp_mail_from($original_from_address) {
         return $original_from_address;
     }
 
+    if (aa_berlin_addons_has_smtp_settings()) {
+        return SMTP_FROM;
+    }
+
     return aa_berlin_addons_options('default_from_email_address');
+}
+
+function aa_berlin_addons_has_smtp_settings() {
+    $constants = explode(',', AA_BERLIN_ADDONS_SMTP_CONSTANTS);
+
+    foreach ($constants as $constant) {
+        if (!defined($constant)) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 function aa_berlin_addons_wp_mail_from_name($original_from_name) {
@@ -404,7 +426,34 @@ function aa_berlin_addons_wp_mail_from_name($original_from_name) {
         return $original_from_name;
     }
 
+    if (aa_berlin_addons_has_smtp_settings()) {
+        return SMTP_NAME;
+    }
+
     return aa_berlin_addons_options('default_from_email_name');
+}
+
+/**
+ * @param \PHPMailer\PHPMailer\PHPMailer $phpMailer
+ */
+function aa_berlin_addons_send_smtp_email($phpMailer) {
+    if (!$phpMailer instanceof \PHPMailer\PHPMailer\PHPMailer) {
+        return;
+    }
+
+    if (!aa_berlin_addons_has_smtp_settings()) {
+        return;
+    }
+
+    $phpMailer->isSMTP();
+    $phpMailer->Host = SMTP_HOST;
+    $phpMailer->SMTPAuth = SMTP_AUTH;
+    $phpMailer->Port = SMTP_PORT;
+    $phpMailer->Username = SMTP_USER;
+    $phpMailer->Password = SMTP_PASS;
+    $phpMailer->SMTPSecure = SMTP_SECURE;
+    $phpMailer->From = SMTP_FROM;
+    $phpMailer->FromName = SMTP_NAME;
 }
 
 function aa_berlin_addons_password_expires($expires) {

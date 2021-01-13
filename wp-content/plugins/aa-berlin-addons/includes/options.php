@@ -271,14 +271,16 @@ $pages = array(
                     array(
                         'title' => __('Default FROM e-mail address', 'aa-berlin-addons'),
                         'type' => 'text',
-                        'text' => 'BE SURE to test your e-mail settings after changing these!',
+                        'readonly' => aa_berlin_addons_has_smtp_settings(),
+                        'text' => aa_berlin_addons_has_smtp_settings() ? 'DISABLED, as you are using SMTP_* settings in wp-config.php' : 'BE SURE to test your e-mail settings after changing these!',
                         'id' => 'default_from_email_address',
                     ),
 
                     array(
                         'title' => __('Default FROM e-mail name', 'aa-berlin-addons'),
                         'type' => 'text',
-                        'text' => 'BE SURE to test your e-mail settings after changing these!',
+                        'readonly' => aa_berlin_addons_has_smtp_settings(),
+                        'text' => aa_berlin_addons_has_smtp_settings() ? 'DISABLED, as you are using SMTP_* settings in wp-config.php' : 'BE SURE to test your e-mail settings after changing these!',
                         'id' => 'default_from_email_name',
                     ),
 
