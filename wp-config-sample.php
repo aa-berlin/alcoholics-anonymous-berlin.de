@@ -72,6 +72,24 @@ $table_prefix = 'wp_';
 define('DISABLE_WP_CRON', true);
 
 /**
+ * Email Config
+ * SMTP Authentication
+ *
+ * @see https://help.gulshankumar.net/t/smtp-settings-of-wordpress-without-using-plugin/1641
+ */
+define('SMTP_USER', 'user@example.com');
+define('SMTP_PASS', 'smtp password');
+define('SMTP_HOST', 'smtp.example.com');
+define('SMTP_FROM', 'website@example.com');
+define('SMTP_NAME', 'e.g Website Name');
+define('SMTP_PORT', '25');
+// Encryption system to use - ssl or tls
+define('SMTP_SECURE', 'ssl');
+define('SMTP_AUTH', true);
+// for debugging purposes only set to 1 or 2
+define('SMTP_DEBUG', 0);
+
+/**
  * For developers: WordPress debugging mode.
  *
  * Change this to true to enable the display of notices during development.
