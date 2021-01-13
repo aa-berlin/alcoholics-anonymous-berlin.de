@@ -42,24 +42,10 @@
     opacity: 1;
 }
 
-.aa-berlin-addons-gso-gb-chat .aa-berlin-addons-icon-bg {
+.aa-berlin-addons-gso-gb-chat .aa-berlin-addons-icon {
     position: absolute;
     display: block;
     bottom: 15px;
     right: 15px;
-}
-
-.aa-berlin-addons-gso-gb-chat .aa-berlin-addons-icon-bg path {
-    fill: #28539e;
-}
-
-.aa-berlin-addons-gso-gb-chat .aa-berlin-addons-icon {
-    font-size: 40px;
-    line-height: 1;
-    color: #fff;
-    transform: scaleX(-1);
-    position: absolute;
-    display: block;
-    bottom: 26px;
-    right: 31px;
+    width: 70px;
 }
