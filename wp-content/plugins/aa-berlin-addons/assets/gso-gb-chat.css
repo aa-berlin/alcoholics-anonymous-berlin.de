@@ -36,10 +36,12 @@
     text-align: left;
     transition: opacity ease .3s;
     opacity: 0;
+    visibility: hidden;
 }
 
 .aa-berlin-addons-gso-gb-chat.hovering .aa-berlin-addons-text {
     opacity: 1;
+    visibility: visible;
 }
 
 .aa-berlin-addons-gso-gb-chat .aa-berlin-addons-icon {
