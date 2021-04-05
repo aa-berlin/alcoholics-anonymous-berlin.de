@@ -343,14 +343,19 @@ h1.page-title,
 }
 
 .entry-content p a,
+.entry-content .wp-block-table a,
 .entry-content li > a {
+    color: #337ab7;
     border-bottom: 1px dotted currentColor;
 }
 
 .entry-content p a:hover,
+.entry-content .wp-block-table a:hover,
 .entry-content li > a:hover,
 .entry-content p a:focus,
+.entry-content .wp-block-table a:focus,
 .entry-content li > a:focus {
+    color: #23527c;
     text-shadow: 1px 1px 1px rgba(51, 122, 183, 0.4);
 }
 
