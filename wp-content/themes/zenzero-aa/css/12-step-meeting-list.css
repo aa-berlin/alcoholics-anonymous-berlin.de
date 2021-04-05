@@ -194,6 +194,52 @@
     vertical-align: text-top;
 }
 
+#tsml #meeting .panel ul.list-group .list-group-item .btn:hover,
+#tsml #meeting .panel ul.list-group .list-group-item .btn:focus {
+    background: #f5f5f5;
+}
+
+#tsml #meeting .list-group-item-location .glyphicon {
+    float: right;
+}
+
+#tsml #meeting .col-md-4 {
+    display: flex;
+    flex-direction: column;
+}
+
+#tsml #meeting .col-md-4 #feedback {
+    order: -1;
+    z-index: 1;
+}
+
+#tsml #meeting .col-md-4 .tsml-directions path {
+    stroke: currentColor;
+    stroke-width: 1px;
+    stroke-linecap: round;
+}
+
+#tsml #meeting .col-md-4 > .panel ul.list-group,
+#tsml #location .col-md-4 > .panel ul.list-group {
+    display: flex;
+    flex-direction: column;
+}
+
+#tsml #meeting .col-md-4 > .panel ul.list-group .list-group-item-updated,
+#tsml #location .col-md-4 > .panel ul.list-group .list-group-item-updated {
+    order: -1;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    font-style: italic;
+    padding-top: 3px;
+    padding-bottom: 4px;
+}
+
+#tsml #meeting .col-md-4 > .panel .list-group-item-group,
+#tsml #location .col-md-4 > .panel .list-group-item-meetings {
+    border-bottom: 0;
+}
+
 @media all and (min-width: 992px) {
 
     #tsml #meeting .col-md-4,
@@ -206,9 +252,21 @@
         width: 60%;
     }
 
-    #tsml #location #feedback .panel.expanded,
     #tsml #meeting #feedback .panel.expanded {
         margin-right: -100%;
+        position: relative;
+    }
+
+    #tsml #meeting #feedback .panel.expanded::after {
+        display: block;
+        content: "";
+        background: #fff;
+        position: absolute;
+        top: 0;
+        right: -15px;
+        bottom: -15px;
+        left: 0;
+        z-index: -1;
     }
 }
 
