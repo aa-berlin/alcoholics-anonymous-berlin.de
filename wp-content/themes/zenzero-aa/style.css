@@ -330,12 +330,12 @@ Domain Path: /languages
 @media all and (min-width: 768px) {
 
     .site-header .showSearch {
-        right: 25px;
+        right: 30px;
         top: 85px;
     }
 
     .site-header .showSearch i {
-        font-size: 30px;
+        font-size: 35px;
     }
 
     .site-header .showSearch .label {
