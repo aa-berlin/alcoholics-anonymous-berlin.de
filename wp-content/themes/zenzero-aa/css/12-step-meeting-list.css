@@ -213,6 +213,10 @@
     z-index: 1;
 }
 
+#tsml #meeting .col-md-4 #feedback .panel-heading {
+    cursor: pointer;
+}
+
 #tsml #meeting .col-md-4 .tsml-directions path {
     stroke: currentColor;
     stroke-width: 1px;
