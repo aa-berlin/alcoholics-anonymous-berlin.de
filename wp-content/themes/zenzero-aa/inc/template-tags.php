@@ -13,6 +13,8 @@ function zenzero_aa_fix_detail_html($html) {
     $html = str_replace(['glyphicon-chevron-left', 'glyphicon-chevron-right', 'glyphicon-chevron-temp-right'], ['glyphicon-chevron-temp-right', 'glyphicon-chevron-left', 'glyphicon-edit'], $html);
     // adds icon for location button
     $html = preg_replace('#(<li.*?list-group-item-location.*?)(</h3>)#s', '$1 <span class="glyphicon glyphicon-chevron-right"></span>$2', $html);
+    // removes empty contact item if public contact details are enabled but no info present
+    $html = preg_replace('#<li[^>]+list-group-item-group[^>]+>[\r\n\s]*<h3[^>]+>[^<>]+</h3>[\r\n\s]*</li>#s', '', $html);
 
     return $html;
 }
