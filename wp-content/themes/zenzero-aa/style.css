@@ -307,14 +307,20 @@ Domain Path: /languages
     border: 0;
     padding: 0;
     margin: 0;
+    width: 50px;
     font-size: 9px;
     line-height: 1;
     position: absolute;
-    right: 5px;
+    right: 12px;
     left: auto;
     top: 75px;
     background: transparent;
+    text-align: right;
     text-transform: uppercase;
+}
+
+#close-search {
+    padding: 5px 0 10px 10px;
 }
 
 .site-header .showSearch i {
@@ -323,6 +329,7 @@ Domain Path: /languages
 
 .site-header .showSearch .label {
     display: inline-block;
+    margin-right: -2px;
     margin-top: 2px;
     font-size: 9px;
 }
@@ -331,7 +338,7 @@ Domain Path: /languages
 
     .site-header .showSearch {
         right: 30px;
-        top: 85px;
+        top: 80px;
     }
 
     .site-header .showSearch i {
@@ -340,6 +347,7 @@ Domain Path: /languages
 
     .site-header .showSearch .label {
         font-size: 10px;
+        margin-top: 4px;
     }
 }
 
