@@ -4,7 +4,7 @@ This is a development setup for `alcoholics-anonymous-berlin.de`.
 
 It contains the site's theme including customizations of the `12-step-meeting-list` plugin.
 
-The theme is based on [CrestaProject's Zenzero](./wp-content/themes/zenzero/readme.txt)
+The theme is based on [CrestaProject's Zenzero](https://crestaproject.com/downloads/zenzero/)
 
 ## Cloning
 
