@@ -95,3 +95,9 @@ $ bin/bump-version 1.3.5
 ```sql
 INSERT INTO wp_postmeta(meta_key, meta_value, post_id) SELECT 'conference_url', REGEXP_SUBSTR(p.post_content, 'https:\\S+zoom\\S+') AS url, p.ID FROM wp_posts p WHERE p.post_type = 'tsml_meeting' AND p.post_content REGEXP 'https:\\S+zoom\\S+';
 ```
+
+## License
+
+This code is available under the terms of the GNU General Public License, Version 3 or later: https://www.gnu.org/licenses/gpl-3.0.html
+
+Copyright 2021 alcoholics-anonymous-berlin.de

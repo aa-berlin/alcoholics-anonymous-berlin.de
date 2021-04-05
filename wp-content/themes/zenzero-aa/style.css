@@ -1,8 +1,10 @@
 /*
 Theme Name: Zenzero (AA Customized)
-Theme URI: https://crestaproject.com/downloads/zenzero/
-Author: Rizzo Andrea - CrestaProject.com + alcoholics-anonymous-berlin.de
-Author URI: https://crestaproject.com
+Theme URI: https://github.com/aa-berlin/alcoholics-anonymous-berlin.de/tree/master/wp-content/themes/zenzero-aa
+Author: alcoholics-anonymous-berlin.de
+Author URI: https://www.alcoholics-anonymous-berlin.de
+License: GNU General Public License v3 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Template: zenzero
 Version: 1.10.3
 Text Domain: zenzero-aa
@@ -245,11 +247,6 @@ Domain Path: /languages
 .site-info {
     line-height: 1.1em;
     height: 1.2em;
-    overflow: hidden;
-}
-
-.site-info .sep {
-    display: block;
 }
 
 .site-social {
