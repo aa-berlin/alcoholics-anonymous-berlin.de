@@ -89,21 +89,10 @@ Domain Path: /languages
     border-bottom: 0;
 }
 
-@media all and (max-width: 479px) {
-
-    .site-header .hotline-teaser .line {
-        max-width: none;
-    }
-}
-
 @media all and (min-width: 1026px) {
 
     .site-header .hotline-teaser {
         height: auto;
-    }
-
-    .site-header .hotline-teaser .line {
-        max-width: none;
     }
 }
 
@@ -170,7 +159,6 @@ Domain Path: /languages
     vertical-align: middle;
     font-weight: bold;
     position: relative;
-    z-index: 10;
 }
 
 .site-header .hotline-teaser .call-link:hover {
@@ -315,10 +303,6 @@ Domain Path: /languages
     padding-right: 0;
 }
 
-.site-header .zenzero-aa-private-menu {
-    display: none;
-}
-
 .site-header .showSearch {
     border: 0;
     padding: 0;
@@ -379,10 +363,6 @@ Domain Path: /languages
 .site-info {
     line-height: 1.1em;
     height: 1.2em;
-}
-
-.site-social {
-    display: none;
 }
 
 .service-nav {
