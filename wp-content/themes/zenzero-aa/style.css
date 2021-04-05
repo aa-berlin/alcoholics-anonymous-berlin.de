@@ -18,23 +18,69 @@ Domain Path: /languages
 }
 
 .site-header {
-    padding: 1.5em 3.5em 0 3.5em;
+    padding: 20px 45px 25px 45px;
+}
+
+.site-header .site-title {
+
+}
+
+.site-header .site-title a:before {
+    display: block;
+    content: "";
+    width: 34px;
+    height: 34px;
+    background: transparent url(./images/logo-web.svg) no-repeat left top;
+    background-size: 100% auto;
+    position: absolute;
+    top: 21px;
+    left: 12px;
+}
+
+/* arbitrary breakpoint: more logo */
+@media all and (min-width: 580px) {
+
+    .site-header .site-title a:before {
+        top: 25px;
+        width: 95px;
+        height: 95px;
+    }
+}
+
+@media all and (min-width: 768px) {
+
+    .site-header .site-title a:before {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media all and (min-width: 1025px) {
+
+    .site-header {
+        /* padding of to nav items now */
+        padding-bottom: 0;
+    }
+
+    .site-header .site-title a:before {
+        width: 140px;
+        height: 140px;
+        top: 27px;
+        left: 70px;
+    }
 }
 
 .site-header .hotline-teaser {
-    margin: 0;
+    margin: 5px 0 0 0;
     text-transform: uppercase;
     font-size: 13px;
-    margin-top: 5px;
-    height: 0;
     line-height: 1.4em;
 }
 
 .site-header .hotline-teaser .line {
     font-weight: normal;
-    display: block;
-    max-width: 50%;
-    margin: 0 auto;
+    display: inline-block;
+    margin: 0;
     white-space: nowrap;
 }
 
@@ -44,16 +90,6 @@ Domain Path: /languages
 }
 
 @media all and (max-width: 479px) {
-
-    .site-header {
-        padding-top: 1em;
-        padding-bottom: 0;
-    }
-
-    .site-header .hotline-teaser {
-        height: auto;
-        margin-bottom: -10px;
-    }
 
     .site-header .hotline-teaser .line {
         max-width: none;
@@ -151,33 +187,82 @@ Domain Path: /languages
         padding-left: 1.5em;
         padding-right: 1.5em;
     }
-
-    .site-header {
-        padding-left: 0.5em;
-        padding-right: 0.5em;
-    }
 }
 
 .menu-toggle {
+    color: inherit !important;
+    background: transparent;
     border-color: transparent;
-    padding: 1.5em 1em 1.5em 1em;
-    float: none;
+    position: absolute;
+    padding: 60px 0 0 0;
+    top: 18px;
+    right: 10px;
+    font-size: 9px;
+    height: 50px;
+    width: 40px;
+    overflow: hidden;
+    float: right;
+    text-align: right;
+    transition: none;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus {
+    color: #fff !important;
+}
+
+.menu-toggle:after {
+    position: absolute;
+    top: 27px;
+    right: 0;
+    content: "Menu";
+    text-transform: uppercase;
 }
 
 .menu-toggle i {
+    display: block;
     margin-top: 5px;
+    font-size: 25px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
 }
 
-@media all and (min-width: 480px) {
+@media all and (min-width: 768px) {
 
     .menu-toggle {
-        margin-top: 20px;
+        font-size: 10px;
+        right: 30px;
+    }
+
+    .menu-toggle:after {
+        top: 35px;
+    }
+
+    .menu-toggle i {
+        font-size: 30px;
     }
 }
 
 .main-navigation {
     padding: 0;
     margin-top: 0;
+    margin-left: -45px;
+    margin-right: -45px;
+    width: auto;
+}
+
+.main-navigation .nav-menu {
+    margin-top: 30px;
+}
+
+@media all and (min-width: 1024px) {
+
+    .main-navigation .nav-menu {
+        margin-top: 0;
+    }
 }
 
 .main-navigation a {
