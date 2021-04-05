@@ -55,7 +55,7 @@ Domain Path: /languages
     }
 }
 
-@media all and (min-width: 1025px) {
+@media all and (min-width: 1026px) {
 
     .site-header {
         /* padding of to nav items now */
@@ -96,7 +96,7 @@ Domain Path: /languages
     }
 }
 
-@media all and (min-width: 1025px) {
+@media all and (min-width: 1026px) {
 
     .site-header .hotline-teaser {
         height: auto;
@@ -258,7 +258,7 @@ Domain Path: /languages
     margin-top: 30px;
 }
 
-@media all and (min-width: 1024px) {
+@media all and (min-width: 1026px) {
 
     .main-navigation .nav-menu {
         margin-top: 0;
@@ -317,6 +317,53 @@ Domain Path: /languages
 
 .site-header .zenzero-aa-private-menu {
     display: none;
+}
+
+.site-header .showSearch {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font-size: 9px;
+    line-height: 1;
+    position: absolute;
+    right: 5px;
+    left: auto;
+    top: 75px;
+    background: transparent;
+    text-transform: uppercase;
+}
+
+.site-header .showSearch i {
+    font-size: 25px;
+}
+
+.site-header .showSearch .label {
+    display: inline-block;
+    margin-top: 2px;
+    font-size: 9px;
+}
+
+@media all and (min-width: 768px) {
+
+    .site-header .showSearch {
+        right: 25px;
+        top: 85px;
+    }
+
+    .site-header .showSearch i {
+        font-size: 30px;
+    }
+
+    .site-header .showSearch .label {
+        font-size: 10px;
+    }
+}
+
+@media all and (min-width: 1026px) {
+
+    .site-header .showSearch {
+        right: 80px;
+    }
 }
 
 .site-footer {
@@ -446,8 +493,7 @@ h1.page-title,
     font-size: 25px;
 }
 
-.showSide, 
-.showSearch {
+.showSide {
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
     font-size: 18px;
