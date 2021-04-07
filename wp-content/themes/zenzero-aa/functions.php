@@ -55,7 +55,7 @@ function zenzero_aa_widgets_init() {
         'name' => 'Header',
         'id' => 'header_teasers',
         'description' => 'Inside header, between page name and menu',
-        'before_widget' => '<div class=”header-teasers”>',
+        'before_widget' => '<div class="header-teasers">',
         'after_widget' => '</div>',
         'before_title' => '<p>',
         'after_title' => '</p>',
