@@ -8,3 +8,28 @@
         });
     });
 });
+
+jQuery(function ($) {
+    const topButtons = $('.zenzero-aa-to-top');
+    const header = $('#masthead');
+
+    const update = function () {
+        const shouldBeActive = $(window).scrollTop() > header.outerHeight();
+        const isActive = topButtons.hasClass('is-active');
+
+        if (shouldBeActive && !isActive) {
+            topButtons.addClass('is-active');
+        } else if (!shouldBeActive && isActive) {
+            topButtons.removeClass('is-active');
+        }
+    };
+
+    topButtons.on('click', function (e) {
+        e.preventDefault();
+        scrollTo(0, 0);
+    });
+
+    $(window).on('scroll', update);
+
+    update();
+});

@@ -14,6 +14,7 @@ $service_menu = ob_get_clean();
 
 $parent_footer = preg_replace('#</footer#', "$service_menu $0", $parent_footer);
 $parent_footer = preg_replace('#<div[^>]+open-search[^>]+>.+?</div>#', '', $parent_footer);
+$parent_footer = preg_replace('#<a[^>]+toTop[^>]+>.+?</a>#', '', $parent_footer);
 
 // removes global link to parent template, be sure to add back to imprint!
 $parent_footer = preg_replace('#(<div[^>]+site-info[^>]+>.*)<span class="sep">.*(</div>[\r\n\s]*<!--\s*\.site-info\s*-->)#s', '$1 $2', $parent_footer);
@@ -22,3 +23,7 @@ $parent_footer = preg_replace('#(<div[^>]+site-info[^>]+>.*)<span class="sep">.*
 $parent_footer = preg_replace('#<div[^>]+site-social[^>]+>[\r\n\s]*</div>#s', '', $parent_footer);
 
 echo $parent_footer;
+
+?>
+
+<button aria-hidden="true" class="zenzero-aa-to-top" title="<?php echo __('Back to top', 'zenzero-aa') ?>"><i class="fa fa-angle-up"></i></button>

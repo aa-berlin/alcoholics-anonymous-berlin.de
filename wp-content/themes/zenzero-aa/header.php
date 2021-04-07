@@ -23,7 +23,7 @@ $parent_header = preg_replace('#(site-navigation.*)(</ul>.*?</nav>)#s', "$1 $pri
 
 $parent_header = preg_replace('#site-branding.*?</div>#s', "$0 $header_teasers", $parent_header);
 
-$search_button = '<button id="open-search" class="showSearch"><i class="fa fa-search"></i><span class="label">' . translate('Search', 'zenzero-aa') . '</span></button>';
+$search_button = '<button id="open-search" class="showSearch"><i class="fa fa-search"></i><span class="label">' . __('Search', 'zenzero-aa') . '</span></button>';
 $parent_header = preg_replace('#<button[^>]+menu-toggle.*?</button>#', "$0 $search_button", $parent_header);
 
 echo $parent_header;

@@ -480,9 +480,42 @@ h1.page-title,
     text-shadow: 1px 1px 1px rgba(51, 122, 183, 0.4);
 }
 
-#toTop.showTop.withS {
-    bottom: 7em;
-    font-size: 25px;
+.zenzero-aa-to-top {
+    position: fixed;
+    z-index: 1;
+    display: none;
+    padding: 0;
+    margin: 0;
+    height: 50px;
+    width: 50px;
+    background: #28539e;
+    bottom: 15px;
+    left: 15px;
+    line-height: 50px;
+    font-size: 35px;
+    color: #cddfdf;
+    font-weight: bold;
+    border: 0;
+    transition: none;
+}
+
+.zenzero-aa-to-top.is-active {
+    display: block;
+}
+
+.zenzero-aa-to-top:hover,
+.zenzero-aa-to-top:focus {
+    background: #003f7a;
+    color: #fff;
+    border: 0;
+    font-size: 37px;
+    height: 54px;
+    line-height: 54px;
+    width: 54px;
+}
+
+.zenzero-aa-to-top .fa {
+    font-weight: bold;
 }
 
 .showSide {
