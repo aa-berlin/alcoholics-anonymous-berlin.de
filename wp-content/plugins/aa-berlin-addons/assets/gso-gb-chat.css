@@ -29,18 +29,20 @@
     background: #f5f190;
     color: #000;
     font-size: 15px;
-    padding: 5px 30px 5px 10px;
+    padding: 5px 20px 5px 10px;
     bottom: 20px;
     right: 35px;
     line-height: 1.4;
     text-align: left;
-    transition: opacity ease .3s;
+    transition: opacity ease .3s, transform ease .3s;
+    transform: translate3d(20px, 0, 0);
     opacity: 0;
     visibility: hidden;
 }
 
 .aa-berlin-addons-gso-gb-chat.hovering .aa-berlin-addons-text {
     opacity: 1;
+    transform: translate3d(0, 0, 0);
     visibility: visible;
 }
 
