@@ -58,9 +58,9 @@
     margin: 0;
 }
 
-#tsml #location .page-header h1 + a,
-#tsml #meeting .page-header h1 + a,
-#tsml #meetings .page-header h1 + a {
+#tsml #location .page-header h1 ~ a,
+#tsml #meeting .page-header h1 ~ a,
+#tsml #meetings .page-header h1 ~ a {
     position: absolute;
     top: 100%;
     margin-top: 10px;
