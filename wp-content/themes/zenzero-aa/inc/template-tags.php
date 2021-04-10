@@ -4,6 +4,10 @@ function zenzero_aa_remove_author($html) {
     return preg_replace('#<span\s+class="byline">.*?</span>.*?</span>#', '', $html);
 }
 
+function zenzero_aa_remove_unused_general_elements($html) {
+    return preg_replace('#<[^>]+beforeContent.*?</[^>]+>#', '', $html);
+}
+
 function zenzero_aa_fix_detail_html($html) {
     // removes annoying inline style
     $html = preg_replace('#\bstyle=([\'"]).*?\1#', '', $html);
