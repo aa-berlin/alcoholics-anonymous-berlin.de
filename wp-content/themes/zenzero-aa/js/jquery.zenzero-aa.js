@@ -10,7 +10,7 @@
 });
 
 jQuery(function ($) {
-    const topButtons = $('.zenzero-aa-to-top');
+    const topButtons = $('.zenzero-aa-button.to-top');
     const header = $('#masthead');
 
     const update = function () {
@@ -29,7 +29,33 @@ jQuery(function ($) {
         scrollTo(0, 0);
     });
 
-    $(window).on('scroll', update);
+    $(window).on('scroll resize', update);
 
+    update();
+});
+
+jQuery(function ($) {
+    // replicated parent theme functionality
+    $('.widget-area').addClass('loaded');
+    const buttons = $('.show-sidebar').on('click', function () {
+        $(this).toggleClass('close');
+        $('body').toggleClass('menu-opened');
+    });
+
+    var sidebar = $('#secondary').nanoScroller({ preventPageScrolling: true });
+
+    const update = function () {
+        const isVisible = sidebar.css('visibility') === 'visible';
+        const shouldBeActive = !isVisible || ($('body').hasClass('menu-opened') && isVisible);
+        const isActive = buttons.hasClass('is-active');
+
+        if (shouldBeActive && !isActive) {
+            buttons.addClass('is-active');
+        } else if (!shouldBeActive && isActive) {
+            buttons.removeClass('is-active');
+        }
+    };
+
+    $(window).on('scroll resize', update);
     update();
 });

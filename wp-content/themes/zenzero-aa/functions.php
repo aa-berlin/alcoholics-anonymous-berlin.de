@@ -3,6 +3,8 @@
 require __DIR__ . '/inc/template-tags.php';
 require get_template_directory() . '/inc/template-tags.php';
 
+const ZENZERO_AA_SIDEBAR_DELIMITER = '<!--zenzero_aa_sidebar-->';
+
 add_action('wp_enqueue_scripts', 'zenzero_aa_enqueue_assets');
 add_action('widgets_init', 'zenzero_aa_widgets_init');
 add_action('wp_ajax_tsml_pdf', 'zenzero_aa_tsml_ajax_pdf', 0);
@@ -11,6 +13,7 @@ add_filter('rewrite_rules_array', 'zenzero_aa_filter_rewrite_rules_array');
 add_filter('wp_mail_from', 'zenzero_aa_sender_email');
 add_filter('wp_mail_from_name', 'zenzero_aa_sender_name');
 add_action('after_setup_theme', 'zenzero_aa_register_nav_menus', 0);
+add_action('get_sidebar', 'zenzero_aa_get_sidebar', -1);
 
 function zenzero_aa_enqueue_assets() {
     wp_enqueue_style(
@@ -105,6 +108,14 @@ function zenzero_aa_filter_rewrite_rules_array($rules) {
     }
 
     return $rules;
+}
+
+function zenzero_aa_get_sidebar($sidebar = null) {
+    global $zenzero_aa_sidebar_render_count;
+
+    if ($sidebar === null || $sidebar === 'sidebar-1') {
+        $zenzero_aa_sidebar_render_count++;
+    }
 }
 
 function zenzero_aa_sender_email($original_email_address) {
