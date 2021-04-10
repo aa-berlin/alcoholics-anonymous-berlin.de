@@ -323,6 +323,10 @@ Domain Path: /languages
     text-transform: uppercase;
 }
 
+.menu-opened .site-header .showSearch {
+    left: auto;
+}
+
 #close-search {
     padding: 5px 0 10px 10px;
 }
