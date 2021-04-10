@@ -53,3 +53,11 @@
     right: 15px;
     width: 70px;
 }
+
+.aa-berlin-addons-gso-gb-chat.hovering .aa-berlin-addons-icon {
+    position: absolute;
+    display: block;
+    bottom: 14px;
+    right: 14px;
+    width: 74px;
+}
