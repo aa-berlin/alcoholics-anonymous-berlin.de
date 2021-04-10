@@ -1,3 +1,28 @@
+#tsml .container {
+    width: auto;
+    max-width: none;
+}
+
+#tsml .col-xs-12 {
+    padding-left: 0;
+}
+
+#tsml #meeting,
+#tsml #location,
+#tsml #meetings {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#tsml .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#tsml .page-header + .row {
+    margin-left: -15px;
+}
+
 #tsml a[href]:not(.btn),
 #tsml a[href]:not(.btn):hover,
 #tsml a[href]:not(.btn):focus {
@@ -14,40 +39,11 @@
 #tsml #meetings .page-header {
     background: none;
     border: 0;
-    margin-top: 3em;
-    margin-bottom: 2.5em;
-    padding: 0;
+    padding: 3em 25px;
+    margin: 0 -25px 50px -25px;
+    background: rgba(0, 0, 0, 0.08);
     position: relative;
-}
-
-@media all and (max-width: 767px) {
-
-    #tsml #location .page-header,
-    #tsml #meeting .page-header,
-    #tsml #meetings .page-header {
-        margin-top: 1.5em;
-    }
-}
-
-#tsml #location .page-header h1 + a,
-#tsml #meeting .page-header h1 + a,
-#tsml #meetings .page-header h1 + a {
-    position: absolute;
-    top: 100%;
-    border: 0;
-}
-
-#tsml #location .page-header::after,
-#tsml #meeting .page-header::after,
-#tsml #meetings .page-header::after {
-    display: block;
-    content: "";
-    height: .5em;
-    width: .5em;
-    background: rgba(0,0,0,.08);
-    border-radius: 50%;
-    margin: 1.5em auto 30px auto;
-    box-shadow: 1em 0 rgba(0,0,0,.08), -1em 0 rgba(0,0,0,.08);
+    font-weight: 400;
 }
 
 #tsml #location .page-header h1,
@@ -57,23 +53,40 @@
     letter-spacing: normal;
     text-align: center;
     text-transform: none;
-    line-height: 1.6;
-    font-weight: 700;
+    line-height: 1.2;
+    font-weight: 400;
     margin: 0;
+}
+
+#tsml #location .page-header h1 + a,
+#tsml #meeting .page-header h1 + a,
+#tsml #meetings .page-header h1 + a {
+    position: absolute;
+    top: 100%;
+    margin-top: 10px;
+    left: 25px;
+    border: 0;
+}
+
+#tsml #meetings .row.controls {
+    margin-left: -15px;
+    margin-right: 0;
+}
+
+#tsml #meetings .row.controls > * {
+    padding-right: 0;
 }
 
 #tsml #meetings .row.title {
     display: block;
     margin-top: -15px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
-#tsml #meetings .row.controls {
-    margin-left: -30px;
-    margin-right: -15px;
-}
-
-#tsml #meetings .row.controls > * {
-    padding-right: 0;
+#tsml #meetings .row.results {
+    margin-left: 0;
+    margin-right: 0;
 }
 
 #tsml a.list-group-item,
@@ -112,6 +125,8 @@
 
 #tsml #meetings .results #table-wrapper {
     margin-bottom: 30px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 #tsml #meetings .results table {
@@ -129,8 +144,9 @@
 
 #tsml #location .main,
 #tsml #meeting .main {
-    margin-left: -15px;
-    margin-right: -15px;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
     width: 100%;
 }
 

@@ -22,7 +22,8 @@ Domain Path: /languages
 }
 
 .site-header .site-title {
-
+    font-weight: 300;
+    letter-spacing: normal;
 }
 
 .site-header .site-title a:before {
@@ -35,6 +36,13 @@ Domain Path: /languages
     position: absolute;
     top: 21px;
     left: 12px;
+    opacity: 0.76;
+    transition: opacity ease .3s;
+}
+
+.site-header .site-title a:hover:before,
+.site-header .site-title a:focus:before {
+    opacity: 1;
 }
 
 /* arbitrary breakpoint: more logo */
@@ -66,7 +74,7 @@ Domain Path: /languages
         width: 140px;
         height: 140px;
         top: 27px;
-        left: 70px;
+        left: 40px;
     }
 }
 
@@ -103,7 +111,7 @@ Domain Path: /languages
 .site-header .hotline-teaser .call-icon {
     font-size: 24px;
     vertical-align: middle;
-    background: rgb(205, 223, 223);
+    background: #cddfdf;
     color: rgb(0, 63, 122);
     border-radius: 2px;
     padding: 1px 3px 0 3px;
@@ -163,6 +171,7 @@ Domain Path: /languages
     vertical-align: middle;
     font-weight: bold;
     position: relative;
+    transition: color ease .3s;
 }
 
 .site-header .hotline-teaser .call-link:hover {
@@ -171,14 +180,6 @@ Domain Path: /languages
 
 .site-header .hotline-teaser .call-link:hover .call-icon {
     background: #fff;
-}
-
-@media all and (max-width: 767px) {
-
-    .site-content {
-        padding-left: 1.5em;
-        padding-right: 1.5em;
-    }
 }
 
 .menu-toggle {
@@ -195,7 +196,7 @@ Domain Path: /languages
     overflow: hidden;
     float: right;
     text-align: right;
-    transition: none;
+    transition: color ease .3s;
 }
 
 .menu-toggle:hover,
@@ -263,7 +264,7 @@ Domain Path: /languages
 }
 
 .main-navigation .zenzero-aa-nav-item-background {
-    background: rgb(205, 223, 223);
+    background: #cddfdf;
     color: rgb(0, 63, 122);
     border-radius: 2px;
     padding: 0 4px;
@@ -359,16 +360,11 @@ Domain Path: /languages
     }
 }
 
-@media all and (min-width: 1026px) {
-
-    .site-header .showSearch {
-        right: 80px;
-    }
-}
-
 .site-footer {
     display: block;
     flex-direction: column;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 .site-footer a:hover,
@@ -453,6 +449,57 @@ h4 {
     font-size: 16px;
 }
 
+.site-content {
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 50px;
+}
+
+.page-header {
+    margin: 0 -25px 50px -25px;
+    padding: 3em 25px;
+}
+
+.site-main > * > .entry-header {
+    margin: 0 -25px 50px -25px;
+    padding: 3em 25px;
+    background: rgba(0, 0, 0, .08);
+}
+
+.page-header ~ * .entry-header {
+    padding: 0;
+    margin: 0;
+    background: transparent;
+}
+
+.site-main .post-navigation,
+.site-main .paging-navigation {
+    margin: 0 -25px -50px -25px;
+    padding: 2em 25px;
+}
+
+.site-main .paging-navigation .nav-links a {
+    background: #28539e;
+    transition: color ease .3s;
+    color: #cddfdf;
+    border: 0;
+    width: 50px;
+    height: 50px;
+}
+
+.site-main .paging-navigation .nav-links a:hover,
+.site-main .paging-navigation .nav-links a:focus {
+    background: #28539e;
+    transition: color ease .3s;
+    color: #fff;
+    border: 0;
+}
+
+.site-main .paging-navigation .nav-links .fa {
+    font-size: 30px;
+    line-height: 50px;
+}
+
 h1.entry-title,
 h1.page-title,
 .entry-title,
@@ -461,6 +508,7 @@ h1.page-title,
     text-transform: none;
     font-size: 28px;
     line-height: 1.2;
+    font-weight: 400;
 }
 
 .entry-featuredImg {
