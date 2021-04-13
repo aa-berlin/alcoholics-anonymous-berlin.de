@@ -112,7 +112,7 @@ Domain Path: /languages
     font-size: 24px;
     vertical-align: middle;
     background: #cddfdf;
-    color: rgb(0, 63, 122);
+    color: #003f7a;
     border-radius: 2px;
     padding: 1px 3px 0 3px;
     margin-right: 5px;
@@ -466,6 +466,30 @@ h4 {
     visibility: hidden;
     width: 300px;
     height: 100%;
+    padding: 0;
+    background: #fff;
+    color: inherit;
+}
+
+.site-content > #secondary .nano-content {
+    padding: 0 25px;
+}
+
+.site-content > #secondary a {
+    color: inherit;
+}
+
+.site-content > #secondary .widget-title {
+    color: inherit;
+    font-size: 28px;
+    letter-spacing: normal;
+    text-align: center;
+    text-transform: none;
+    line-height: 1.2;
+    font-weight: 400;
+    margin: 0 -25px 50px -25px;
+    padding: 40px 25px;
+    background: rgba(0, 63, 122, 0.08);
 }
 
 @media (min-width: 1200px) {
@@ -482,11 +506,12 @@ h4 {
         width: 350px;
         display: block;
         visibility: visible;
+        border-left: 1px dotted #003f7a;
     }
-}
 
-body.admin-bar #secondary {
-    top: 0;
+    body.admin-bar #secondary {
+        top: 0;
+    }
 }
 
 body.menu-opened #secondary {
@@ -503,7 +528,7 @@ body.menu-opened #secondary {
     position: relative;
     margin: 0 -25px 50px -25px;
     padding: 40px 25px;
-    background: rgba(0, 0, 0, .08);
+    background: rgba(0, 63, 122, .08);
 }
 
 .page-header ~ * .entry-header {
@@ -516,7 +541,17 @@ body.menu-opened #secondary {
 .page-header .show-sidebar,
 .entry-header .show-sidebar {
     display: none;
-
+    background: #28539e;
+    color: #cddfdf;
+    border: 0;
+    position: absolute;
+    top: 35px;
+    right: 25px;
+    line-height: 50px;
+    width: 50px;
+    padding: 0;
+    margin: 0;
+    font-size: 30px;
 }
 
 .page-header .show-sidebar.is-active,
