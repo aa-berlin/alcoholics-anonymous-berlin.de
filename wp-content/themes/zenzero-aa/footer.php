@@ -13,7 +13,7 @@ ob_start();
 $service_menu = ob_get_clean();
 
 $parent_footer = preg_replace('#</footer#', "$service_menu $0", $parent_footer);
-$parent_footer = preg_replace('#<div[^>]+open-search[^>]+>.+?</div>#', '', $parent_footer);
+$parent_footer = preg_replace('#<div[^>]+open-(?:sidebar|search)[^>]+>.+?</div>#', '', $parent_footer);
 $parent_footer = preg_replace('#<a[^>]+toTop[^>]+>.+?</a>#', '', $parent_footer);
 
 // removes global link to parent template, be sure to add back to imprint!
@@ -26,4 +26,10 @@ echo $parent_footer;
 
 ?>
 
-<button aria-hidden="true" class="zenzero-aa-to-top" title="<?php echo __('Back to top', 'zenzero-aa') ?>"><i class="fa fa-angle-up"></i></button>
+<div class="zenzero-aa-fixed-buttons">
+    <button aria-hidden="true" class="to-top zenzero-aa-button" title="<?php echo __('Back to top', 'zenzero-aa') ?>"><i class="fa fa-angle-up"></i></button>
+
+    <?php if (is_active_sidebar('sidebar-1')): ?>
+        <button class="show-sidebar zenzero-aa-button" title="<?php echo __('Show sidebar', 'zenzero-aa') ?>"><i class="fa fa-navicon"></i></button>
+    <?php endif; ?>
+</div>

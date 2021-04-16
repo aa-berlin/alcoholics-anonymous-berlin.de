@@ -14,7 +14,7 @@ Domain Path: /languages
 #page {
     margin-top: 0;
     margin-bottom: 0;
-    max-width: 1200px;
+    max-width: 1500px;
 }
 
 .site-header {
@@ -450,26 +450,78 @@ h4 {
 }
 
 .site-content {
+    position: relative;
     padding-left: 25px;
     padding-right: 25px;
     padding-bottom: 50px;
+    margin-right: 0;
+}
+
+.site-content > #secondary {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    visibility: hidden;
+    width: 300px;
+    height: 100%;
+}
+
+@media (min-width: 1200px) {
+
+    .site-content {
+        margin-right: 350px;
+    }
+
+    .site-content > #secondary {
+        position: absolute;
+        left: auto;
+        right: 0;
+        margin-right: -350px;
+        width: 350px;
+        display: block;
+        visibility: visible;
+    }
+}
+
+body.admin-bar #secondary {
+    top: 0;
+}
+
+body.menu-opened #secondary {
+    visibility: visible;
 }
 
 .page-header {
+    position: relative;
     margin: 0 -25px 50px -25px;
     padding: 40px 25px;
 }
 
 .site-main > * > .entry-header {
+    position: relative;
     margin: 0 -25px 50px -25px;
     padding: 40px 25px;
     background: rgba(0, 0, 0, .08);
 }
 
 .page-header ~ * .entry-header {
+    position: static;
     padding: 0;
     margin: 0;
     background: transparent;
+}
+
+.page-header .show-sidebar,
+.entry-header .show-sidebar {
+    display: none;
+
+}
+
+.page-header .show-sidebar.is-active,
+.entry-header .show-sidebar.is-active {
+    display: block;
 }
 
 .site-main .post-navigation,
@@ -532,17 +584,25 @@ h1.page-title,
     text-shadow: 1px 1px 1px rgba(51, 122, 183, 0.4);
 }
 
-.zenzero-aa-to-top {
+.zenzero-aa-fixed-buttons {
     position: fixed;
-    z-index: 1;
-    display: none;
+    z-index: 100;
+    display: block;
     padding: 0;
     margin: 0;
+    width: 50px;
+    bottom: 15px;
+    left: 15px;
+}
+
+.zenzero-aa-fixed-buttons .zenzero-aa-button {
+    position: relative;
+    display: none;
+    padding: 0;
+    margin: 20px 0 0 0;
     height: 50px;
     width: 50px;
     background: #28539e;
-    bottom: 15px;
-    left: 15px;
     line-height: 50px;
     font-size: 35px;
     color: #cddfdf;
@@ -551,26 +611,27 @@ h1.page-title,
     transition: none;
 }
 
-.zenzero-aa-to-top.is-active {
+.zenzero-aa-fixed-buttons .zenzero-aa-button.is-active {
     display: block;
 }
 
-.zenzero-aa-to-top:hover,
-.zenzero-aa-to-top:focus {
-    background: #003f7a;
+.zenzero-aa-fixed-buttons .zenzero-aa-button:hover,
+.zenzero-aa-fixed-buttons .zenzero-aa-button:focus {
+    background: #28539e;
     color: #fff;
     border: 0;
     font-size: 37px;
     height: 54px;
+    margin-top: 16px;
     line-height: 54px;
     width: 54px;
 }
 
-.zenzero-aa-to-top .fa {
+.zenzero-aa-fixed-buttons .zenzero-aa-button .fa {
     font-weight: bold;
 }
 
-.showSide {
+.zenzero-aa-fixed-buttons .showSide {
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
     font-size: 18px;
