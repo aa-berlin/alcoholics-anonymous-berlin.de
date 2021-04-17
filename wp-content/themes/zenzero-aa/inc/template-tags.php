@@ -16,7 +16,7 @@ function zenzero_aa_insert_sidebar($html) {
     $button_html = '<button class="show-sidebar" title="' . __('Show Schedule & Announcements', 'zenzero-aa') . '"><i class="fa fa-angle-up"></i></button>';
 
     $html = preg_replace('#<(?:div|header)[^>]+(?:entry|page)-header.*?</h1>#s', "$0 $button_html", $html, 1);
-    $html = preg_replace('#<div[^>]+id="content"[^>]+>#s', "$0 $sidebar_html", $html, 1);
+    $html = preg_replace('#</\w+>[^<]*<!--\s*\#content#s', "$sidebar_html $0", $html, 1);
 
     return $html;
 }

@@ -42,7 +42,7 @@ jQuery(function ($) {
         $('body').toggleClass('menu-opened');
     });
 
-    var sidebar = $('#secondary').nanoScroller({ preventPageScrolling: true });
+    var sidebar = $('#secondary.nano').nanoScroller({ preventPageScrolling: true });
 
     const update = function () {
         const isVisible = sidebar.css('visibility') === 'visible';

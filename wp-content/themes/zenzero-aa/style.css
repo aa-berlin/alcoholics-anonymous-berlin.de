@@ -450,11 +450,19 @@ h4 {
 }
 
 .site-content {
-    position: relative;
     padding-left: 25px;
     padding-right: 25px;
     padding-bottom: 50px;
+}
+
+.site-content #primary {
     margin-right: 0;
+}
+
+.site-content #primary #main {
+    /* headlines always clear, so need to sandbox */
+    float: left;
+    width: 100%;
 }
 
 .site-content > #secondary {
@@ -462,17 +470,20 @@ h4 {
     top: 0;
     left: 0;
     right: 0;
+    float: none;
     display: block;
     visibility: hidden;
     width: 300px;
-    height: 100%;
     padding: 0;
     background: #fff;
     color: inherit;
+    margin-left: 0;
+    line-height: 1.5;
+    font-size: 14px;
 }
 
-.site-content > #secondary .nano-content {
-    padding: 0 25px;
+.site-content > #secondary .widget {
+    padding: 0 25px 30px 25px;
 }
 
 .site-content > #secondary a {
@@ -487,25 +498,36 @@ h4 {
     text-transform: none;
     line-height: 1.2;
     font-weight: 400;
-    margin: 0 -25px 50px -25px;
+    margin: 0 -25px 25px -25px;
     padding: 40px 25px;
     background: rgba(0, 63, 122, 0.08);
 }
 
+.site-content > #secondary .post-date {
+    color: #555;
+    font-size: 12px;
+    display: block;
+}
+
 @media (min-width: 1200px) {
 
-    .site-content {
+    .site-content #primary {
         margin-right: 350px;
     }
 
     .site-content > #secondary {
-        position: absolute;
+        position: static;
         left: auto;
-        right: 0;
-        margin-right: -350px;
+        right: auto;
+        top: auto;
+        float: right;
+        margin-right: -25px;
         width: 350px;
         display: block;
         visibility: visible;
+    }
+
+    .site-content > #secondary .sidebar-content {
         border-left: 1px dotted #003f7a;
     }
 
@@ -528,7 +550,14 @@ body.menu-opened #secondary {
     position: relative;
     margin: 0 -25px 50px -25px;
     padding: 40px 25px;
-    background: rgba(0, 63, 122, .08);
+    background: rgba(0, 0, 0, .08);
+}
+
+.site-main > * > .entry-header .entry-meta {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    text-align: center;
 }
 
 .page-header ~ * .entry-header {
@@ -536,6 +565,11 @@ body.menu-opened #secondary {
     padding: 0;
     margin: 0;
     background: transparent;
+}
+
+.page-header ~ * .entry-header .entry-meta {
+    position: static;
+    width: auto;
 }
 
 .page-header .show-sidebar,
@@ -602,6 +636,7 @@ h1.page-title,
     display: none;
 }
 
+.widget p a,
 .entry-content p a,
 .entry-content .wp-block-table a,
 .entry-content li > a {
@@ -609,9 +644,11 @@ h1.page-title,
     border-bottom: 1px dotted currentColor;
 }
 
+.widget p a:hover,
 .entry-content p a:hover,
 .entry-content .wp-block-table a:hover,
 .entry-content li > a:hover,
+.widget p a:focus,
 .entry-content p a:focus,
 .entry-content .wp-block-table a:focus,
 .entry-content li > a:focus {
