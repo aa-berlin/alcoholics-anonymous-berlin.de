@@ -19,6 +19,8 @@ define(
 require __DIR__ . '/includes/options.php';
 require_once ABSPATH . WPINC . '/class-phpass.php';
 
+$aa_berlin_addons_last_widget_options = [];
+
 add_action('init', 'aa_berlin_addons_init');
 
 function aa_berlin_addons_options($key = null) {
@@ -99,6 +101,8 @@ function aa_berlin_addons_init() {
 
     add_shortcode('timezone_info', 'aa_berlin_addons_shortcode_timezone_info');
     add_filter('widget_text', 'do_shortcode');
+    add_filter('widget_title', 'aa_berlin_addons_widget_title');
+    add_filter('widget_posts_args', 'aa_berlin_addons_widget_posts_args');
 
     add_filter('wp_mail_from', 'aa_berlin_addons_wp_mail_from');
     add_filter('wp_mail_from_name', 'aa_berlin_addons_wp_mail_from_name');
@@ -608,4 +612,26 @@ function aa_berlin_addons_get_post_id_hash($id) {
         . 'aa_berlin_addons_use_global_passwords for post id '
         . $id
     );
+}
+
+function aa_berlin_addons_widget_title($title) {
+    global $aa_berlin_addons_last_widget_options;
+
+    $options = [];
+
+    $title = preg_replace_callback('#\[aa-berlin-filter-([\w_-]+)=(.*?)]#', function ($match) use (&$options) {
+        $options[$match[1]] = $match[2];
+
+        return '';
+    }, $title);
+
+    $aa_berlin_addons_last_widget_options = $options;
+
+    return $title;
+}
+
+function aa_berlin_addons_widget_posts_args($options) {
+    global $aa_berlin_addons_last_widget_options;
+
+    return array_merge($aa_berlin_addons_last_widget_options, $options);
 }
