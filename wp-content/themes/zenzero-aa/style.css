@@ -450,6 +450,8 @@ h4 {
 }
 
 .site-content {
+    border-top: 5px solid #cadfdf;
+    border-bottom: 5px solid #cadfdf;
     padding-left: 25px;
     padding-right: 25px;
     padding-bottom: 50px;
@@ -457,6 +459,7 @@ h4 {
 
 .site-content #primary {
     margin-right: 0;
+    border-right: 5px solid #cadfdf;
 }
 
 .site-content #primary #main {
@@ -480,6 +483,7 @@ h4 {
     margin-left: 0;
     line-height: 1.5;
     font-size: 14px;
+    border-left: 0 solid #cadfdf;
 }
 
 .site-content > #secondary .widget {
@@ -522,13 +526,11 @@ h4 {
         top: auto;
         float: right;
         margin-right: -25px;
-        width: 350px;
+        width: 355px;
         display: block;
         visibility: visible;
-    }
-
-    .site-content > #secondary .sidebar-content {
-        border-left: 1px dotted #003f7a;
+        margin-left: -5px;
+        border-left-width: 5px;
     }
 
     body.admin-bar #secondary {
