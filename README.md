@@ -90,6 +90,15 @@ You can and should update them both with the `bin/bump-version` script:
 $ bin/bump-version 1.3.5
 ```
 
+### Adding filter settings to the Recent Posts Widget
+
+* Add to widget title (will be removed before rendering)
+* `[aa-berlin-filter-<setting>=<value>]`
+* Neither `<setting>` nor `<value>` may contain a bracket ("`]`")
+* Example for `<setting>`: `category_name`
+* See [`wp-includes/widgets/class-wp-widget-recent-posts.php:73`](./wp-includes/widgets/class-wp-widget-recent-posts.php) for the filter being used
+* See [`wp-includes/class-wp-query.php:3463`](./wp-includes/class-wp-query.php) query-vars available
+
 ### SQL to create meeting url entries from post content
 
 ```sql
