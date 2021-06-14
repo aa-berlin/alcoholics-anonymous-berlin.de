@@ -1,0 +1,74 @@
+.tsml-widget-upcoming table {
+    display: block;
+    margin: 0;
+}
+
+.tsml-widget-upcoming tr {
+    display: block;
+}
+
+.tsml-widget-upcoming thead {
+    display: none;
+}
+
+.tsml-widget-upcoming td {
+    display: block;
+    text-align: left;
+    border: 0;
+    padding: 0;
+}
+
+.tsml-widget-upcoming p {
+    margin: 0;
+}
+
+.tsml-widget-upcoming a {
+    text-align: left;
+    border: 0;
+    padding: 0;
+    color: #337ab7;
+    border-bottom: 1px dotted currentColor;
+}
+
+.tsml-widget-upcoming a:hover,
+.tsml-widget-upcoming a:focus {
+    color: #23527c;
+    text-shadow: 1px 1px 1px rgba(51, 122, 183, 0.4);
+}
+
+.tsml-widget-upcoming .meeting {
+    padding-bottom: 15px;
+    border-bottom: 1px dotted #003f7a;
+    margin-bottom: 20px;
+}
+
+.tsml-widget-upcoming .meeting:last-child {
+    border-bottom: 0;
+}
+
+.tsml-widget-upcoming .time {
+    display: block;
+    white-space: nowrap;
+}
+
+.tsml-widget-upcoming .name {
+    font-weight: bold;
+}
+
+.tsml-widget-upcoming .region {
+    display: none;
+}
+
+.tsml-widget-upcoming .zenzero-aa-stream-icon {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.tsml-widget-upcoming .zenzero-aa-stream-icon svg {
+    width: 1.1em;
+    height: 1.1em;
+}
+
+.tsml-widget-upcoming .zenzero-aa-stream-icon path {
+    fill: currentColor;
+}

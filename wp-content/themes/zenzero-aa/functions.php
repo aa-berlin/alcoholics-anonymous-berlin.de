@@ -51,6 +51,15 @@ function zenzero_aa_enqueue_assets() {
         ),
         wp_get_theme()->get('Version')
     );
+
+    wp_enqueue_style(
+        'zenzero-aa-meeting-list-upcoming-widget-style',
+        get_stylesheet_directory_uri() . '/css/12-step-meeting-list-upcoming-widget.css',
+        array(
+            'zenzero-style',
+        ),
+        wp_get_theme()->get('Version')
+    );
 }
 
 function zenzero_aa_widgets_init() {
