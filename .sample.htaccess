@@ -13,10 +13,15 @@ RewriteRule . /index.php [L]
 
 # END WordPress
 
-# strangely the short tags still exist on live while supposedly running php 7.3
 <IfModule mod_php7.c>
 php_value short_open_tag 0
+php_value expose_php 0
 </IfModule>
+
+# some more security
+Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+Header set X-Frame-Options "SAMEORIGIN"
+Header set X-Content-Type-Options "nosniff"
 
 # Compress HTML, CSS, JavaScript, Text, Images, XML and fonts
 AddOutputFilterByType DEFLATE application/atom+xml
