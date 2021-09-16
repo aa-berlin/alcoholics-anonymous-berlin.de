@@ -23,6 +23,11 @@ Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 Header set X-Frame-Options "SAMEORIGIN"
 Header set X-Content-Type-Options "nosniff"
 
+<Files xmlrpc.php>
+order deny,allow
+deny from all
+</Files>
+
 # Compress HTML, CSS, JavaScript, Text, Images, XML and fonts
 AddOutputFilterByType DEFLATE application/atom+xml
 AddOutputFilterByType DEFLATE application/javascript
