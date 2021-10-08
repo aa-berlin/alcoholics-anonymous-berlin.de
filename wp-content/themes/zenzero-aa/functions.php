@@ -75,14 +75,22 @@ function zenzero_aa_widgets_init() {
 }
 
 if (function_exists('tsml_custom_types')) {
-    tsml_custom_types(array(
+    tsml_custom_types([
+        // exists in other programme configurations already
+        'DE' => 'German',
+        // exists in other programme configurations already
         'DF' => 'Dog Friendly',
-        'IX' => 'Inter',
-        'LGBTQ' => 'LGBTQI+',
-        'NOX' => 'No Wheelchair Access',
-        'NODF' => 'No Dogs Allowed',
+        // exists in other programme configurations already
         'TOP' => 'Topic',
-    ));
+        // specific to us
+        'IX' => 'Inter',
+        // renaming only
+        'LGBTQ' => 'LGBTQI+',
+        // antonym of official X
+        'NOX' => 'No Wheelchair Access',
+        // antonym of official DF
+        'NODF' => 'No Dogs Allowed',
+    ]);
 }
 
 // This replaces the builtin meeting-schedule with our own styling.
@@ -94,11 +102,11 @@ function zenzero_aa_tsml_ajax_pdf() {
     require dirname(__FILE__) . '/inc/BerlinPdf.php';
 
     //create new PDF document
-    $pdf = new BerlinPdf(array(
+    $pdf = new BerlinPdf([
         'margin' => !empty($_GET['margin']) ? floatval($_GET['margin']) : .25,
         'width' => !empty($_GET['width']) ? floatval($_GET['width']) : 4.25,
         'height' => !empty($_GET['height']) ? floatval($_GET['height']) : 11,
-    ));
+    ]);
 
     //send to browser
     if (!headers_sent()) {
