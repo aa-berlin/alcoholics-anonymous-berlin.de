@@ -23,8 +23,6 @@
     // translators: %s is the time until activation
     const zoomMeetingOutsideScheduleText = '<span class="aa-berlin-addons-outside-schedule">' + sprintf(__('The Meeting Link and Meeting ID will activate %s before the meeting starts.', 'aa-berlin-addons'), readableTimeBeforeActivationOfStreams) + '</span>';
     const onlineIconTitle = __('You can join this meeting online.', 'aa-berlin-addons');
-    const onlineOnlyMarkerText = __('ONLINE ONLY');
-    const onlineOnlySubstituteText = __('ONLINE ONLY');
     // translators: %s is the link's generated text (usually its host part)
     const externalLinkTextTemplate = __('External link to %s', 'aa-berlin-addons');
     // translators: %s is the link's generated text (usually the phone number)
@@ -87,12 +85,6 @@
     const prependStreamIconInResults = function (tbody) {
         if (options.add_stream_icon_to_online_meetings) {
             tbody.find('.type-onl td.name > a').prepend(onlineIconHtml);
-        }
-    };
-
-    const fixOnlineAddressWorkaround = function (tbody) {
-        if (options.hide_address_in_results_if_online_only) {
-            tbody.find('.type-onl td.location:contains("' + onlineOnlyMarkerText + '")').nextAll('.address, .region').andSelf().addClass('aa-berlin-addons-online-only-address').html(onlineOnlySubstituteText);
         }
     };
 
@@ -280,11 +272,9 @@
 
         $('#meetings_tbody').on('tsml_meetings_updated', function (e, data) {
             prependStreamIconInResults(data.tbody);
-            fixOnlineAddressWorkaround(data.tbody);
         }).each(function (i, tbody) {
             tbody = $(tbody);
             prependStreamIconInResults(tbody);
-            fixOnlineAddressWorkaround(tbody);
         });
 
         options.wrap_single_entry_links_with_h2 && $('.wp-block-latest-posts').each(function (i, latestPosts) {

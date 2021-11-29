@@ -28,6 +28,8 @@ function zenzero_aa_remove_unused_general_elements($html) {
 function zenzero_aa_fix_detail_html($html) {
     // removes annoying inline style
     $html = preg_replace('#\bstyle=([\'"]).*?\1#', '', $html);
+    // removes hardwired parens in header meeting type
+    $html = preg_replace('#(<(?:span|div)[^>]+meeting_types[^>]+>)(?:<small>)?\(([^<]+)\)(?:</small>)?(</(?:span|div)>)#', '$1$2$3', $html);
     // adds a class for online meeting buttons
     $html = str_replace('<li class="list-group-item"', '<li class="list-group-item online-meeting-info"', $html);
     // in this order: email button, back button, email button (placeholder during substitution)

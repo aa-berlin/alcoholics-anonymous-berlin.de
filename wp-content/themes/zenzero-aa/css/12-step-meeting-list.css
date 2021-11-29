@@ -1,3 +1,17 @@
+#tsml {
+    padding: 0 25px;
+    background: #fff;
+    margin-right: 0;
+    flex: 1;
+}
+
+@media (min-width: 1200px) {
+
+    #tsml {
+        margin-right: 5px;
+    }
+}
+
 #tsml .container {
     width: auto;
     max-width: none;
@@ -38,23 +52,39 @@
 #tsml #meeting .page-header,
 #tsml #meetings .page-header {
     border: 0;
-    padding: 40px 25px;
+    padding: 25px;
+    min-height: 114px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     margin: 0 -25px 50px -25px;
     background: rgba(0, 63, 122, .08);
     position: relative;
     font-weight: 400;
 }
 
+#tsml #meeting .page-header {
+    margin-bottom: 68px;
+}
+
 #tsml #location .page-header h1,
 #tsml #meeting .page-header h1,
 #tsml #meetings .page-header h1 {
-    font-size: 28px;
+    font-size: 25px;
     letter-spacing: normal;
     text-align: center;
     text-transform: none;
     line-height: 1.2;
     font-weight: 400;
     margin: 0;
+}
+
+@media (min-width: 1200px) {
+
+    #tsml {
+        margin-right: 5px;
+    }
 }
 
 #tsml #location .page-header h1 ~ a,
@@ -65,6 +95,24 @@
     margin-top: 10px;
     left: 25px;
     border: 0;
+}
+
+#tsml #meeting .page-header h1 ~ a {
+    margin-top: 32px;
+}
+
+#tsml #meeting .page-header h1 ~ .attendance-option {
+    position: absolute;
+    top: 100%;
+    margin-top: 13px;
+    right: 25px;
+}
+
+#tsml #meeting .page-header h1 ~ small .meeting_types {
+    position: absolute;
+    top: 100%;
+    margin-top: 13px;
+    left: 25px;
 }
 
 #tsml #meetings .row.controls {
@@ -293,6 +341,15 @@
     }
 }
 
+#tsml #meetings .results table tbody tr.attendance-online .region {
+    opacity: 1;
+}
+
+#tsml #meetings .results table tbody tr.attendance-inactive .region {
+    text-decoration: none;
+    opacity: 1;
+}
+
 #tsml .gm-style .gm-style-iw-c {
     border-radius: 2px;
 }
@@ -316,6 +373,12 @@
     border: 0;
 }
 
+.attendance-inactive #tsml #map,
+.attendance-online #tsml #map {
+    display: block;
+}
+
+
 /* make highlighting on meeting list behave */
 .tsml-meetings .ui-menu .ui-menu-item-wrapper {
     position: static;
@@ -327,4 +390,52 @@
 
 .tsml-meetings .ui-menu :hover > .ui-menu-item-wrapper {
     font-weight: bold;
+}
+
+#page #content #tsml .page-header .attendance-option,
+#page #tsml #meeting .page-header .meeting_types,
+#page #content #tsml .meeting_types,
+#page #tsml #location .attendance-option,
+#page #tsml #meetings .attendance-hybrid .location small,
+#page #tsml #meetings .attendance-online .location small {
+    display: inline-block;
+    padding: 3px 7px 3px 7px;
+    margin-right: 8px;
+    border-radius: 2px;
+    font-size: 10px;
+    line-height: 1;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: rgba(0, 63, 122, 0.08);
+    color: #337ab7;
+}
+
+/* adds spacing and hides link underline */
+#page #tsml #location .list-group-item .meeting a:after {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    background: #fff;
+    position: relative;
+    top: 6px;
+    height: 1em;
+}
+
+#page #tsml #location .attendance-inactive .attendance-option,
+.tsml-type-tc #page #content #tsml .page-header .attendance-option {
+    background: rgba(212, 0, 71, 0.08);
+    color: #D40047;
+}
+
+#page #tsml #meetings .attendance-inactive .location small {
+    display: inline-block;
+    padding: 4px 7px 4px 7px;
+    margin-right: 8px;
+    border-radius: 2px;
+    font-size: 10px;
+    line-height: 1;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: rgba(212, 0, 71, 0.08);
+    color: #D40047;
 }

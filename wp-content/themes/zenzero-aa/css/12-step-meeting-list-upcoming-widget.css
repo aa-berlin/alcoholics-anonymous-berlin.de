@@ -37,9 +37,8 @@
 }
 
 .tsml-widget-upcoming .meeting {
-    padding-bottom: 15px;
-    border-bottom: 1px dotted #003f7a;
-    margin-bottom: 20px;
+    padding-bottom: 0;
+    margin-bottom: 15px;
 }
 
 .tsml-widget-upcoming .meeting:last-child {
@@ -71,4 +70,21 @@
 
 .tsml-widget-upcoming .zenzero-aa-stream-icon path {
     fill: currentColor;
+}
+
+.tsml-widget-upcoming .location .attendance-option small {
+    display: inline-block;
+    padding: 3px 7px 3px 7px;
+    margin-right: 8px;
+    border-radius: 2px;
+    font-size: 10px;
+    line-height: 1;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: rgba(0, 63, 122, 0.08);
+    color: #337ab7;
+}
+
+.tsml-widget-upcoming .location .attendance-option.attendance-in_person small:empty:after {
+    content: "In-person"
 }
