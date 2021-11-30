@@ -209,6 +209,21 @@
     top: -3px;
 }
 
+#tsml #meeting #feedback .panel-expandable:not(.expanded) {
+    border-color: #337ab7;
+    border-radius: 3px;
+    background: #337ab7;
+}
+
+#tsml #meeting #feedback .panel-expandable:not(.expanded) .panel-heading {
+    color: #fff;
+    background: #337ab7;
+}
+
+#tsml #meeting #feedback .panel-expandable:not(.expanded) .panel-heading .panel-title {
+    font-weight: bold;
+}
+
 #tsml #location .panel ul.list-group .list-group-item.list-group-item-meetings ul li,
 #tsml #meeting .panel ul.list-group .list-group-item.list-group-item-meetings ul li {
     padding-left: 80px;
