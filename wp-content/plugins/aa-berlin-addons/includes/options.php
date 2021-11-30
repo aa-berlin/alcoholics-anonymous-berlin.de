@@ -205,25 +205,6 @@ $pages = array(
                 ),
             ),
 
-            'type_f2f' => array(
-                'title' => __('Handling of meeting type Face-to-Face / In-Person', 'aa-berlin-addons'),
-
-                'fields' => array(
-                    array(
-                        'title' => __('Add meeting type Face-to-Face', 'aa-berlin-addons'),
-                        'type' => 'checkbox',
-                        'id' => 'add_type_f2f',
-                    ),
-
-                    array(
-                        'title' => __('Label of meeting type Face-to-Face', 'aa-berlin-addons'),
-                        'type' => 'text',
-                        'value' => 'Face to Face',
-                        'id' => 'label_type_f2f',
-                    ),
-                ),
-            ),
-
             'misc_tsml' => array(
                 'title' => __('Miscellaneous: 12 Step Meeting List', 'aa-berlin-addons'),
 

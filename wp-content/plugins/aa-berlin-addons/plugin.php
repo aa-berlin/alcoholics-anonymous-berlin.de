@@ -61,12 +61,6 @@ function aa_berlin_addons_init() {
         ));
     }
 
-    if (aa_berlin_addons_options('add_type_f2f') && function_exists('tsml_custom_types')) {
-        tsml_custom_types(array(
-            'F2F' => aa_berlin_addons_options('label_type_f2f'),
-        ));
-    }
-
     add_action('do_meta_boxes', 'aa_berlin_addons_add_metaboxes', 9);
     add_action('save_post', 'aa_berlin_addons_save_metaboxes_postdata');
 
