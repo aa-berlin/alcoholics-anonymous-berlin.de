@@ -364,8 +364,7 @@ Domain Path: /languages
 .site-footer {
     display: block;
     flex-direction: column;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding: 50px 100px 40px 100px;
 }
 
 .site-footer a:hover,
@@ -374,8 +373,7 @@ Domain Path: /languages
 }
 
 .site-info {
-    line-height: 1.1em;
-    height: 1.2em;
+    line-height: 1.5em;
 }
 
 .service-nav {
@@ -383,6 +381,7 @@ Domain Path: /languages
     float: right;
     text-align: center;
     margin: 0;
+    line-height: 1.5em;
 }
 
 @media (max-width: 767px) {
@@ -413,6 +412,18 @@ Domain Path: /languages
     content: "|";
     margin: 0 5px;
     display: inline-block;
+}
+
+@media (max-width: 767px) {
+
+    .service-nav .menu-item {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .service-nav .menu-item + .menu-item:before {
+        display: none;
+    }
 }
 
 .wp-block-latest-posts {
@@ -590,6 +601,11 @@ body.menu-opened #secondary {
     width: auto;
 }
 
+.entry-meta > span {
+    font-weight: normal;
+    display: inline-block !important;
+}
+
 .page-header .show-sidebar,
 .entry-header .show-sidebar {
     display: none;
@@ -695,7 +711,7 @@ h1.page-title,
     margin: 20px 0 0 0;
     height: 50px;
     width: 50px;
-    background: #28539e;
+    background: #337ab7;
     line-height: 50px;
     font-size: 35px;
     color: #cddfdf;
