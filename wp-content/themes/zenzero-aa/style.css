@@ -471,10 +471,17 @@ h4 {
 }
 
 .site-content #primary {
+    position: relative;
     margin: 0;
-    padding: 0 25px 50px 25px;
+    padding: 0 25px 120px 25px;
     background: #fff;
     flex: 1;
+}
+
+@media (max-width: 767px) {
+    .site-content #primary {
+        padding-bottom: 50px;
+    }
 }
 
 .site-content #primary #main {
@@ -629,8 +636,21 @@ body.menu-opened #secondary {
 
 .site-main .post-navigation,
 .site-main .paging-navigation {
-    margin: 0 -25px -50px -25px;
-    padding: 2em 25px;
+    margin: 0;
+    padding: 25px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+@media (max-width: 767px) {
+
+    .site-main .post-navigation,
+    .site-main .paging-navigation {
+        margin: 0 -25px -50px -25px;
+        position: static;
+    }
 }
 
 .site-main .paging-navigation .nav-links a {
