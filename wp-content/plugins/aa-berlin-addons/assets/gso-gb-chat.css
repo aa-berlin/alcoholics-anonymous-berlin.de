@@ -40,7 +40,8 @@
     visibility: hidden;
 }
 
-.aa-berlin-addons-gso-gb-chat.hovering .aa-berlin-addons-text {
+.aa-berlin-addons-gso-gb-chat.hovering .aa-berlin-addons-text,
+.aa-berlin-addons-gso-gb-chat.focussed .aa-berlin-addons-text {
     opacity: 1;
     transform: translate3d(0, 0, 0);
     visibility: visible;
@@ -54,7 +55,8 @@
     width: 60px;
 }
 
-.aa-berlin-addons-gso-gb-chat.hovering .aa-berlin-addons-icon {
+.aa-berlin-addons-gso-gb-chat.hovering .aa-berlin-addons-icon,
+.aa-berlin-addons-gso-gb-chat.focussed .aa-berlin-addons-icon {
     position: absolute;
     display: block;
     bottom: 14px;
@@ -62,11 +64,13 @@
     width: 74px;
 }
 
-.aa-berlin-addons-gso-gb-chat.hovering .aa-berlin-addons-icon path {
+.aa-berlin-addons-gso-gb-chat.hovering .aa-berlin-addons-icon path,
+.aa-berlin-addons-gso-gb-chat.focussed .aa-berlin-addons-icon path {
     fill: #fff;
 }
 
 
-.aa-berlin-addons-gso-gb-chat.hovering .aa-berlin-addons-icon path.bg {
+.aa-berlin-addons-gso-gb-chat.hovering .aa-berlin-addons-icon path.bg,
+.aa-berlin-addons-gso-gb-chat.focussed .aa-berlin-addons-icon path.bg {
     fill: #003f7a;
 }

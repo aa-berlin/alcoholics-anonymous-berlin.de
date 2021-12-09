@@ -1,10 +1,15 @@
 jQuery(function ($) {
-    var button = $('<button class="aa-berlin-addons-gso-gb-chat">').on('click', function () {
-        location.assign('https://www.alcoholics-anonymous.org.uk/Home/Newcomers');
+    var button = $('<a role="link" tabindex="0" target="_blank" class="aa-berlin-addons-gso-gb-chat">').one('focus.gso-gb-chat mouseover.gso-gb-chat mousedown.gso-gb-chat touchstart.gso-gb-chat touchmove.gso-gb-chat', function () {
+        button.attr('href', 'https://www.alcoholics-anonymous.org.uk/Home/Newcomers');
+        button.off('.gso-gb-chat');
     }).hover(function () {
         button.addClass('hovering');
     }, function () {
         button.removeClass('hovering');
+    }).on('focusin', function () {
+        button.addClass('focussed');
+    }).on('focusout', function () {
+        button.removeClass('focussed');
     });
 
     $('<span class="aa-berlin-addons-text"></span>').html('Chat with us at Alcoholics Anonymous Great Britain').appendTo(button);
