@@ -58,6 +58,10 @@
     display: none;
 }
 
+.tsml-widget-upcoming .tsml-no-upcoming-meetings {
+    margin-bottom: 15px;
+}
+
 .tsml-widget-upcoming .zenzero-aa-stream-icon {
     display: inline-block;
     margin-right: 5px;
