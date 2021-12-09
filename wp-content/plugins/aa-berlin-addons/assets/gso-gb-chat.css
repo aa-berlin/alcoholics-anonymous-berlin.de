@@ -61,3 +61,12 @@
     right: 14px;
     width: 74px;
 }
+
+.aa-berlin-addons-gso-gb-chat.hovering .aa-berlin-addons-icon path {
+    fill: #fff;
+}
+
+
+.aa-berlin-addons-gso-gb-chat.hovering .aa-berlin-addons-icon path.bg {
+    fill: #003f7a;
+}
