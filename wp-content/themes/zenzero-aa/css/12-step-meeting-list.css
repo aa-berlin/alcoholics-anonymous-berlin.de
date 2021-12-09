@@ -211,17 +211,41 @@
 
 #tsml #meeting #feedback .panel-expandable:not(.expanded) {
     border-color: #337ab7;
-    border-radius: 3px;
     background: #337ab7;
+    border-radius: 3px;
+    color: #fff;
+}
+
+#tsml #meeting #feedback .panel-expandable:not(.expanded):hover {
+    background: #003f7a;
+    color: #fff;
 }
 
 #tsml #meeting #feedback .panel-expandable:not(.expanded) .panel-heading {
-    color: #fff;
-    background: #337ab7;
+    background: inherit;
 }
 
 #tsml #meeting #feedback .panel-expandable:not(.expanded) .panel-heading .panel-title {
     font-weight: bold;
+}
+
+#tsml #meeting .panel .tsml-directions,
+#tsml #location .panel .tsml-directions {
+    border-color: #337ab7;
+    background: #337ab7;
+    color: #fff;
+}
+
+#tsml #meeting .panel .tsml-directions:hover,
+#tsml #location .panel .tsml-directions:hover {
+    background: #003f7a;
+}
+
+#tsml #meeting .panel .tsml-directions .panel-title,
+#tsml #location .panel .tsml-directions .panel-title {
+    font-weight: bold;
+    background: inherit;
+    border-color: inherit;
 }
 
 #tsml #location .panel ul.list-group .list-group-item.list-group-item-meetings ul li,
@@ -244,6 +268,10 @@
 #tsml #location .panel ul.list-group .list-group-item.list-group-item-meetings h4 {
     font-size: inherit;
     text-transform: uppercase;
+}
+
+#tsml #location .panel ul.list-group .list-group-item.list-group-item-meetings .meeting {
+    margin-bottom: 7px;
 }
 
 #tsml #meeting .panel ul.list-group .list-group-item .meeting-types li {
@@ -272,16 +300,47 @@
     vertical-align: text-top;
 }
 
+#tsml #meeting .panel ul.list-group .list-group-item .btn {
+    background: #337ab7;
+    border-color: #337ab7;
+    color: #fff;
+    font-weight: bold;
+    transition: background-color .1s ease;
+}
+
 #tsml #meeting .panel ul.list-group .list-group-item .btn:hover,
 #tsml #meeting .panel ul.list-group .list-group-item .btn:focus {
-    background: #f5f5f5;
+    background: #003f7a;
 }
 
-#tsml #meeting .list-group-item-location {
+#tsml #meeting .panel ul.list-group .list-group-item .btn .icon path {
+    stroke: currentColor;
+    stroke-width: 1px;
+}
+
+#tsml #meeting .panel .list-group .list-group-item.list-group-item-location {
     border-bottom: 0;
+    padding: 10px 15px 15px 15px;
+    transition: background-color .1s ease;
 }
 
-#tsml #meeting .list-group-item-location .glyphicon {
+#tsml #meeting .panel .list-group .list-group-item.list-group-item-location .list-group-item-heading {
+    border-bottom: 0;
+    margin: 5px 0 15px 0;
+    padding: 10px 15px;
+    background: #337ab7;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 100%;
+    transition: background-color .1s ease;
+}
+
+#tsml #meeting .panel .list-group .list-group-item.list-group-item-location:hover .list-group-item-heading,
+#tsml #meeting .panel .list-group .list-group-item.list-group-item-location:focus .list-group-item-heading {
+    background: #003f7a;
+}
+
+#tsml #meeting .panel .list-group .list-group-item.list-group-item-location .glyphicon {
     float: right;
 }
 

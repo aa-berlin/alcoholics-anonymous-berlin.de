@@ -506,6 +506,7 @@ h4 {
     line-height: 1.5;
     font-size: 14px;
     border-left: 0 solid #cadfdf;
+    height: auto;
 }
 
 .site-content > #secondary .widget {
