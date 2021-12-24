@@ -495,6 +495,7 @@ function aa_berlin_addons_login_form_postpass() {
     $global_passwords = aa_berlin_addons_get_global_passwords();
 
     $is_match = false;
+    $global_password = null;
 
     // go through our global passwords and see if one matches, maybe allowing for some typos
     foreach ($global_passwords as $global_password) {
@@ -528,9 +529,8 @@ function aa_berlin_addons_get_global_passwords() {
     $global_passwords = aa_berlin_addons_options('post_global_passwords');
     $global_passwords = preg_split('#[\r\n,]+#', $global_passwords);
     $global_passwords = array_map('trim', $global_passwords);
-    $global_passwords = array_filter($global_passwords);
 
-    return $global_passwords;
+    return array_filter($global_passwords);
 }
 
 function aa_berlin_addons_password_required($required) {
