@@ -11,14 +11,9 @@ function zenzero_aa_insert_sidebar($html) {
 
     $sidebar_parts = explode(ZENZERO_AA_SIDEBAR_DELIMITER, $html);
     $sidebar_html = array_splice($sidebar_parts, 1, 1)[0];
-    $html = implode('', $sidebar_parts);
+    $page_html = implode('', $sidebar_parts);
 
-    $button_html = '<button class="show-sidebar" title="' . __('Show Schedule & Announcements', 'zenzero-aa') . '"><i class="fa fa-angle-up"></i></button>';
-
-    $html = preg_replace('#<(?:div|header)[^>]+(?:entry|page)-header.*?</h1>#s', "$0 $button_html", $html, 1);
-    $html = preg_replace('#</\w+>[^<]*<!--\s*\#content#s', "$sidebar_html $0", $html, 1);
-
-    return $html;
+    return preg_replace('#</\w+>[^<]*<!--\s*\#content#s', "$sidebar_html $0", $page_html, 1);
 }
 
 function zenzero_aa_remove_unused_general_elements($html) {

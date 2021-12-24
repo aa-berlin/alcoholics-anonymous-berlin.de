@@ -59,7 +59,7 @@
 }
 
 .tsml-widget-upcoming .tsml-no-upcoming-meetings {
-    margin-bottom: 15px;
+    margin-bottom: 40px;
 }
 
 .tsml-widget-upcoming .zenzero-aa-stream-icon {
@@ -91,4 +91,8 @@
 
 .tsml-widget-upcoming .location .attendance-option.attendance-in_person small:empty:after {
     content: "In-person"
+}
+
+.tsml-widget-upcoming .tsml_next_meetings ~ p {
+    margin-top: 25px;
 }

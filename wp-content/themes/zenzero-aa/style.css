@@ -279,24 +279,40 @@ Domain Path: /languages
     color: rgb(0, 63, 122);
 }
 
-.main-navigation .zenzero-aa-stream-icon svg {
+.nav-menu .zenzero-aa-stream-icon svg {
     vertical-align: text-top;
     height: 16px;
     width: 17px;
     margin-right: 5px;
 }
 
-.main-navigation .zenzero-aa-stream-icon path {
+.nav-menu .zenzero-aa-stream-icon path {
     fill: currentColor;
 }
 
-.main-navigation ul li .indicator {
-    border: 0;
-    cursor: pointer;
+.mobile-nav .indicator {
+    display: none;
+}
+
+.mobile-nav.widget .nav-menu .sub-menu {
+    display: block;
+}
+
+#secondary.widget-area .mobile-nav li {
+    padding: 4px 0 5px 0;
+}
+
+#secondary.widget-area .mobile-nav a {
+    height: auto;
+    display: inline;
+}
+
+.mobile-nav > .nav-menu > li > a {
+    font-weight: bold;
 }
 
 .main-navigation ul ul a {
-    width: 240px;
+    min-width: 240px;
 }
 
 .main-navigation.toggled .nav-menu {
@@ -490,34 +506,72 @@ h4 {
     width: 100%;
 }
 
-.site-content > #secondary {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    float: none;
+#sidebar {
     display: block;
-    visibility: hidden;
-    width: 300px;
+    position: absolute;
     padding: 0;
     background: #fff;
     color: inherit;
-    margin: 0 auto 0 0;
+    margin: 0;
+    width: 350px;
+    flex: none;
     line-height: 1.5;
     font-size: 14px;
     border-left: 0 solid #cadfdf;
     height: auto;
 }
 
-.site-content > #secondary .widget {
+#secondary.widget-area {
+    color: #00334f;
+    background: #fff;
+    padding: 0;
+    width: 320px;
+    left: -320px;
+    line-height: 1.5;
+}
+
+#secondary .close-secondary {
+    color: #337AB7;
+    background: transparent;
+    display: block;
+    margin: 20px 0 20px 190px;
+    padding: 0;
+    line-height: 30px;
+    font-size: inherit;
+    text-transform: uppercase;
+}
+
+#secondary .close-secondary i {
+    font-size: 1.2em;
+}
+
+body.menu-opened #secondary.widget-area {
+    left: 0;
+}
+
+body.menu-opened #page {
+    left: 350px;
+}
+
+body.menu-opened .main-navigation.toggled .menu-main-menu-container {
+    display: none;
+}
+
+#secondary.widget-area .nano-content {
+    padding: 0 0 60px 0;
+}
+
+#sidebar .sidebar-content {
+    display: none;
+}
+
+#sidebar .widget,
+#secondary .widget {
     padding: 0 25px 30px 25px;
 }
 
-.site-content > #secondary a {
-    color: inherit;
-}
-
-.site-content > #secondary .widget-title {
+#sidebar .widget-title,
+#secondary .widget-title {
     color: inherit;
     font-size: 25px;
     letter-spacing: normal;
@@ -526,6 +580,7 @@ h4 {
     line-height: 1.2;
     font-weight: 400;
     margin: 0 -25px 25px -25px;
+    padding: 0 10px;
     height: 114px;
     display: flex;
     flex-direction: row;
@@ -534,37 +589,36 @@ h4 {
     background: rgba(0, 63, 122, 0.08);
 }
 
-.site-content > #secondary .post-date {
+#sidebar .widget-title a,
+#secondary.widget-area .widget-title a {
+    color: inherit;
+    border-bottom: 0;
+}
+
+#sidebar .post-date,
+#secondary .post-date {
     color: #555;
     font-size: 12px;
     display: block;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1026px) {
 
     .site-content #primary {
         margin-right: 5px;
     }
 
-    .site-content > #secondary {
+    #sidebar {
         position: static;
-        left: auto;
-        right: auto;
-        top: auto;
-        margin: 0;
-        width: 350px;
-        flex: none;
+    }
+
+    #sidebar .sidebar-content {
         display: block;
-        visibility: visible;
     }
 
-    body.admin-bar #secondary {
-        top: 0;
+    body:not(.menu-opened) #secondary.widget-area {
+        display: none;
     }
-}
-
-body.menu-opened #secondary {
-    visibility: visible;
 }
 
 .page-header {
@@ -601,7 +655,9 @@ body.menu-opened #secondary {
     position: static;
     padding: 0;
     margin: 0;
+    height: auto;
     background: transparent;
+    display: block;
 }
 
 .page-header ~ * .entry-header .entry-meta {
@@ -612,27 +668,6 @@ body.menu-opened #secondary {
 .entry-meta > span {
     font-weight: normal;
     display: inline-block !important;
-}
-
-.page-header .show-sidebar,
-.entry-header .show-sidebar {
-    display: none;
-    background: #28539e;
-    color: #cddfdf;
-    border: 0;
-    position: absolute;
-    top: 35px;
-    right: 25px;
-    line-height: 50px;
-    width: 50px;
-    padding: 0;
-    margin: 0;
-    font-size: 30px;
-}
-
-.page-header .show-sidebar.is-active,
-.entry-header .show-sidebar.is-active {
-    display: block;
 }
 
 .site-main .post-navigation,
@@ -695,7 +730,8 @@ h1.page-title,
 .widget li a,
 .entry-content p a,
 .entry-content .wp-block-table a,
-.entry-content li > a {
+.entry-content li > a,
+#secondary.widget-area a {
     color: #337ab7;
     border-bottom: 1px dotted currentColor;
 }
@@ -705,18 +741,20 @@ h1.page-title,
 .entry-content p a:hover,
 .entry-content .wp-block-table a:hover,
 .entry-content li > a:hover,
+#secondary.widget-area a:hover,
 .widget p a:focus,
 .widget li a:focus,
 .entry-content p a:focus,
 .entry-content .wp-block-table a:focus,
-.entry-content li > a:focus {
+.entry-content li > a:focus,
+#secondary.widget-area a:focus {
     color: #23527c;
     text-shadow: 1px 1px 1px rgba(51, 122, 183, 0.4);
 }
 
 .zenzero-aa-fixed-buttons {
     position: fixed;
-    z-index: 100;
+    z-index: 98;
     display: block;
     padding: 0;
     margin: 0;
@@ -761,18 +799,20 @@ h1.page-title,
     font-weight: bold;
 }
 
-.zenzero-aa-fixed-buttons .showSide {
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
-    font-size: 18px;
-}
-
 table tfoot td {
     background: rgba(0,0,0,.08);
 }
 
 figcaption {
     font-style: italic;
+}
+
+.wp-block-separator,
+.betweenPost {
+    border-bottom: 1px dotted #003f7a;
+    border-top: 0;
+    background: transparent;
+    height: 0;
 }
 
 .wp-block-table {

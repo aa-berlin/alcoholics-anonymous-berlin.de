@@ -35,27 +35,21 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
-    // replicated parent theme functionality
-    $('.widget-area').addClass('loaded');
-    const buttons = $('.show-sidebar').on('click', function () {
-        $(this).toggleClass('close');
+    $('.menu-toggle').on('click', function () {
         $('body').toggleClass('menu-opened');
+    }).one('click', function () {
+        const secondary = $('#secondary ').appendTo(document.body);
+        const nav = $('<nav class="mobile-nav widget">');
+        const mobilePanel = secondary.find('.nano-content');
+
+        $('<button class="close-secondary">').on('click', function () {
+            $('body').removeClass('menu-opened');
+            $('.main-navigation').removeClass('toggled');
+        }).html('<i class="fa fa-close"></i>' + $('#close-search').text()).appendTo(nav);
+
+        $('#menu-main-menu').clone().attr('id', 'menu-main-menu-mobile').appendTo(nav);
+        nav.appendTo(mobilePanel);
+
+        $('#sidebar .sidebar-content').clone().children().appendTo(mobilePanel);
     });
-
-    var sidebar = $('#secondary.nano').nanoScroller({ preventPageScrolling: true });
-
-    const update = function () {
-        const isVisible = sidebar.css('visibility') === 'visible';
-        const shouldBeActive = !isVisible || ($('body').hasClass('menu-opened') && isVisible);
-        const isActive = buttons.hasClass('is-active');
-
-        if (shouldBeActive && !isActive) {
-            buttons.addClass('is-active');
-        } else if (!shouldBeActive && isActive) {
-            buttons.removeClass('is-active');
-        }
-    };
-
-    $(window).on('scroll resize', update);
-    update();
 });

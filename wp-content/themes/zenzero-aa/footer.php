@@ -13,6 +13,8 @@ ob_start();
 $service_menu = ob_get_clean();
 
 $parent_footer = preg_replace('#</footer#', "$service_menu $0", $parent_footer);
+
+// remove top-link, sidebar- and search-button, as we recreate them elsewhere
 $parent_footer = preg_replace('#<div[^>]+open-(?:sidebar|search)[^>]+>.+?</div>#', '', $parent_footer);
 $parent_footer = preg_replace('#<a[^>]+toTop[^>]+>.+?</a>#', '', $parent_footer);
 
@@ -28,8 +30,4 @@ echo $parent_footer;
 
 <div class="zenzero-aa-fixed-buttons">
     <button aria-hidden="true" class="to-top zenzero-aa-button" title="<?php echo __('Back to top', 'zenzero-aa') ?>"><i class="fa fa-angle-up"></i></button>
-
-    <?php if (is_active_sidebar('sidebar-1')): ?>
-        <button class="show-sidebar zenzero-aa-button" title="<?php echo __('Show sidebar', 'zenzero-aa') ?>"><i class="fa fa-navicon"></i></button>
-    <?php endif; ?>
 </div>

@@ -16,7 +16,7 @@ if (current_user_can('read_private_pages')):
 endif;
 $private_menu = ob_get_clean();
 
-// extract inner elements and append private menu
+// extract relevant content of private menu and append to main nav
 $private_menu = preg_replace('#^.*?<ul[^>]+>#s', '', $private_menu);
 $private_menu = preg_replace('#</ul></div>.*?$#s', '', $private_menu);
 $parent_header = preg_replace('#(site-navigation.*)(</ul>.*?</nav>)#s', "$1 $private_menu $2", $parent_header);
