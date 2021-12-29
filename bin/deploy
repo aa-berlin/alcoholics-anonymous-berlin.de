@@ -17,9 +17,10 @@ function deploy {
   echo "Copying files..."
   LFTP_PASSWORD="$(read_var PASSWORD)" lftp -u "$(read_var USER)" "$(read_var HOST)" --env-password <<EOD
   CD "./$(read_var DIR)"
-  mirror -R ./wp-content/themes/zenzero ./wp-content/themes/zenzero
-  mirror -R ./wp-content/themes/zenzero-aa ./wp-content/themes/zenzero-aa
-  mirror -R ./wp-content/plugins/aa-berlin-addons ./wp-content/plugins/aa-berlin-addons
+  mirror -R --exclude=\.git ./wp-content/themes/zenzero ./wp-content/themes/zenzero
+  mirror -R --exclude=\.git ./wp-content/themes/zenzero-aa ./wp-content/themes/zenzero-aa
+  mirror -R --exclude=\.git ./wp-content/plugins/12-step-meeting-list ./wp-content/plugins/12-step-meeting-list
+  mirror -R --exclude=\.git ./wp-content/plugins/aa-berlin-addons ./wp-content/plugins/aa-berlin-addons
   put .version
 EOD
 
