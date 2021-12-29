@@ -471,7 +471,9 @@
 #page #content #tsml .meeting_types,
 #page #tsml #location .attendance-option,
 #page #tsml #meetings .attendance-hybrid .location small,
-#page #tsml #meetings .attendance-online .location small {
+#page #tsml #meetings .attendance-online .location small,
+#page #tsml #meetings .attendance-in_person .location small,
+#page #tsml #meetings .attendance-inactive .location small {
     display: inline-block;
     padding: 3px 7px 3px 7px;
     margin-right: 8px;
@@ -502,14 +504,10 @@
 }
 
 #page #tsml #meetings .attendance-inactive .location small {
-    display: inline-block;
-    padding: 4px 7px 4px 7px;
-    margin-right: 8px;
-    border-radius: 2px;
-    font-size: 10px;
-    line-height: 1;
-    text-transform: uppercase;
-    font-weight: bold;
     background: rgba(212, 0, 71, 0.08);
     color: #D40047;
+}
+
+#page #tsml #meetings .attendance-in_person .location small:empty:after {
+    content: "In-person";
 }

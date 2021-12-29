@@ -153,10 +153,8 @@
     content: "This meeting only meets online until further notice.";
 }
 
-.aa-berlin-addons-muted-address-if-tc-and-onl #tsml #meetings .results .type-onl.type-tc .location,
-.aa-berlin-addons-muted-address-if-tc-and-onl #tsml #meetings .results .type-onl.type-tc .address,
-.aa-berlin-addons-muted-address-if-tc-and-onl #tsml #meetings .results .type-onl.type-tc .region,
-.aa-berlin-addons-muted-address-if-tc-and-onl #tsml #meetings .results .type-onl.type-tc .district {
+.aa-berlin-addons-muted-address-if-tc-and-onl #tsml #meetings .results .type-onl.type-tc .location .location-name,
+.aa-berlin-addons-muted-address-if-tc-and-onl #tsml #meetings .results .type-onl.type-tc .address {
     opacity: 0.5;
     text-decoration: line-through;
 }
