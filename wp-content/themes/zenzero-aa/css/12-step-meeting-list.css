@@ -59,7 +59,7 @@
     justify-content: center;
     align-items: center;
     margin: 0 -25px 50px -25px;
-    background: rgba(0, 63, 122, .08);
+    background: #ebf0f5;
     position: relative;
     font-weight: 400;
 }
@@ -482,7 +482,7 @@
     line-height: 1;
     text-transform: uppercase;
     font-weight: bold;
-    background: rgba(0, 63, 122, 0.08);
+    background: #ebf0f5;
     color: #337ab7;
 }
 
@@ -499,12 +499,12 @@
 
 #page #tsml #location .attendance-inactive .attendance-option,
 .tsml-type-tc #page #content #tsml .page-header .attendance-option {
-    background: rgba(212, 0, 71, 0.08);
+    background: #f7e6eb;
     color: #D40047;
 }
 
 #page #tsml #meetings .attendance-inactive .location small {
-    background: rgba(212, 0, 71, 0.08);
+    background: #f7e6eb;
     color: #D40047;
 }
 

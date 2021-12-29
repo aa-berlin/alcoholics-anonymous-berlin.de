@@ -586,7 +586,7 @@ body.menu-opened .main-navigation.toggled .menu-main-menu-container {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 63, 122, 0.08);
+    background: #ebf0f5;
 }
 
 #sidebar .widget-title a,
@@ -641,7 +641,7 @@ body.menu-opened .main-navigation.toggled .menu-main-menu-container {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, .08);
+    background: #ebf0f5;
 }
 
 .site-main > * > .entry-header .entry-meta {
