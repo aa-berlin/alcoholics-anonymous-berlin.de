@@ -380,7 +380,7 @@ Domain Path: /languages
 .site-footer {
     display: block;
     flex-direction: column;
-    padding: 50px 100px 40px 100px;
+    padding: 50px 100px 50px 100px;
 }
 
 .site-footer a:hover,
