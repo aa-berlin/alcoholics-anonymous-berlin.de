@@ -112,8 +112,8 @@ Domain Path: /languages
 .site-header .hotline-teaser .call-icon {
     font-size: 24px;
     vertical-align: middle;
-    background: #cddfdf;
-    color: #003f7a;
+    background: #c8d3e5;
+    color: #28539e;
     border-radius: 2px;
     padding: 1px 3px 0 3px;
     margin-right: 5px;
@@ -265,8 +265,8 @@ Domain Path: /languages
 }
 
 .main-navigation .zenzero-aa-nav-item-background {
-    background: #cddfdf;
-    color: rgb(0, 63, 122);
+    background: #c8d3e5;
+    color: #28539e;
     border-radius: 2px;
     padding: 0 4px;
 }
@@ -276,7 +276,7 @@ Domain Path: /languages
 }
 
 .main-navigation .zenzero-aa-nav-item-background .zenzero-aa-nav-icon {
-    color: rgb(0, 63, 122);
+    color: #28539e;
 }
 
 .nav-menu .zenzero-aa-stream-icon svg {
@@ -385,7 +385,7 @@ Domain Path: /languages
 
 .site-footer a:hover,
 .site-footer a:focus {
-    border-bottom: 1px dotted #cddfdf;
+    border-bottom: 1px dotted #c8d3e5;
 }
 
 .site-info {
@@ -692,7 +692,7 @@ body.menu-opened .main-navigation.toggled .menu-main-menu-container {
 .site-main .paging-navigation .nav-links a {
     background: #28539e;
     transition: color ease .3s;
-    color: #cddfdf;
+    color: #c8d3e5;
     border: 0;
     width: 50px;
     height: 50px;
@@ -773,7 +773,7 @@ h1.page-title,
     background: #337ab7;
     line-height: 50px;
     font-size: 35px;
-    color: #cddfdf;
+    color: #c8d3e5;
     font-weight: bold;
     border: 0;
     transition: none;
@@ -809,7 +809,7 @@ figcaption {
 
 .wp-block-separator,
 .betweenPost {
-    border-bottom: 1px dotted #003f7a;
+    border-bottom: 1px dotted #28539e;
     border-top: 0;
     background: transparent;
     height: 0;

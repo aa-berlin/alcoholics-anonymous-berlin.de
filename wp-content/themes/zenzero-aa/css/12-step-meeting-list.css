@@ -225,7 +225,7 @@
 }
 
 #tsml #meeting #feedback .panel-expandable:not(.expanded):hover {
-    background: #003f7a;
+    background: #28539e;
     color: #fff;
 }
 
@@ -246,7 +246,7 @@
 
 #tsml #meeting .panel .tsml-directions:hover,
 #tsml #location .panel .tsml-directions:hover {
-    background: #003f7a;
+    background: #28539e;
 }
 
 #tsml #meeting .panel .tsml-directions .panel-title,
@@ -318,7 +318,7 @@
 
 #tsml #meeting .panel ul.list-group .list-group-item .btn:hover,
 #tsml #meeting .panel ul.list-group .list-group-item .btn:focus {
-    background: #003f7a;
+    background: #28539e;
 }
 
 #tsml #meeting .panel ul.list-group .list-group-item .btn .icon path {
@@ -345,7 +345,7 @@
 
 #tsml #meeting .panel .list-group .list-group-item.list-group-item-location:hover .list-group-item-heading,
 #tsml #meeting .panel .list-group .list-group-item.list-group-item-location:focus .list-group-item-heading {
-    background: #003f7a;
+    background: #28539e;
 }
 
 #tsml #meeting .panel .list-group .list-group-item.list-group-item-location .glyphicon {

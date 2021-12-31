@@ -29,7 +29,7 @@
 }
 
 #main .app-flo-forms .field-submit input[type=submit] {
-    background: #003f7a;
+    background: #28539e;
     font-family: inherit;
     font-weight: normal;
     font-size: 16px;
@@ -53,7 +53,7 @@
 .app-flo-forms input[type="color"],
 .app-flo-forms textarea,
 .app-flo-forms select {
-    border: 1px solid rgba(0, 63, 122, 0.55);
+    border: 1px solid rgba(40, 83, 158, 0.55);
     border-radius: 2px;
     background: rgba(0,0,0,.03);
 }
