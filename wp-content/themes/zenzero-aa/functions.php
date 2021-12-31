@@ -5,7 +5,9 @@ require get_template_directory() . '/inc/template-tags.php';
 
 const ZENZERO_AA_SIDEBAR_DELIMITER = '<!--zenzero_aa_sidebar-->';
 
-add_action('wp_enqueue_scripts', 'zenzero_aa_enqueue_assets');
+add_action('wp_enqueue_scripts', 'zenzero_aa_enqueue_assets', 10);
+add_action('wp_enqueue_scripts', 'zenzero_aa_patch_parent_styles', 11);
+
 add_action('widgets_init', 'zenzero_aa_widgets_init');
 add_action('wp_ajax_tsml_pdf', 'zenzero_aa_tsml_ajax_pdf', 0);
 add_action('wp_ajax_nopriv_tsml_pdf', 'zenzero_aa_tsml_ajax_pdf', 0);
@@ -60,6 +62,20 @@ function zenzero_aa_enqueue_assets() {
         ),
         wp_get_theme()->get('Version')
     );
+}
+
+function zenzero_aa_patch_parent_styles() {
+    $wp_styles = wp_styles();
+
+    /** @var _WP_Dependency $rule */
+    $rule = $wp_styles->registered['zenzero-googlefonts'] ?? null;
+
+    if (!$rule) {
+        return;
+    }
+
+    // also load semi-bold, as open sans bold is kinda ugly
+    $rule->src = preg_replace('#(:\d+(?:,\d+)*),700#', '$1,600', $rule->src);
 }
 
 function zenzero_aa_widgets_init() {
