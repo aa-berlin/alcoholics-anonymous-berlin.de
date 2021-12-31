@@ -630,6 +630,7 @@ body.menu-opened .main-navigation.toggled .menu-main-menu-container {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    background: #ebf0f5;
 }
 
 .site-main > * > .entry-header {
