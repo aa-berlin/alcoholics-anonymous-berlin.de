@@ -536,6 +536,10 @@ function aa_berlin_addons_get_global_passwords() {
 function aa_berlin_addons_password_required($required) {
     global $post;
 
+    if (aa_berlin_addons_options('no_pw_if_logged_in') && is_user_logged_in()) {
+        return false;
+    }
+
     if (!$required || !$post) {
         return $required;
     }

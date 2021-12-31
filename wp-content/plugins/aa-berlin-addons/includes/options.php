@@ -280,6 +280,13 @@ $pages = array(
                         'id' => 'post_global_passwords_may_be_inaccurate',
                         'text' => 'Check this, if users may enter a password with a typo in every few characters.',
                     ),
+
+                    array(
+                        'title' => __('Do not require password for protected pages if logged in', 'aa-berlin-addons'),
+                        'type' => 'checkbox',
+                        'id' => 'no_pw_if_logged_in',
+                        'text' => 'Check this, if being logged into the backend also clears all password protections for protected pages.',
+                    ),
                 ),
             ),
 
