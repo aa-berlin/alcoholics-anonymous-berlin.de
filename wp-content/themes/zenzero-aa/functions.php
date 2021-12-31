@@ -16,6 +16,7 @@ add_filter('wp_mail_from', 'zenzero_aa_sender_email');
 add_filter('wp_mail_from_name', 'zenzero_aa_sender_name');
 add_action('after_setup_theme', 'zenzero_aa_register_nav_menus', 0);
 add_action('get_sidebar', 'zenzero_aa_get_sidebar', -1);
+add_filter('gettext', 'zenzero_aa_filter_gettext');
 
 function zenzero_aa_enqueue_assets() {
     wp_enqueue_style(
@@ -164,4 +165,15 @@ function zenzero_aa_register_nav_menus() {
         'zenzero_aa_private_menu' => __('Private Pages Navigation', 'zenzero-aa'),
         'zenzero_aa_service_menu' => __('Service Navigation', 'zenzero-aa'),
     ));
+}
+
+function zenzero_aa_filter_gettext($translated, $original = null, $domain = null) {
+    switch ($translated) {
+        case 'Request a change to this listing':
+            return 'Update this meeting';
+        case 'Use this form to submit a change to the meeting information above.':
+            return 'Use this form to let us know about updates to or problems with the meeting details on this page.';
+        default:
+            return $translated;
+    }
 }
