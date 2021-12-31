@@ -22,6 +22,10 @@
     margin: 0;
 }
 
+.tsml-widget-upcoming p:last-child {
+    margin-bottom: 20px;
+}
+
 .tsml-widget-upcoming a {
     text-align: left;
     border: 0;
