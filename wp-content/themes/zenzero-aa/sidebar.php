@@ -1,5 +1,11 @@
 <?php
 
+ob_start();
+dynamic_sidebar( 'sidebar-1' );
+$sidebar_html = ob_get_clean();
+
+$sidebar_html = str_replace(' href=', ' data-target-url=', $sidebar_html);
+
 echo ZENZERO_AA_SIDEBAR_DELIMITER;
 ?>
 <div id="sidebar">
@@ -8,7 +14,7 @@ echo ZENZERO_AA_SIDEBAR_DELIMITER;
     </div><!-- #secondary -->
 
     <div class="sidebar-content">
-        <?php dynamic_sidebar( 'sidebar-1' ); ?>
+        <?php echo $sidebar_html ?>
     </div>
 </div>
 <?php

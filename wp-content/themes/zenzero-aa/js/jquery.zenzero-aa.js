@@ -53,3 +53,17 @@ jQuery(function ($) {
         $('#sidebar .sidebar-content').clone().children().appendTo(mobilePanel);
     });
 });
+
+jQuery(function ($) {
+    $('#sidebar, #secondary').find('a[data-target-url]').on(
+        'focus.restoreHref mouseover.restoreHref touchstart.restoreHref touchmove.restoreHref',
+        function () {
+            const link = $(this);
+            link.off('.restoreHref');
+            link.attr('href', link.data('targetUrl')).removeAttr('data-target-url');
+        }
+    ).attr({
+        role: 'link',
+        tabindex: 0
+    });
+});
