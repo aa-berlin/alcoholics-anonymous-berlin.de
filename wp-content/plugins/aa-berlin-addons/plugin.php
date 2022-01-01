@@ -47,7 +47,7 @@ function aa_berlin_addons_options($key = null) {
 }
 
 function aa_berlin_addons_init() {
-    global $tsml_programs, $tsml_program;
+    global $tsml_programs, $tsml_program, $tsml_conference_providers;
 
     $existing_type_flags = array();
 
@@ -80,6 +80,17 @@ function aa_berlin_addons_init() {
         $custom_type_flags = array_diff($existing_type_flags, $custom_type_flags);
 
         tsml_custom_flags($custom_type_flags);
+    }
+
+    // ensure that we can always enter our own domain as meeting url
+    $host = parse_url(get_option('siteurl'))['host'];
+    $providers = [
+        $host,
+        preg_replace('#^www\.#', '', $host),
+    ];
+    $providers = array_unique($providers);
+    foreach ($providers as $provider) {
+        $tsml_conference_providers[$provider] = __('the details from this page', 'aa-berlin-addons');
     }
 
     add_action('save_post', 'aa_berlin_addons_save_post_before_tsml', 9, 3);
@@ -123,7 +134,12 @@ function aa_berlin_addons_save_post_before_tsml($post_id, $post, $update = null)
         $_POST['types'] = array();
     }
 
-    // add your fixes here
+    // if we want an online meeting but do not have a url, we can override that url with our own, so the user at least
+    // returns to the meeting details with the relevant info
+    if (!empty($_POST['aa_berlin_addons_force_online'])) {
+        $url = get_permalink($post_id);
+        $_POST['conference_url'] = $url;
+    }
 }
 
 function aa_berlin_enqueue_block_editor_assets() {
@@ -342,11 +358,20 @@ function aa_berlin_addons_add_metaboxes() {
 }
 
 function aa_berlin_addons_meetings_post_submit_meta_box(WP_Post $post, $args = array()) {
-    $is_checked = get_post_meta($post->ID, 'aa_berlin_addons_passwordless', true);
+    $force_online = get_post_meta($post->ID, 'aa_berlin_addons_force_online', true);
+    $is_passwordless = get_post_meta($post->ID, 'aa_berlin_addons_passwordless', true);
 
     ?>
     <div class="misc-pub-section">
-        <input id="aa_berlin_addons_passwordless" name="aa_berlin_addons_passwordless" type="checkbox" value="passwordless" <?php checked($is_checked); ?> />
+        <input id="aa_berlin_addons_force_online" name="aa_berlin_addons_force_online" type="checkbox" value="force" <?php checked($force_online); ?> />
+        <label for="aa_berlin_addons_force_online" class="selectit"><?php echo __('Save this meeting as an online meeting, even if I do not have connection details to enter. This OVERWRITES the online meeting url with the link to this meeting.', 'aa-berlin-addons'); ?></label>
+        <br />
+    </div>
+    <?php
+
+    ?>
+    <div class="misc-pub-section">
+        <input id="aa_berlin_addons_passwordless" name="aa_berlin_addons_passwordless" type="checkbox" value="passwordless" <?php checked($is_passwordless); ?> />
         <label for="aa_berlin_addons_passwordless" class="selectit"><?php echo __('If online meeting, show alternate hint next to online meeting links without password prompt', 'aa-berlin-addons'); ?></label>
         <br />
     </div>
@@ -375,15 +400,26 @@ function aa_berlin_addons_save_metaboxes_postdata($post_id, $a=1, $b=2) {
 
     if ($post_type == 'tsml_meeting' || $post_type == 'tsml_group') {
         $is_passwordless = '0';
+        $force_online_meeting = '0';
 
         if (array_key_exists('aa_berlin_addons_passwordless', $_POST)) {
             $is_passwordless = '1';
+        }
+
+        if (array_key_exists('aa_berlin_addons_force_online', $_POST)) {
+            $force_online_meeting = '1';
         }
 
         update_post_meta(
             $post_id,
             'aa_berlin_addons_passwordless',
             $is_passwordless
+        );
+
+        update_post_meta(
+            $post_id,
+            'aa_berlin_addons_force_online',
+            $force_online_meeting
         );
     }
 
