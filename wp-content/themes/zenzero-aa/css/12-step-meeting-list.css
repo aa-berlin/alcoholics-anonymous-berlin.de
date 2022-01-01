@@ -162,11 +162,11 @@
     border-radius: 0 2px 2px 0;
 }
 
-#tsml #meetings .controls ul li div.expand {
+#tsml #meetings .controls ul li.active > div.expand {
     background-image: url(../../../plugins/12-step-meeting-list/assets/img/ionicons-plus-white.svg);
 }
 
-#tsml #meetings .controls ul li div.expand.expanded {
+#tsml #meetings .controls ul li.active > div.expand.expanded {
     background-image: url(../../../plugins/12-step-meeting-list/assets/img/ionicons-minus-white.svg);
 }
 
