@@ -7,8 +7,9 @@ source "$(dirname "$0")/../dev-ops/common-bash"
 
 function show_help {
   cat <<EOD
-Usage: bump-version <version>
+Usage: release <version>
 Where version is a semver version, eg. 1.3.2
+Updates relevant places with new version and commits and tags.
 EOD
 }
 
@@ -23,6 +24,13 @@ if [[ ! $new_version =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
   exit 4
 fi
 
+changes="$(git status -s 2>/dev/null)"
+
+if test -n "$changes"; then
+  echo "You have local changes! I will not alter the code."
+  exit 5
+fi
+
 echo "New Version: $new_version"
 echo "$new_version" > .version
 
@@ -34,5 +42,11 @@ echo "Writing zenzero-aa version..."
 sed -i "s#\(Version: *\)[0-9]\+\.[0-9]\+\.[0-9]\+#\1$new_version#" ./wp-content/themes/zenzero-aa/style.css
 
 git diff
+
+echo "Commit and tag? (ENTER to continue, CTRL-C to exit)"
+read
+
+git commit -am "new version $new_version"
+git tag -a "$new_version" -m "$new_version"
 
 echo "Done."
