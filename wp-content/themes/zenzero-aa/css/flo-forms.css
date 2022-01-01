@@ -29,33 +29,17 @@
 }
 
 #main .app-flo-forms .field-submit input[type=submit] {
-    background: #28539e;
+    background: #337ab7;
     font-family: inherit;
     font-weight: normal;
     font-size: 16px;
     border-radius: 2px;
+    transition: background-color, color .3s ease;
 }
 
-.app-flo-forms input[type="text"],
-.app-flo-forms input[type="email"],
-.app-flo-forms input[type="url"],
-.app-flo-forms input[type="password"],
-.app-flo-forms input[type="search"],
-.app-flo-forms input[type="number"],
-.app-flo-forms input[type="tel"],
-.app-flo-forms input[type="range"],
-.app-flo-forms input[type="date"],
-.app-flo-forms input[type="month"],
-.app-flo-forms input[type="week"],
-.app-flo-forms input[type="time"],
-.app-flo-forms input[type="datetime"],
-.app-flo-forms input[type="datetime-local"],
-.app-flo-forms input[type="color"],
-.app-flo-forms textarea,
-.app-flo-forms select {
-    border: 1px solid rgba(40, 83, 158, 0.55);
-    border-radius: 2px;
-    background: rgba(0,0,0,.03);
+#main .app-flo-forms .field-submit input[type=submit]:hover,
+#main .app-flo-forms .field-submit input[type=submit]:focus {
+    background: #28539e;
 }
 
 .app-flo-forms .error input,

@@ -411,10 +411,6 @@ Domain Path: /languages
     }
 }
 
-.service-nav > div {
-
-}
-
 .service-nav .menu {
     list-style-type: none;
     margin: 0;
@@ -475,6 +471,61 @@ h2 a {
 
 h4 {
     font-size: 16px;
+}
+
+button,
+input[type]:not([type="checkbox"], [type="radio"]),
+select {
+    border-radius: 2px;
+    font-size: inherit;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 2.5em;
+    border: 1px solid #337ab7;
+    transition: background-color, color .3s ease;
+    background: #f7f7f7;
+}
+
+button:focus,
+input[type]:not([type="checkbox"], [type="radio"]):focus,
+select:focus {
+    border-color: #28539e;
+    background: #fff;
+}
+
+input[type][type="reset"],
+input[type][type="submit"],
+input[type][type="button"],
+button {
+    border-radius: 2px;
+    background: #337ab7;
+    color: #fff;
+}
+
+input[type][type="reset"]:hover,
+input[type][type="submit"]:hover,
+input[type][type="button"]:hover,
+button:hover,
+input[type][type="reset"]:focus,
+input[type][type="submit"]:focus,
+input[type][type="button"]:focus,
+button:focus {
+    background: #28539e;
+    color: #fff;
+}
+
+textarea {
+    border-radius: 2px;
+    font-size: inherit;
+    height: 12em;
+    transition: background-color, color .3s ease;
+    border: 1px solid #337ab7;
+    background: #f7f7f7;
+}
+
+textarea:focus {
+    border-color: #28539e;
+    background: #fff;
 }
 
 .site-content {
