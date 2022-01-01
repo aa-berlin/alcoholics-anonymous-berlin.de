@@ -84,10 +84,16 @@ Make sure to only do this step on a clean working copy, everything having been c
 
 Theme and plugin (`zenzero-aa` and `aa-berlin-addons`) might need a refresh of cached resources in the browser, or generally deserve a new version.
 
-You can and should update them both with the `bin/bump-version` script:
+You can and should update them both with the `bin/release` script that will write the updated version, commit, and tag:
 
 ```shell script
-$ bin/bump-version 1.3.5
+$ bin/release 1.3.5
+```
+
+Now you can push with:
+
+```shell script
+$ git push --follow-tags
 ```
 
 ### Adding filter settings to the Recent Posts Widget
