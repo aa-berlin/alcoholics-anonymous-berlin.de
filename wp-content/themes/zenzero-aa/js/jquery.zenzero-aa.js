@@ -55,15 +55,20 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
-    $('#sidebar, #secondary').find('a[data-target-url]').on(
+    const sidebars = $('#sidebar, #secondary');
+
+    sidebars.find('a[data-target-url]').attr({
+        role: 'link',
+        tabindex: 0
+    });
+
+    sidebars.on(
         'focus.restoreHref mouseover.restoreHref touchstart.restoreHref touchmove.restoreHref',
+        'a[data-target-url]',
         function () {
             const link = $(this);
             link.off('.restoreHref');
             link.attr('href', link.data('targetUrl')).removeAttr('data-target-url');
         }
-    ).attr({
-        role: 'link',
-        tabindex: 0
-    });
+    )
 });
