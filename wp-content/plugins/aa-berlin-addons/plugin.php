@@ -95,12 +95,13 @@ function aa_berlin_addons_init() {
 
     add_action('save_post', 'aa_berlin_addons_save_post_before_tsml', 9, 3);
 
+    add_action('wp_dashboard_setup', 'aa_berlin_addons_wp_dashboard_setup');
     add_action('enqueue_block_editor_assets', 'aa_berlin_enqueue_block_editor_assets');
+
     add_action('wp_enqueue_scripts', 'aa_berlin_wp_enqueue_scripts');
     add_action('widgets_init', 'aa_berlin_addons_widgets_init');
     add_action('wp_footer', 'aa_berlin_addons_render_common_widgets');
     add_action('wp_footer', 'aa_berlin_addons_render_dynamic_styles');
-    add_action('phpmailer_init', 'aa_berlin_addons_send_smtp_email');
 
     add_filter('body_class', 'aa_berlin_addons_body_class');
 
@@ -109,6 +110,7 @@ function aa_berlin_addons_init() {
     add_filter('widget_title', 'aa_berlin_addons_widget_title');
     add_filter('widget_posts_args', 'aa_berlin_addons_widget_posts_args');
 
+    add_action('phpmailer_init', 'aa_berlin_addons_send_smtp_email');
     add_filter('wp_mail_from', 'aa_berlin_addons_wp_mail_from');
     add_filter('wp_mail_from_name', 'aa_berlin_addons_wp_mail_from_name');
 
@@ -668,4 +670,36 @@ function aa_berlin_addons_widget_posts_args($options) {
     global $aa_berlin_addons_last_widget_options;
 
     return array_merge($aa_berlin_addons_last_widget_options, $options);
+}
+
+function aa_berlin_addons_wp_dashboard_setup() {
+    wp_add_dashboard_widget('aa_berlin_addons_phpinfo_dashboard_widget', 'phpinfo()', 'aa_berlin_addons_phpinfo_dashboard_widget');
+}
+
+function aa_berlin_addons_phpinfo_dashboard_widget() {
+    ob_start();
+    phpinfo();
+    $infoHtml = ob_get_clean();
+
+    $infoHtml = preg_replace_callback('#<style.*?</style>#s', function ($styles) {
+        return preg_replace_callback('#.*{#', function ($line) {
+            $selectors = preg_split('#\s*,\s*#', $line[0]);
+
+            return '.aa-berlin-addons-phpinfo ' . implode(', .aa-berlin-addons-phpinfo ', $selectors);
+        }, $styles[0]);
+    }, $infoHtml);
+
+    ?><div class="aa-berlin-addons-phpinfo-widget" style="overflow: hidden; height: 400px; max-width: 100%; position: relative;">
+        <button class="aa-berlin-addons-toggle-phpinfo button button-primary" onclick="this.parentNode.getElementsByClassName('aa-berlin-addons-phpinfo')[0].requestFullscreen();">
+            Show All
+        </button>
+
+        <div class="aa-berlin-addons-phpinfo" style="height: 100%; width: 100%; position: absolute; top: 40px; left: 0; overflow: scroll; background: #fff; font-size: 16px;">
+            <?php if (current_user_can('manage_options')): ?>
+                <?php echo $infoHtml ?>
+            <?php else: ?>
+                You must be an Administrator to view this info.
+            <?php endif ?>
+        </div>
+    </div><?php
 }
