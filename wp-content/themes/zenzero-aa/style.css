@@ -446,6 +446,24 @@ Domain Path: /languages
     display: none;
 }
 
+.edit-link .fa {
+    vertical-align: middle;
+    font-size: 20px;
+    color: #28539e;
+}
+
+.edit-link a.post-edit-link {
+    background: #337ab7;
+    color: #c8d3e5;
+    text-transform: uppercase;
+}
+
+.edit-link a.post-edit-link:hover,
+.edit-link a.post-edit-link:focus {
+    background: #28539e;
+    color: #fff;
+}
+
 h1,
 h2,
 h3 {
@@ -590,6 +608,7 @@ textarea:focus {
     line-height: 30px;
     font-size: inherit;
     text-transform: uppercase;
+    border: 0;
 }
 
 #secondary .close-secondary i {
@@ -708,6 +727,7 @@ body.menu-opened .main-navigation.toggled .menu-main-menu-container {
     padding: 0;
     margin: 0;
     height: auto;
+    min-height: auto;
     background: transparent;
     display: block;
 }
@@ -724,6 +744,7 @@ body.menu-opened .main-navigation.toggled .menu-main-menu-container {
 
 .site-main .post-navigation,
 .site-main .paging-navigation {
+    background: #ebf0f5;
     margin: 0;
     padding: 25px;
     position: absolute;
@@ -742,7 +763,7 @@ body.menu-opened .main-navigation.toggled .menu-main-menu-container {
 }
 
 .site-main .paging-navigation .nav-links a {
-    background: #28539e;
+    background: #337ab7;
     transition: color ease .3s;
     color: #c8d3e5;
     border: 0;
@@ -890,4 +911,10 @@ figcaption {
 
 .wp-block-group.has-background .wp-block-group__inner-container > :last-child {
     margin-bottom: 0;
+}
+
+#search-full input[type="text"] {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
 }

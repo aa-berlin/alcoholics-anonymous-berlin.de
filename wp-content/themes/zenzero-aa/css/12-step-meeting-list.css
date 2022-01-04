@@ -142,6 +142,7 @@
 }
 
 #tsml .btn {
+    font-size: inherit;
     border-radius: 2px;
 }
 
@@ -156,6 +157,13 @@
 
 #tsml #meetings .controls input {
     border-radius: 2px 0 0 2px;
+    height: 37px;
+}
+
+#tsml #meetings .controls .btn {
+    height: 37px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 #tsml #meetings .controls .input-group-btn:last-child > .btn {
@@ -172,6 +180,7 @@
 
 #tsml .dropdown .dropdown-menu {
     border-radius: 2px;
+    font-size: inherit;
 }
 
 #tsml .dropdown .dropdown-menu a:link {
@@ -242,6 +251,8 @@
     border-color: #337ab7;
     background: #337ab7;
     color: #fff;
+    /* hide anon outer panel's border */
+    margin: -1px;
 }
 
 #tsml #meeting .panel .tsml-directions:hover,
