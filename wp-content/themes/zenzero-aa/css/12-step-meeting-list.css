@@ -443,6 +443,10 @@
     opacity: 1;
 }
 
+#tsml #meetings .results table tbody tr.attendance-inactive .location div.location-name {
+    display: none;
+}
+
 #tsml .gm-style .gm-style-iw-c {
     border-radius: 2px;
 }
