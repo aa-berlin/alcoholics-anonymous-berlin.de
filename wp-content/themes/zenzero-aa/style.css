@@ -300,6 +300,11 @@ Domain Path: /languages
     left: -2px;
 }
 
+.main-navigation .zenzero-aa-nav-icon.feather-mail {
+    top: 5px;
+    left: -4px;
+}
+
 .nav-menu .zenzero-aa-nav-icon.feather-headphones {
     width: 20px;
     top: 2px;
@@ -316,7 +321,7 @@ Domain Path: /languages
     margin-right: 5px;
     vertical-align: baseline;
     position: relative;
-    top: 2px;
+    top: 3px;
 }
 
 .mobile-nav.widget .nav-menu .sub-menu {

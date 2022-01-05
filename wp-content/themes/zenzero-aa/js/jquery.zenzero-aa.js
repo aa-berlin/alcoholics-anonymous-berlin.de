@@ -7,6 +7,7 @@
         .wrapInner('<span class="zenzero-aa-nav-item-background">');
 
     $('.main-navigation a[href*="type=ONL"]').prepend('<i class="zenzero-aa-nav-icon" data-feather="headphones">');
+    $('.main-navigation a[href*="/contact"]').prepend('<i class="zenzero-aa-nav-icon" data-feather="mail">');
 
     $('.tsml-widget-upcoming').each(function (i, meetings) {
         meetings = $(meetings);
