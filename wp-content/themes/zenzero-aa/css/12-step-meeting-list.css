@@ -510,6 +510,7 @@
 #page #content #tsml .page-header .attendance-option,
 #page #tsml #meeting .page-header .meeting_types,
 #page #content #tsml .meeting_types,
+#page #tsml #meetings td.name small,
 #page #tsml #location .attendance-option,
 #page #tsml #meetings .attendance-hybrid .location small,
 #page #tsml #meetings .attendance-online .location small,
@@ -525,6 +526,11 @@
     font-weight: bold;
     background: #ebf0f5;
     color: #337ab7;
+}
+
+#page #tsml #meetings td.name small .meeting_types {
+    padding: 0;
+    margin: 0;
 }
 
 /* adds spacing and hides link underline */
