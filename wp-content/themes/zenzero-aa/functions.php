@@ -27,10 +27,16 @@ function zenzero_aa_enqueue_assets() {
     );
 
     wp_enqueue_script(
+        'feather-icons',
+        'https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js'
+    );
+
+    wp_enqueue_script(
         'zenzero-aa-main-js',
         get_stylesheet_directory_uri() . '/js/jquery.zenzero-aa.js',
         array(
             'zenzero-custom',
+            'feather-icons',
         ),
         wp_get_theme()->get('Version')
     );

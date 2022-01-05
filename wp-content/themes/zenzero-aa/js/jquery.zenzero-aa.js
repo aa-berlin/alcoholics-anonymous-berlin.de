@@ -1,13 +1,58 @@
 ;jQuery(function ($) {
-    $('.main-navigation .menu-item .fa-home').toggleClass('fa-home fa-coffee zenzero-aa-nav-icon');
-    $('.main-navigation .menu-item a[href*="/help"]').prepend('<i class="fa spaceRight fa-question-circle zenzero-aa-nav-icon">').wrapInner('<span class="zenzero-aa-nav-item-background">');
+    const headphones = '<i class="zenzero-aa-meeting-icon" data-feather="headphones">';
+    const users = '<i class="zenzero-aa-meeting-icon" data-feather="users">';
 
-    const icon = $('<span class="zenzero-aa-stream-icon">').load('/wp-content/plugins/aa-berlin-addons/assets/images/phones.svg', function () {
-        $('.main-navigation a[href*="type=ONL"], .tsml-widget-upcoming .type-onl a').each(function () {
-            $(this).prepend(icon.clone());
-        });
+    $('.main-navigation .menu-item .fa-home').replaceWith('<i class="zenzero-aa-nav-icon" data-feather="coffee">');
+    $('.main-navigation .menu-item a[href*="/help"]').prepend('<i class="zenzero-aa-nav-icon" data-feather="help-circle">')
+        .wrapInner('<span class="zenzero-aa-nav-item-background">');
+
+    $('.main-navigation a[href*="type=ONL"]').prepend('<i class="zenzero-aa-nav-icon" data-feather="headphones">');
+
+    $('.tsml-widget-upcoming').each(function (i, meetings) {
+        meetings = $(meetings);
+
+        meetings.find('.attendance-online a').prepend(headphones);
+        meetings.find('.attendance-in_person a').prepend(users);
+        meetings.find('.attendance-hybrid a').prepend(headphones).prepend(users);
+    });
+
+    $('body.attendance-online .page-header h1').prepend(headphones);
+    $('body.attendance-in_person .page-header h1').prepend(users);
+    $('body.attendance-hybrid .page-header h1').prepend(headphones).prepend(users);
+
+    $('.list-group-item-meetings').each(function (i, meetings) {
+        meetings = $(meetings);
+
+        meetings.find('.meeting.attendance-online > a').prepend(headphones);
+        meetings.find('.meeting.attendance-in_person > a').prepend(users);
+        meetings.find('.meeting.attendance-hybrid > a').prepend(headphones).prepend(users);
+    });
+
+    $('.entry-content, .meeting-notes').find('a[href]').each(function (i, link) {
+        link = $(link);
+
+        link.filter('[href*="type=ONL"]').prepend(headphones);
+        link.filter('[href*="attendance_option=online"]').prepend(headphones);
+        link.filter('[href*="zoom.us/j/"]').prepend(headphones);
+        link.filter('[href*="attendance_option=in_person"]').prepend(users);
     });
 });
+
+jQuery(function ($) {
+    const prependIconInResults = function (tbody) {
+        tbody.find('.type-onl td.name > a').prepend('<i class="zenzero-aa-meeting-icon" data-feather="headphones">');
+        tbody.find('.attendance-in_person, .attendance-hybrid').find('td.name > a').prepend('<i class="zenzero-aa-meeting-icon" data-feather="users">');
+        feather.replace();
+    };
+
+    $('#meetings_tbody').on('tsml_meetings_updated', function (e, data) {
+        prependIconInResults(data.tbody);
+    }).each(function (i, tbody) {
+        tbody = $(tbody);
+        prependIconInResults(tbody);
+    });
+});
+
 
 jQuery(function ($) {
     const topButtons = $('.zenzero-aa-button.to-top');
@@ -71,4 +116,8 @@ jQuery(function ($) {
             link.attr('href', link.data('targetUrl')).removeAttr('data-target-url');
         }
     )
+});
+
+jQuery(function ($) {
+    feather.replace();
 });

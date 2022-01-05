@@ -27,12 +27,6 @@ $pages = array(
                     ),
 
                     array(
-                        'title' => __('Prepend ´headphones´ icon to online meeting links', 'aa-berlin-addons'),
-                        'type' => 'checkbox',
-                        'id' => 'prepend_stream_icons',
-                    ),
-
-                    array(
                         'title' => __('Treat links to these domains as ´online meeting´ links', 'aa-berlin-addons'),
                         'type' => 'text',
                         'value' => 'zoom.us',
@@ -152,13 +146,6 @@ $pages = array(
                         'type' => 'text',
                         'value' => 'Join Online',
                         'id' => 'label_type_online',
-                    ),
-
-                    array(
-                        'title' => __('Add ´headphones´ icon to Online meetings', 'aa-berlin-addons'),
-                        'type' => 'checkbox',
-                        'text' => 'Adds a headphones icon online to meetings´ headlines and links containing the ´online meeting´ filter',
-                        'id' => 'add_stream_icon_to_online_meetings',
                     ),
 
                     array(

@@ -12,6 +12,7 @@ ob_start();
 <?php
 $service_menu = ob_get_clean();
 
+// append service menu
 $parent_footer = preg_replace('#</footer#', "$service_menu $0", $parent_footer);
 
 // remove top-link, sidebar- and search-button, as we recreate them elsewhere

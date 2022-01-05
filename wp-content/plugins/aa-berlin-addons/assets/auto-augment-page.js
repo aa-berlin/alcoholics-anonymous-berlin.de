@@ -22,7 +22,6 @@
     const zoomMeetingIdText = __('<abbr title="You can use this to access this meeting via phone.">Zoom Meeting ID #:</abbr><strong>%s</strong><em>xxx-xxx-xxx</em>', 'aa-berlin-addons');
     // translators: %s is the time until activation
     const zoomMeetingOutsideScheduleText = '<span class="aa-berlin-addons-outside-schedule">' + sprintf(__('The Meeting Link and Meeting ID will activate %s before the meeting starts.', 'aa-berlin-addons'), readableTimeBeforeActivationOfStreams) + '</span>';
-    const onlineIconTitle = __('You can join this meeting online.', 'aa-berlin-addons');
     // translators: %s is the link's generated text (usually its host part)
     const externalLinkTextTemplate = __('External link to %s', 'aa-berlin-addons');
     // translators: %s is the link's generated text (usually the phone number)
@@ -80,14 +79,6 @@
         return null;
     };
 
-    const onlineIconHtml = '<span class="aa-berlin-addons-stream-icon glyphicon glyphicon-headphones" role="presentation" title="' + onlineIconTitle + '"></span>';
-
-    const prependStreamIconInResults = function (tbody) {
-        if (options.add_stream_icon_to_online_meetings) {
-            tbody.find('.type-onl td.name > a').prepend(onlineIconHtml);
-        }
-    };
-
     jQuery(function ($) {
         options.insert_notices && $('p:contains("' + markerTextWarning + '"), p:contains("' + markerTextSuccess + '"), p:contains("' + markerTextInfo + '")').each(function (i, paragraph) {
             paragraph = $(paragraph);
@@ -143,7 +134,6 @@
                     '" class="aa-berlin-addons-auto-link" ',
                     isExternal ? 'target="_blank"' : '',
                     '>',
-                    options.prepend_stream_icons && isStream(link) ? onlineIconHtml : '',
                     domain,
                     '</a>',
                     meetingIdHtml
@@ -253,28 +243,6 @@
                     deactivateLink(link);
                 }, msTillDeactivationAgain);
             }
-        });
-
-        if (options.add_stream_icon_to_online_meetings) {
-            $('body.tsml-type-onl .page-header h1').prepend(onlineIconHtml);
-            $('.list-group-item-meetings .meeting.type-onl > a').prepend(onlineIconHtml);
-
-            const standaloneStreamIcon = $('<span class="aa-berlin-addons-standalone-stream-icon">').load('/wp-content/plugins/aa-berlin-addons/assets/images/phones.svg', function () {
-                $('.entry-content a[href]:not(.aa-berlin-addons-auto-link)').each(function (i, link) {
-                    const needsOnlineIcon = isStream(link.href) || link.href.indexOf('type=ONL') !== -1;
-
-                    if (needsOnlineIcon) {
-                        $(link).prepend(standaloneStreamIcon.clone());
-                    }
-                });
-            });
-        }
-
-        $('#meetings_tbody').on('tsml_meetings_updated', function (e, data) {
-            prependStreamIconInResults(data.tbody);
-        }).each(function (i, tbody) {
-            tbody = $(tbody);
-            prependStreamIconInResults(tbody);
         });
 
         options.wrap_single_entry_links_with_h2 && $('.wp-block-latest-posts').each(function (i, latestPosts) {

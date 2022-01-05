@@ -206,6 +206,24 @@
     white-space: normal;
 }
 
+#page #content #tsml .zenzero-aa-meeting-icon {
+    width: 18px;
+    height: auto;
+    margin: 0 6px 0 0;
+    position: relative;
+    top: 2px;
+    vertical-align: baseline;
+}
+
+#page #content #tsml h1 .zenzero-aa-meeting-icon {
+    top: 2px;
+    width: 24px;
+}
+
+#page #content #tsml .zenzero-aa-meeting-icon + .zenzero-aa-meeting-icon {
+    margin-left: -4px;
+}
+
 #tsml #location .main,
 #tsml #meeting .main {
     margin-left: 0;

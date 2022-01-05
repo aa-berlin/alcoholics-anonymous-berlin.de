@@ -103,6 +103,9 @@ Domain Path: /languages
 }
 
 @media all and (min-width: 1026px) {
+    .site-header .header-teasers {
+        margin-top: 20px;
+    }
 
     .site-header .hotline-teaser {
         height: auto;
@@ -190,7 +193,7 @@ Domain Path: /languages
     position: absolute;
     padding: 60px 0 0 0;
     top: 18px;
-    right: 10px;
+    right: 12px;
     font-size: 9px;
     height: 50px;
     width: 40px;
@@ -208,19 +211,18 @@ Domain Path: /languages
 .menu-toggle:after {
     position: absolute;
     top: 27px;
-    right: 0;
+    right: 4px;
     content: "Menu";
     text-transform: uppercase;
 }
 
-.menu-toggle i {
+.menu-toggle .feather {
     display: block;
-    margin-top: 5px;
-    font-size: 25px;
+    width: 33px;
+    height: auto;
     position: absolute;
     top: 0;
     right: 0;
-    left: 0;
     bottom: 0;
 }
 
@@ -232,11 +234,12 @@ Domain Path: /languages
     }
 
     .menu-toggle:after {
-        top: 35px;
+        top: 37px;
     }
 
-    .menu-toggle i {
-        font-size: 30px;
+    .menu-toggle .feather {
+        right: 0;
+        width: 38px;
     }
 }
 
@@ -268,7 +271,7 @@ Domain Path: /languages
     background: #c8d3e5;
     color: #28539e;
     border-radius: 2px;
-    padding: 0 4px;
+    padding: 1px 4px;
 }
 
 .main-navigation  a:hover .zenzero-aa-nav-item-background {
@@ -279,19 +282,41 @@ Domain Path: /languages
     color: #28539e;
 }
 
-.nav-menu .zenzero-aa-stream-icon svg {
-    vertical-align: text-top;
-    height: 16px;
-    width: 17px;
-    margin-right: 5px;
+.main-navigation .zenzero-aa-nav-icon {
+    width: 22px;
+    height: auto;
+    position: relative;
+    vertical-align: baseline;
 }
 
-.nav-menu .zenzero-aa-stream-icon path {
-    fill: currentColor;
+.main-navigation .zenzero-aa-nav-icon.feather-coffee {
+    width: 24px;
+    top: 4px;
+    left: -4px;
+}
+
+.main-navigation .zenzero-aa-nav-icon.feather-help-circle {
+    top: 5px;
+    left: -2px;
+}
+
+.nav-menu .zenzero-aa-nav-icon.feather-headphones {
+    width: 20px;
+    top: 2px;
+    margin-right: 5px;
 }
 
 .mobile-nav .indicator {
     display: none;
+}
+
+.mobile-nav .zenzero-aa-nav-icon {
+    width: 20px;
+    height: auto;
+    margin-right: 5px;
+    vertical-align: baseline;
+    position: relative;
+    top: 2px;
 }
 
 .mobile-nav.widget .nav-menu .sub-menu {
@@ -307,12 +332,24 @@ Domain Path: /languages
     display: inline;
 }
 
-.mobile-nav > .nav-menu > li > a {
+.mobile-nav .nav-menu > li > a {
     font-weight: bold;
 }
 
-.main-navigation ul ul a {
+.main-navigation .nav-menu > li > a {
+    font-size: 16px;
+}
+
+.main-navigation .sub-menu a {
     min-width: 240px;
+}
+
+.main-navigation ul:not(.sub-menu):not(.children) > li > a {
+    padding-bottom: 1.5em;
+}
+
+.main-navigation ul:not(.sub-menu):not(.children) > li > a::before {
+    display: none;
 }
 
 .main-navigation.toggled .nav-menu {
@@ -349,13 +386,14 @@ Domain Path: /languages
     padding: 5px 0 10px 10px;
 }
 
-.site-header .showSearch i {
-    font-size: 25px;
+.site-header .showSearch .feather {
+    width: 33px;
+    height: auto;
 }
 
 .site-header .showSearch .label {
     display: inline-block;
-    margin-right: -2px;
+    margin-right: 0;
     margin-top: 2px;
     font-size: 9px;
 }
@@ -363,12 +401,12 @@ Domain Path: /languages
 @media all and (min-width: 768px) {
 
     .site-header .showSearch {
-        right: 30px;
+        right: 32px;
         top: 80px;
     }
 
-    .site-header .showSearch i {
-        font-size: 35px;
+    .site-header .showSearch .feather {
+        width: 37px;
     }
 
     .site-header .showSearch .label {
@@ -380,7 +418,7 @@ Domain Path: /languages
 .site-footer {
     display: block;
     flex-direction: column;
-    padding: 50px 100px 50px 100px;
+    padding: 50px 90px 50px 80px;
 }
 
 .site-footer a:hover,
@@ -390,6 +428,7 @@ Domain Path: /languages
 
 .site-info {
     line-height: 1.5em;
+    font-size: 14px;
 }
 
 .service-nav {
@@ -398,6 +437,7 @@ Domain Path: /languages
     text-align: center;
     margin: 0;
     line-height: 1.5em;
+    font-size: 14px;
 }
 
 @media (max-width: 767px) {
@@ -544,6 +584,15 @@ textarea {
 textarea:focus {
     border-color: #28539e;
     background: #fff;
+}
+
+.zenzero-aa-meeting-icon {
+    width: 20px;
+    height: auto;
+    margin-right: 6px;
+    position: relative;
+    top: 2px;
+    vertical-align: baseline;
 }
 
 .site-content {
