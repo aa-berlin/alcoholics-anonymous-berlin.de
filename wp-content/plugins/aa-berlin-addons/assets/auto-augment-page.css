@@ -121,6 +121,11 @@
     padding-right: 5px;
 }
 
+.aa-berlin-addons-disable-map-if-tc.tsml-type-tc #tsml #meeting #map,
+.aa-berlin-addons-disable-map-if-online.tsml-type-onl:not(.attendance-hybrid) #tsml #meeting #map {
+    border: 0;
+}
+
 .aa-berlin-addons-disable-map-if-tc.tsml-type-tc #tsml #meeting #map > div::after,
 .aa-berlin-addons-disable-map-if-online.tsml-type-onl:not(.attendance-hybrid) #tsml #meeting #map > div::after {
     display: block;
