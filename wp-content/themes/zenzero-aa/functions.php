@@ -18,6 +18,8 @@ add_action('after_setup_theme', 'zenzero_aa_register_nav_menus', 0);
 add_action('get_sidebar', 'zenzero_aa_get_sidebar', -1);
 add_filter('gettext', 'zenzero_aa_filter_gettext');
 
+add_filter('theme_mod_zenzero_theme_options_copyright', 'zenzero_aa_theme_mod_copyright', -1);
+
 function zenzero_aa_enqueue_assets() {
     wp_enqueue_style(
         'parent-style',
@@ -182,4 +184,8 @@ function zenzero_aa_filter_gettext($translated, $original = null, $domain = null
         default:
             return $translated;
     }
+}
+
+function zenzero_aa_theme_mod_copyright($text) {
+    return preg_replace('#\d+#', '2007 - ' . date('Y'), $text, 1);
 }
