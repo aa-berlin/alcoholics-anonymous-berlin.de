@@ -101,6 +101,14 @@
     margin-top: 32px;
 }
 
+#tsml #meeting .page-header h1 ~ a .feather {
+    vertical-align: middle;
+    height: 32px;
+    width: auto;
+    margin-left: -8px;
+    margin-right: -4px;
+}
+
 #tsml #meeting .page-header h1 ~ .attendance-option {
     position: absolute;
     top: 100%;
@@ -237,11 +245,16 @@
     border-radius: 2px;
 }
 
-#tsml #meeting .panel .panel-heading .panel-title .panel-title-buttons svg {
+#tsml #meeting .panel .panel-heading .panel-title .panel-title-buttons .feather {
     width: 1.5em;
     height: 1.5em;
-    position: relative;
-    top: -3px;
+    margin-top: -4px;
+    margin-right: -6px;
+    float: right;
+}
+
+#tsml #meeting .panel .panel-heading .panel-title .panel-title-buttons .feather-edit {
+    right: -7px;
 }
 
 #tsml #meeting #feedback .panel-expandable:not(.expanded) {
@@ -345,14 +358,29 @@
     transition: background-color .1s ease;
 }
 
+#tsml #meeting .panel ul.list-group .list-group-item #venmo-link .icon,
+#tsml #meeting .panel ul.list-group .list-group-item #square-link .icon,
+#tsml #meeting .panel ul.list-group .list-group-item #paypal-link .icon {
+    float: right;
+    height: 25px;
+    width: auto;
+    margin-top: -2px!important;
+    margin-right: -3px!important;
+}
+
 #tsml #meeting .panel ul.list-group .list-group-item .btn:hover,
 #tsml #meeting .panel ul.list-group .list-group-item .btn:focus {
     background: #28539e;
 }
 
-#tsml #meeting .panel ul.list-group .list-group-item .btn .icon path {
-    stroke: currentColor;
-    stroke-width: 1px;
+#page #tsml .panel ul.list-group .list-group-item .btn .feather {
+    float: right;
+    margin-right: -3px;
+    margin-top: -1px;
+}
+
+#page #tsml .panel ul.list-group .list-group-item .btn .feather-external-link {
+    margin-right: -4px;
 }
 
 #tsml #meeting .panel .list-group .list-group-item.list-group-item-location {
@@ -369,6 +397,8 @@
     color: #fff;
     border-radius: 3px;
     font-size: 100%;
+    position: relative;
+    padding-right: 40px;
     transition: background-color .1s ease;
 }
 
@@ -377,8 +407,13 @@
     background: #28539e;
 }
 
-#tsml #meeting .panel .list-group .list-group-item.list-group-item-location .glyphicon {
-    float: right;
+#tsml #meeting .panel .list-group .list-group-item.list-group-item-location .feather {
+    position: absolute;
+    top: 50%;
+    margin-top: -12px;
+    right: 9px;
+    height: 25px;
+    width: auto;
 }
 
 #tsml #meeting .col-md-4 {

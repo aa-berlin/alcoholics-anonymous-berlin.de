@@ -25,12 +25,27 @@ function zenzero_aa_fix_detail_html($html) {
     $html = preg_replace('#\bstyle=([\'"]).*?\1#', '', $html);
     // removes hardwired parens in header meeting type
     $html = preg_replace('#(<(?:span|div)[^>]+meeting_types[^>]+>)(?:<small>)?\(([^<]+)\)(?:</small>)?(</(?:span|div)>)#', '$1$2$3', $html);
-    // adds a class for online meeting buttons
+    // adds a class for the otherwise anonymous container of the online meeting buttons
     $html = str_replace('<li class="list-group-item"', '<li class="list-group-item online-meeting-info"', $html);
-    // in this order: email button, back button, email button (placeholder during substitution)
-    $html = str_replace(['glyphicon-chevron-left', 'glyphicon-chevron-right', 'glyphicon-chevron-temp-right'], ['glyphicon-chevron-temp-right', 'glyphicon-chevron-left', 'glyphicon-edit'], $html);
+    // in this order: back button
+    $html = preg_replace('#class=".*?glyphicon-chevron-right.*?"#', 'data-feather="chevron-left" class="icon-back"', $html);
+    // in this order: edit-meeting button
+    $html = preg_replace('#class=".*?glyphicon-chevron-left.*?"#', 'data-feather="edit" class="icon-update"', $html);
     // adds icon for location button
-    $html = preg_replace('#(<li.*?list-group-item-location.*?)(</h3>)#s', '$1 <span class="glyphicon glyphicon-chevron-right"></span>$2', $html, 1);
+    $html = preg_replace('#(<li.*?list-group-item-location.*?)(</h3>)#s', '$1 <i class="icon-location" data-feather="map-pin"></i>$2', $html, 1);
+    // replace route planner icon
+    $html = preg_replace('#(<a.*?tsml-directions.*?)<svg.*?</svg>(.*?</a>)#s', '$1 <i class="icon-directions" data-feather="map"></i>$2', $html, 1);
+    $html = preg_replace('#class=".*?glyphicon-share-alt.*?"#', 'class="icon-directions" data-feather="map"', $html, 1);
+    // replace video icon
+    $html = preg_replace('#(<li.*?online-meeting-info.*?href="http.*?)<svg.*?</svg>(.*?</li>)#s', '$1 <i class="icon-video" data-feather="video"></i>$2', $html, 2);
+    // replace phone icon
+    $html = preg_replace('#(<li.*?online-meeting-info.*?href="tel:.*?)<svg.*?</svg>(.*?</li>)#s', '$1 <i class="icon-phone" data-feather="phone"></i>$2', $html, 2);
+    // replace email icon
+    $html = preg_replace('#(<a.*?(?:contact|group)-email.*?)<svg.*?</svg>(.*?</a>)#s', '$1 <i class="icon-email" data-feather="mail"></i>$2', $html, 2);
+    // replace phone icon
+    $html = preg_replace('#(<a.*?(?:contact|group)-phone.*?)<svg.*?</svg>(.*?</a>)#s', '$1 <i class="icon-phone" data-feather="phone"></i>$2', $html, 2);
+    // replace link icon
+    $html = preg_replace('#(<a.*?group-website.*?)<svg.*?</svg>(.*?</a>)#s', '$1 <i class="icon-website" data-feather="external-link"></i>$2', $html, 2);
     // removes empty contact item if public contact details are enabled but no info present
     $html = preg_replace('#<li[^>]+list-group-item-group[^>]+>[\r\n\s]*<h3[^>]+>[^<>]+</h3>[\r\n\s]*</li>#s', '', $html);
 
