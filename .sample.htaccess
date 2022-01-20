@@ -1,5 +1,5 @@
 # Deny access to /wp-cron.php unless caller knows a secret key
-RewriteCond %{QUERY_STRING} !cron_key=1234567890-234567890
+RewriteCond %{QUERY_STRING} !cron_key=matching-key-from-wp-config
 RewriteRule wp-cron.php - [F]
 
 # BEGIN WordPress

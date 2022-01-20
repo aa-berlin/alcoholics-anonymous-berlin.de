@@ -119,6 +119,8 @@ function aa_berlin_addons_init() {
     add_action('check_passwords', 'aa_berlin_addons_wp_mail_from_name');
     add_filter('post_password_expires', 'aa_berlin_addons_password_expires');
     add_filter('post_password_required', 'aa_berlin_addons_password_required');
+
+    add_filter('site_url', 'aa_berlin_addons_authenticate_cron_url');
 }
 
 /**
@@ -751,4 +753,12 @@ function aa_berlin_addons_to_data_uri($file) {
     $type = mime_content_type($file);
 
     return $cached[$file] = "data:$type;base64,$content";
+}
+
+function aa_berlin_addons_authenticate_cron_url($url) {
+    if (preg_match('#cron\.php$#', $url)) {
+        return $url . '?' . WP_CRON_AUTH_PARAM;
+    }
+
+    return $url;
 }
