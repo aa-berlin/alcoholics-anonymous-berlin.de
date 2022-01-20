@@ -382,11 +382,20 @@ function aa_berlin_addons_meetings_post_submit_meta_box(WP_Post $post, $args = a
 
 function aa_berlin_addons_posts_post_submit_meta_box(WP_Post $post, $args = array()) {
     $is_checked = get_post_meta($post->ID, 'aa_berlin_addons_allow_global_passwords', true);
+    $password_html = get_post_meta($post->ID, 'aa_berlin_addons_password_page_html', true);
 
     ?>
     <div class="misc-pub-section">
         <input id="aa_berlin_addons_allow_global_passwords" name="aa_berlin_addons_allow_global_passwords" type="checkbox" value="allow_global_passwords" <?php checked($is_checked); ?> />
         <label for="aa_berlin_addons_allow_global_passwords" class="selectit"><?php echo __('If password protected, also allow for use of global passwords', 'aa-berlin-addons'); ?></label>
+        <br />
+    </div>
+    <?php
+
+    ?>
+    <div class="misc-pub-section">
+        <label for="aa_berlin_addons_password_page_html" class="selectit"><?php echo __('Show this text above the password form, if password protected', 'aa-berlin-addons'); ?></label>
+        <textarea placeholder="<?php echo __('Help text for password form', 'aa-berlin-addons') ?>" style="width:100%; min-height: 150px;" id="aa_berlin_addons_password_page_html" name="aa_berlin_addons_password_page_html"><?php echo esc_html($password_html) ?></textarea>
         <br />
     </div>
     <?php
@@ -427,15 +436,27 @@ function aa_berlin_addons_save_metaboxes_postdata($post_id, $a=1, $b=2) {
 
     if ($post_type == 'post' || $post_type == 'page') {
         $allow_global = '0';
+        $password_html = '';
 
         if (array_key_exists('aa_berlin_addons_allow_global_passwords', $_POST)) {
             $allow_global = '1';
+        }
+
+        if (array_key_exists('aa_berlin_addons_password_page_html', $_POST)) {
+            $password_html = $_POST['aa_berlin_addons_password_page_html'];
+            $password_html = trim(preg_replace('#<script.*script\s*?>#s', '', $password_html));
         }
 
         update_post_meta(
             $post_id,
             'aa_berlin_addons_allow_global_passwords',
             $allow_global
+        );
+
+        update_post_meta(
+            $post_id,
+            'aa_berlin_addons_password_page_html',
+            $password_html
         );
     }
 }
@@ -633,12 +654,17 @@ function aa_berlin_addons_the_password_form($form_html) {
         return $form_html;
     }
 
+    $password_content = get_post_meta($id, 'aa_berlin_addons_password_page_html', true);
+
+    if ($password_content) {
+        $password_content = '<div class="aa-berlin-addons-password-intro">' . $password_content . '</div>';
+    }
+
     $hash = aa_berlin_addons_get_post_id_hash($id);
     $append = "<input name='aa_berlin_addons_post_id_hash' id='aaberlinpostidhash-$id' type='hidden' value='$hash'/>";
     $append .= "<input name='aa_berlin_addons_post_id' id='aaberlinpostid-$id' type='hidden' value='$id'/>";
-    $form_html = preg_replace('#<form\b[^>]+>#', '$0 ' . $append, $form_html);
 
-    return $form_html;
+    return $password_content . preg_replace('#<form\b[^>]+>#', '$0 ' . $append, $form_html);
 }
 
 function aa_berlin_addons_get_post_id_hash($id) {
