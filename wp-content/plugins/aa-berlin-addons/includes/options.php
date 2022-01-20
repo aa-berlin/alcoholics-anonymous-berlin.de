@@ -10,7 +10,7 @@ $pages = array(
         'menu_slug' => 'aa_berlin_addons_options',
         // no parent -> top-level item
         // 'parent_slug' => 'options-general.php',
-        'icon_url' => 'dashicons-carrot',
+        'icon_url' => aa_berlin_addons_to_data_uri(__DIR__ . '/../assets/images/berlin-bear.svg'),
         'position' => 61,
         'sections' => array(
 

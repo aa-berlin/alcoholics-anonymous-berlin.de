@@ -703,3 +703,26 @@ function aa_berlin_addons_phpinfo_dashboard_widget() {
         </div>
     </div><?php
 }
+
+function aa_berlin_addons_to_data_uri($file) {
+    static $cached = [];
+
+    if (isset($cached[$file])) {
+        return $cached[$file];
+    }
+
+    if (!file_exists($file)) {
+        return $cached[$file] = false;
+    }
+
+    $content = file_get_contents($file);
+
+    if (!$content) {
+        return $cached[$file] = false;
+    }
+
+    $content = base64_encode($content);
+    $type = mime_content_type($file);
+
+    return $cached[$file] = "data:$type;base64,$content";
+}
