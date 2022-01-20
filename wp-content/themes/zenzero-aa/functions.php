@@ -178,7 +178,7 @@ function zenzero_aa_register_nav_menus() {
 function zenzero_aa_filter_gettext($translated, $original = null, $domain = null) {
     switch ($translated) {
         case 'Request a change to this listing':
-            return 'Update this meeting';
+            return 'Update this Meeting';
         case 'Use this form to submit a change to the meeting information above.':
             return 'Use this form to let us know about updates to or problems with the meeting details on this page.';
         default:

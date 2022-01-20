@@ -498,15 +498,21 @@ Domain Path: /languages
 }
 
 .edit-link a.post-edit-link {
-    background: #337ab7;
+    background: #478ac5;
+    border-radius: 2px;
+    border-bottom: 2px solid #28539e;
+    box-shadow: 0 1px 0 #28539e;
     color: #c8d3e5;
     text-transform: uppercase;
+    transition: none;
 }
 
 .edit-link a.post-edit-link:hover,
 .edit-link a.post-edit-link:focus {
     background: #28539e;
     color: #fff;
+    box-shadow: 0 1px 0 #28539e;
+    border-bottom: 2px solid #28539e;
 }
 
 h1,
@@ -544,7 +550,7 @@ select {
     padding-top: 0;
     padding-bottom: 0;
     height: 2.5em;
-    border: 1px solid #337ab7;
+    border: 1px solid #478ac5;
     transition: background-color, color .3s ease;
     background: #f7f7f7;
 }
@@ -560,8 +566,13 @@ input[type][type="reset"],
 input[type][type="submit"],
 input[type][type="button"],
 button {
+    position: relative;
+    top: -1px;
+    height: 2.4375em;
     border-radius: 2px;
-    background: #337ab7;
+    background: #478ac5;
+    border-bottom: 2px solid #28539e;
+    box-shadow: 0 1px 0 #28539e;
     color: #fff;
 }
 
@@ -574,6 +585,8 @@ input[type][type="submit"]:focus,
 input[type][type="button"]:focus,
 button:focus {
     background: #28539e;
+    border-bottom: 2px solid #28539e;
+    box-shadow: 0 1px 0 #28539e;
     color: #fff;
 }
 
@@ -582,7 +595,7 @@ textarea {
     font-size: inherit;
     height: 12em;
     transition: background-color, color .3s ease;
-    border: 1px solid #337ab7;
+    border: 1px solid #478ac5;
     background: #f7f7f7;
 }
 
@@ -654,7 +667,7 @@ textarea:focus {
 }
 
 #secondary .close-secondary {
-    color: #337AB7;
+    color: #478ac5;
     background: transparent;
     display: block;
     margin: 20px 0 20px 190px;
@@ -817,12 +830,14 @@ body.menu-opened .main-navigation.toggled .menu-main-menu-container {
 }
 
 .site-main .paging-navigation .nav-links a {
-    background: #337ab7;
+    background: #478ac5;
+    border: 0;
+    border-bottom: 2px solid #28539e;
+    box-shadow: 0 1px 0 #28539e;
     transition: color ease .3s;
     color: #c8d3e5;
-    border: 0;
     width: 50px;
-    height: 50px;
+    height: 52px;
 }
 
 .site-main .paging-navigation .nav-links a:hover,
@@ -859,7 +874,7 @@ h1.page-title,
 .entry-content .wp-block-table a,
 .entry-content li > a,
 #secondary.widget-area a {
-    color: #337ab7;
+    color: #478ac5;
     border-bottom: 1px dotted currentColor;
 }
 
@@ -895,14 +910,16 @@ h1.page-title,
     display: none;
     padding: 0;
     margin: 20px 0 0 0;
-    height: 50px;
+    height: 52px;
     width: 50px;
-    background: #337ab7;
+    background: #478ac5;
+    border: 0;
+    border-bottom: 2px solid #28539e;
+    box-shadow: 0 1px 0 #28539e;
     line-height: 50px;
     font-size: 35px;
     color: #c8d3e5;
     font-weight: bold;
-    border: 0;
     transition: none;
 }
 

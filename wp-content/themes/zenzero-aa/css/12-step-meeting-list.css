@@ -245,6 +245,10 @@
     border-radius: 2px;
 }
 
+#tsml #meeting #feedback .panel-expandable .panel-heading .panel-title {
+    font-weight: bold;
+}
+
 #tsml #meeting .panel .panel-heading .panel-title .panel-title-buttons .feather {
     width: 1.5em;
     height: 1.5em;
@@ -258,9 +262,11 @@
 }
 
 #tsml #meeting #feedback .panel-expandable:not(.expanded) {
-    border-color: #337ab7;
-    background: #337ab7;
-    border-radius: 3px;
+    border-color: #478ac5;
+    background: #478ac5;
+    border-radius: 2px;
+    border-bottom: 2px solid #28539e;
+    box-shadow: 0 1px 0 #28539e;
     color: #fff;
 }
 
@@ -273,14 +279,28 @@
     background: inherit;
 }
 
-#tsml #meeting #feedback .panel-expandable:not(.expanded) .panel-heading .panel-title {
+#tsml #meeting #feedback .panel-expandable.expanded button {
     font-weight: bold;
+    border-color: #478ac5;
+    background: #478ac5;
+    border-radius: 2px;
+    border-bottom: 2px solid #28539e;
+    box-shadow: 0 1px 0 #28539e;
+    color: #fff;
+    font-size: inherit;
+}
+
+#tsml #meeting #feedback .panel-expandable.expanded #tsml_message {
+    border-bottom: 0;
 }
 
 #tsml #meeting .panel .tsml-directions,
 #tsml #location .panel .tsml-directions {
-    border-color: #337ab7;
-    background: #337ab7;
+    border-color: #478ac5;
+    background: #478ac5;
+    border-radius: 2px;
+    border-bottom: 2px solid #28539e;
+    box-shadow: 0 1px 0 #28539e;
     color: #fff;
     /* hide anon outer panel's border */
     margin: -1px;
@@ -351,8 +371,11 @@
 }
 
 #tsml #meeting .panel ul.list-group .list-group-item .btn {
-    background: #337ab7;
-    border-color: #337ab7;
+    background: #478ac5;
+    border-color: #478ac5;
+    border-radius: 2px;
+    border-bottom: 2px solid #28539e;
+    box-shadow: 0 1px 0 #28539e;
     color: #fff;
     font-weight: bold;
     transition: background-color .1s ease;
@@ -392,13 +415,14 @@
 #tsml #meeting .panel .list-group .list-group-item.list-group-item-location .list-group-item-heading {
     border-bottom: 0;
     margin: 5px 0 15px 0;
-    padding: 10px 15px;
-    background: #337ab7;
+    padding: 10px 40px 8px 15px;
+    background: #478ac5;
+    border-bottom: 2px solid #28539e;
+    box-shadow: 0 1px 0 #28539e;
     color: #fff;
-    border-radius: 3px;
+    border-radius: 2px;
     font-size: 100%;
     position: relative;
-    padding-right: 40px;
     transition: background-color .1s ease;
 }
 
@@ -479,10 +503,10 @@
         content: "";
         background: #fff;
         position: absolute;
-        top: 0;
-        right: -15px;
-        bottom: -15px;
-        left: 0;
+        top: -1px;
+        right: -50px;
+        bottom: -50px;
+        left: -1px;
         z-index: -1;
     }
 }
@@ -535,7 +559,7 @@
     padding: 0;
     border: 0;
     font-weight: bold;
-    color: #337ab7;
+    color: #478ac5;
 }
 
 .tsml-meetings .ui-menu :hover > .ui-menu-item-wrapper {
@@ -560,7 +584,7 @@
     text-transform: uppercase;
     font-weight: bold;
     background: #ebf0f5;
-    color: #337ab7;
+    color: #478ac5;
 }
 
 #page #tsml #meetings td.name small .meeting_types {

@@ -29,11 +29,13 @@
 }
 
 #main .app-flo-forms .field-submit input[type=submit] {
-    background: #337ab7;
+    background: #478ac5;
     font-family: inherit;
     font-weight: normal;
     font-size: 16px;
     border-radius: 2px;
+    border-bottom: 2px solid #28539e;
+    box-shadow: 0 1px 0 #28539e;
     transition: background-color, color .3s ease;
 }
 
