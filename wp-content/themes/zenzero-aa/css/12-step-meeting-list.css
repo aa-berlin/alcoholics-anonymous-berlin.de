@@ -270,6 +270,14 @@
     color: #fff;
 }
 
+#tsml #meeting #feedback .panel-expandable {
+    overflow: hidden;
+}
+
+#tsml #meeting #feedback .panel-expandable .list-group {
+    overflow: visible;
+}
+
 #tsml #meeting #feedback .panel-expandable:not(.expanded):hover {
     background: #28539e;
     color: #fff;
@@ -283,11 +291,22 @@
     font-weight: bold;
     border-color: #478ac5;
     background: #478ac5;
-    border-radius: 2px;
+    border-radius: 0 0 2px 2px;
     border-bottom: 2px solid #28539e;
     box-shadow: 0 1px 0 #28539e;
     color: #fff;
     font-size: inherit;
+    height: 37px;
+    line-height: 1;
+    position: absolute;
+    top: auto;
+    left: 0;
+    bottom: 1px;
+}
+
+#tsml #meeting #feedback .panel-expandable.expanded button:hover,
+#tsml #meeting #feedback .panel-expandable.expanded button:focus {
+    background: #28539e;
 }
 
 #tsml #meeting #feedback .panel-expandable.expanded #tsml_message {
