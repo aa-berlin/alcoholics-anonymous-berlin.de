@@ -121,6 +121,7 @@ function aa_berlin_addons_init() {
     add_filter('post_password_required', 'aa_berlin_addons_password_required');
 
     add_filter('site_url', 'aa_berlin_addons_authenticate_cron_url');
+    add_action('crontrol/tab-header', 'aa_berlin_addons_print_cron_url', 20);
 }
 
 /**
@@ -761,4 +762,21 @@ function aa_berlin_addons_authenticate_cron_url($url) {
     }
 
     return $url;
+}
+
+function aa_berlin_addons_print_cron_url($tab = null) {
+    if (!defined('WP_CRON_AUTH_PARAM')) {
+        return;
+    }
+
+    $link = site_url() . '/wp-cron.php?' . WP_CRON_AUTH_PARAM;
+
+    ?>
+    <div class="notice notice-info aa-berlin-addons-cron-info">
+        <p>
+            Use the following link to setup a cron job via http or trigger a cron job manually:
+            <a href="<?php echo esc_attr($link) ?>"><?php echo esc_html($link) ?></a>
+        </p>
+    </div>
+    <?php
 }
