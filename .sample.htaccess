@@ -1,5 +1,5 @@
 # Deny access to /wp-cron.php unless caller knows a secret key
-RewriteCond %{QUERY_STRING} !cron_key=matching-key-from-wp-config
+RewriteCond %{QUERY_STRING} !cron_key=matching-key-from-wp-config-and-htaccess
 RewriteRule wp-cron.php - [F]
 
 # BEGIN WordPress
@@ -22,6 +22,7 @@ php_value expose_php 0
 Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 Header set X-Frame-Options "SAMEORIGIN"
 Header set X-Content-Type-Options "nosniff"
+Header unset Server
 
 <Files xmlrpc.php>
 order deny,allow

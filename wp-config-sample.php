@@ -70,7 +70,7 @@ $table_prefix = 'wp_';
  * AA Berlin has an actual cron job calling /wp-cron.php?doing_wp_cron itself.
  */
 define('DISABLE_WP_CRON', true);
-define('WP_CRON_AUTH_PARAM', 'cron_key=matching-key-from-htaccess');
+define('WP_CRON_AUTH_PARAM', 'cron_key=matching-key-from-wp-config-and-htaccess');
 
 /**
  * Email Config
