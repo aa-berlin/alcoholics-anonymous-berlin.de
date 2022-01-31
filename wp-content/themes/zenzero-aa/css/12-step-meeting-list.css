@@ -176,6 +176,7 @@
 
 #tsml #meetings .controls .input-group-btn:last-child > .btn {
     border-radius: 0 2px 2px 0;
+    box-shadow: none;
 }
 
 #tsml #meetings .controls ul li.active > div.expand {
