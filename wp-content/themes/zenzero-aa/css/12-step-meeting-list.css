@@ -390,7 +390,8 @@
     vertical-align: text-top;
 }
 
-#tsml #meeting .panel ul.list-group .list-group-item .btn {
+#tsml #meeting .panel ul.list-group .list-group-item .btn,
+#tsml #meeting .aa-berlin-addons-share .btn {
     background: #478ac5;
     border-color: #478ac5;
     border-radius: 2px;
@@ -412,11 +413,14 @@
 }
 
 #tsml #meeting .panel ul.list-group .list-group-item .btn:hover,
-#tsml #meeting .panel ul.list-group .list-group-item .btn:focus {
+#tsml #meeting .panel ul.list-group .list-group-item .btn:focus,
+#tsml #meeting .aa-berlin-addons-share .btn:hover,
+#tsml #meeting .aa-berlin-addons-share .btn:focus {
     background: #28539e;
 }
 
-#page #tsml .panel ul.list-group .list-group-item .btn .feather {
+#page #tsml .panel ul.list-group .list-group-item .btn .feather,
+#page #tsml .aa-berlin-addons-share .btn .feather {
     float: right;
     margin-right: -3px;
     margin-top: -1px;
@@ -636,4 +640,24 @@
 
 #page #tsml #meetings .attendance-in_person .location small:empty:after {
     content: "In-person";
+}
+
+#tsml #meeting .aa-berlin-addons-share-copy {
+    outline: none;
+}
+
+@media all and (min-width: 1026px) {
+    #tsml #meeting .panel .aa-berlin-addons-share-qr {
+        clear: left;
+        float: left;
+        margin-bottom: 15px;
+    }
+}
+
+@media all and (min-width: 1400px) {
+    #tsml #meeting .panel .aa-berlin-addons-share-qr {
+        clear: none;
+        float: right;
+        margin-bottom: -38px
+    }
 }

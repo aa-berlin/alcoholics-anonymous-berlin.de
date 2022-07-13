@@ -2,9 +2,9 @@ jQuery(function ($) {
     var button = $('<a role="link" tabindex="0" target="_blank" class="aa-berlin-addons-gso-gb-chat">').one('focus.gso-gb-chat mouseover.gso-gb-chat mousedown.gso-gb-chat touchstart.gso-gb-chat touchmove.gso-gb-chat', function () {
         button.attr('href', 'https://www.alcoholics-anonymous.org.uk/Home/Newcomers');
         button.off('.gso-gb-chat');
-    }).hover(function () {
+    }).on('mouseenter', function () {
         button.addClass('hovering');
-    }, function () {
+    }).on('mouseleave', function () {
         button.removeClass('hovering');
     }).on('focusin', function () {
         button.addClass('focussed');

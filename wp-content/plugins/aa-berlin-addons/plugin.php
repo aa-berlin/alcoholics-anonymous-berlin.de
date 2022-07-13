@@ -300,6 +300,11 @@ function aa_berlin_addons_render_common_widgets() {
     $domains = preg_split('#\s*,\s*#', $domains);
 
     ?>
+    <template id="aa-berlin-addons-share-template" class="aa-berlin-addons-template">
+        <dl class="aa-berlin-addons-share panel" data-copy-label="<?php echo esc_attr(__('Copy to Clipboard', 'aa-berlin-addons')) ?>">
+            <dt class="aa-berlin-addons-share-header"><?php echo __('Share this Meeting', 'aa-berlin-addons') ?></dt>
+        </dl>
+    </template>
     <template id="aa-berlin-addons-hint-for-augmented-links" class="aa-berlin-addons-template">
         <?php
         if (is_active_sidebar('aa_berlin_addons_hint_for_augmented_links')):

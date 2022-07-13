@@ -256,4 +256,51 @@
         });
     });
 
+    jQuery(function ($) {
+        const template = $('#aa-berlin-addons-share-template').html();
+
+        $('#meeting #map').each(function (i, map) {
+            const shareEl = $(template);
+            const canvas = $('<canvas class="aa-berlin-addons-share-qr-image">');
+
+            const url = $('link[rel="shortlink"]').attr('href');
+            const name = $('#meeting h1').text().trim();
+            const type = $('#meeting .meeting-types li > hr').closest('li').next().text().trim();
+            const time = $('#meeting .meeting-info .meeting-time').clone().find('.zenzero-aa-timezone').remove().end().text().trim();
+            const text = name + ' (' + type + ' Meeting)\n' + time + '\n' + url;
+
+            QRCode.toCanvas(canvas.get(0), text, {
+                margin: 0,
+                errorCorrectionLevel: 'M',
+                color: {
+                    dark: '#337ab7ff',
+                    light: '#ffffffff',
+                }
+            }, function (error) {
+                if (error) {
+                    console.error('qerror', error);
+                }
+            });
+
+            $('<dd class="aa-berlin-addons-share-qr">').append(canvas).appendTo(shareEl);
+            $('<dd class="aa-berlin-addons-share-text">').html(text.replace(/\n/g, '<br>')).appendTo(shareEl);
+
+            if (navigator.clipboard) {
+                const button = $('<button type=button class="btn btn-default aa-berlin-addons-share-copy">').html(shareEl.data('copyLabel'));
+                button.append('<i class="icon" data-feather=clipboard>').appendTo(shareEl);
+                button.on('click', function () {
+                    navigator.clipboard.writeText(text);
+                });
+
+                if (window.feather) {
+                    setTimeout(function () {
+                        feather.replace();
+                    }, 10);
+                }
+            }
+
+            shareEl.insertAfter(map);
+        });
+    });
+
 })(jQuery, wp.i18n.__, wp.i18n.sprintf);
