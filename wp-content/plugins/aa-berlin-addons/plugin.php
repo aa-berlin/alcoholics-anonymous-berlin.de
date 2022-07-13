@@ -21,6 +21,7 @@ require_once ABSPATH . WPINC . '/class-phpass.php';
 
 $aa_berlin_addons_last_widget_options = [];
 
+register_activation_hook(__FILE__, 'aa_berlin_addons_activate');
 add_action('init', 'aa_berlin_addons_init');
 
 function aa_berlin_addons_options($key = null) {
@@ -122,6 +123,8 @@ function aa_berlin_addons_init() {
 
     add_filter('site_url', 'aa_berlin_addons_authenticate_cron_url');
     add_action('crontrol/tab-header', 'aa_berlin_addons_print_cron_url', 20);
+
+    add_action('wp_router_generate_routes', 'aa_berlin_addons_generate_routes');
 }
 
 /**
@@ -179,6 +182,11 @@ function aa_berlin_wp_enqueue_scripts() {
         plugins_url('assets/blocks.css', __FILE__),
         array(),
         AA_BERLIN_ADDONS_VERSION
+    );
+
+    wp_enqueue_script(
+        'qrcode-js',
+        'https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.js'
     );
 
     wp_enqueue_script(
@@ -779,4 +787,80 @@ function aa_berlin_addons_print_cron_url($tab = null) {
         </p>
     </div>
     <?php
+}
+
+function aa_berlin_addons_activate() {
+    $plugin_tests = [
+        'WP_Router_load' => 'WP Router',
+    ];
+
+    foreach ($plugin_tests as $fn => $plugin) {
+        if (!function_exists($fn)) {
+            deactivate_plugins(plugin_basename(__FILE__ ));
+
+            wp_die(
+            // translators: %s is the readable plugin name
+                sprintf(__('Please install and activate %s before activating AA Berlin Addons.', 'aa-berlin-addons'), $plugin),
+                'Plugin dependency check',
+                array('back_link' => true)
+            );
+        }
+    }
+}
+
+function aa_berlin_addons_generate_routes(WP_Router $router) {
+    $router->add_route(
+        'aa-berlin-addons-short-url',
+        [
+            'path' => '^([mlpn])/(\d+)',
+            'query_vars' => [
+                'aa_berlin_addons_post_type' => 1,
+                'aa_berlin_addons_post_id' => 2,
+            ],
+            'access_callback' => true,
+            'template' => false,
+            'page_arguments' => ['aa_berlin_addons_post_type', 'aa_berlin_addons_post_id'],
+            'page_callback' => 'aa_berlin_addons_route_short_url',
+        ]
+    );
+}
+
+function aa_berlin_addons_route_short_url($post_type = null, $post_id = null) {
+    global $wpdb;
+
+    $post_id = (int)$post_id;
+    $url = '/';
+    $prefix = '/';
+
+    switch ($post_type) {
+        case 'm':
+            $post_type = 'tsml_meeting';
+            $prefix = '/meetings/';
+            break;
+        case 'l':
+            $post_type = 'tsml_location';
+            $prefix = '/locations/';
+            break;
+        case 'p':
+            $post_type = 'page';
+            break;
+        case 'n':
+            $post_type = 'post';
+            break;
+        default:
+            $post_type = null;
+            break;
+    }
+
+    if ($post_type && $post_id) {
+        $slug = $wpdb->get_var(
+                "SELECT post_name FROM wp_posts WHERE ID = $post_id AND post_status = 'publish' AND post_type = '$post_type'",
+                0
+        );
+        $url = $prefix . $slug;
+    }
+
+    header('Location: ' . $url, true, 302);
+
+    exit;
 }

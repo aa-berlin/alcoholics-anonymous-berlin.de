@@ -20,6 +20,7 @@ function deploy {
   mirror -R --exclude=\.git ./wp-content/themes/zenzero ./wp-content/themes/zenzero
   mirror -R --exclude=\.git ./wp-content/themes/zenzero-aa ./wp-content/themes/zenzero-aa
   mirror -R --exclude=\.git ./wp-content/plugins/12-step-meeting-list ./wp-content/plugins/12-step-meeting-list
+  mirror -R --exclude=\.git ./wp-content/plugins/wp-router ./wp-content/plugins/wp-router
   mirror -R --exclude=\.git ./wp-content/plugins/aa-berlin-addons ./wp-content/plugins/aa-berlin-addons
   put .version
 EOD

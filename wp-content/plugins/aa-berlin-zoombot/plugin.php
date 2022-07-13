@@ -41,7 +41,6 @@ function aa_berlin_zoombot_activate() {
 function aa_berlin_zoombot_ensure_dependencies() {
     $plugin_tests = [
         'aa_berlin_addons_init' => 'AA Berlin Addons',
-        'WP_Router_load' => 'WP Router',
     ];
 
     foreach ($plugin_tests as $fn => $plugin) {
@@ -54,8 +53,6 @@ function aa_berlin_zoombot_ensure_dependencies() {
                 'Plugin dependency check',
                 array('back_link' => true)
             );
-
-            return;
         }
     }
 }
