@@ -3,10 +3,10 @@
 	url = git@github.com:aa-berlin/12-step-meeting-list.git
 [submodule "wp-content/plugins/aa-berlin-addons/includes/RationalOptionPages"]
 	path = wp-content/plugins/aa-berlin-addons/includes/RationalOptionPages
-	url = git@github.com:jeremyHixon/RationalOptionPages.git
+	url = git@github.com:aa-berlin/RationalOptionPages.git
 [submodule "wp-content/plugins/wp-router"]
 	path = wp-content/plugins/wp-router
-	url = git@github.com:jbrinley/WP-Router.git
+	url = git@github.com:aa-berlin/WP-Router.git
 [submodule "wp-content/themes/zenzero"]
 	path = wp-content/themes/zenzero
 	url = git@github.com:aa-berlin/zenzero.git
