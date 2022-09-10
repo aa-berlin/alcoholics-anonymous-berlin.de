@@ -84,7 +84,7 @@ function zenzero_aa_patch_parent_styles() {
     }
 
     // also load semi-bold, as open sans bold is kinda ugly
-    $rule->src = preg_replace('#(:\d+(?:,\d+)*),700#', '$1,600', $rule->src);
+    $rule->src = preg_replace('#([@:]\d+(?:[,;]\d+)*);700#', '$1;600', $rule->src);
 }
 
 function zenzero_aa_widgets_init() {
