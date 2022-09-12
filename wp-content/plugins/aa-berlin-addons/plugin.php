@@ -125,6 +125,9 @@ function aa_berlin_addons_init() {
     add_action('crontrol/tab-header', 'aa_berlin_addons_print_cron_url', 20);
 
     add_action('wp_router_generate_routes', 'aa_berlin_addons_generate_routes');
+
+    add_action('admin_init', 'aa_berlin_addons_admin_init');
+    add_action('admin_menu', 'aa_berlin_addons_admin_menu');
 }
 
 /**
@@ -719,8 +722,14 @@ function aa_berlin_addons_wp_dashboard_setup() {
 }
 
 function aa_berlin_addons_phpinfo_dashboard_widget() {
+    $isAllowed = current_user_can('manage_options');
+
     ob_start();
-    phpinfo();
+    if ($isAllowed) {
+        phpinfo();
+    } else {
+        echo 'You must be an Administrator to view this info.';
+    }
     $infoHtml = ob_get_clean();
 
     $infoHtml = preg_replace_callback('#<style.*?</style>#s', function ($styles) {
@@ -737,11 +746,7 @@ function aa_berlin_addons_phpinfo_dashboard_widget() {
         </button>
 
         <div class="aa-berlin-addons-phpinfo" style="height: 100%; width: 100%; position: absolute; top: 40px; left: 0; overflow: scroll; background: #fff; font-size: 16px;">
-            <?php if (current_user_can('manage_options')): ?>
-                <?php echo $infoHtml ?>
-            <?php else: ?>
-                You must be an Administrator to view this info.
-            <?php endif ?>
+            <?php echo $infoHtml ?>
         </div>
     </div><?php
 }
@@ -868,4 +873,201 @@ function aa_berlin_addons_route_short_url($post_type = null, $post_id = null) {
     header('Location: ' . $url, true, 302);
 
     exit;
+}
+
+function aa_berlin_addons_admin_init() {
+    ob_start();
+}
+
+function aa_berlin_addons_admin_menu() {
+    add_management_page( 'Administer Database (Adminer)', 'Administer Database (Adminer)', 'manage_options', 'aa-berlin-addons-adminer', 'aa_berlin_addons_adminer' );
+    add_management_page( 'Edit Data in Database (Adminer Editor)', 'Edit Data in Database (Adminer Editor)', 'manage_options', 'aa-berlin-addons-adminer-editor', 'aa_berlin_addons_adminer' );
+}
+
+function aa_berlin_addons_adminer() {
+    if (!current_user_can('manage_options')) {
+        echo 'You must be an administrator to view this content!';
+    }
+
+    $adminerVersion = '4.8.1';
+    // from the menu item name extract either "adminer" or "editor" to be used as the php-file of adminer to include
+    $adminerMode = preg_replace('#^.+-(\w+)$#', '$1', $GLOBALS['plugin_page']);
+    $adminerRoot = __DIR__ . '/includes/adminer_v' . $adminerVersion . '_';
+    $adminerDir = glob($adminerRoot . '*')[0] ?? null;
+
+    $rawRepoUrl = 'https://raw.githubusercontent.com/vrana/adminer/v' . $adminerVersion;
+    $releasesUrl = 'https://github.com/vrana/adminer/releases/download/v' . $adminerVersion;
+
+    $filesToFetch = [
+        'adminer.php' => "$releasesUrl/adminer-$adminerVersion-en.php",
+        'editor.php' => "$releasesUrl/editor-$adminerVersion-en.php",
+        'adminer.css' => 'https://raw.githubusercontent.com/pepa-linha/Adminer-Design-Dark/master/adminer.css',
+        'plugins/plugin.php' => "$rawRepoUrl/plugins/plugin.php",
+        'plugins/login-password-less.php' => "$rawRepoUrl/plugins/login-password-less.php",
+        'plugins/login-servers.php' => "$rawRepoUrl/plugins/login-servers.php",
+    ];
+
+    if (!$adminerDir) {
+        $randomSuffix = str_replace('=', rand(0, 9), base64_encode(random_bytes(20)));
+        $adminerDir = $adminerRoot . $randomSuffix;
+
+        if (!mkdir($adminerDir, 0755)) {
+            die('Could not create adminer base dir!');
+        }
+
+        $codeHeader = <<<'EOFCODE'
+<?php
+// Prepended by aa-berlin-addons WordPress plugin (begin)
+// This copy of Adminer has been refactored automatically to make it work in WordPress' runtime.
+// The Adminer license agreement remains otherwise unchanged, we believe :)
+if (!defined('AA_BERLIN_ADDONS_ADMINER_DIR')) {
+    // do not allow for direct access
+    die('Access denied.');
+}
+// Prepended by aa-berlin-addons WordPress plugin (end)
+?>
+EOFCODE;
+
+        foreach ($filesToFetch as $file => $url) {
+            $content = file_get_contents($url);
+            $subDir = dirname($file);
+            if (!$subDir || $subDir == '.') {
+                $targetDir = $adminerDir;
+            } else {
+                $targetDir = $adminerDir . '/' . $subDir;
+            }
+            $file = basename($file);
+            if (!$content) {
+                die("Could not fetch $file!");
+            }
+            if (!is_dir($targetDir) && !mkdir($targetDir, 0755, true)) {
+                die("Could not create adminer sub directory $subDir!");
+            }
+            if (preg_match('#\.php$#', $file)) {
+                // rename some functions conflicting with wp
+                $content = preg_replace('#(js_escape|get_temp_dir)#', 'adminer_$1', $content);
+                // adminer uses exit a lot to exit early; we need to rewrite its output though, so wrap the call to exit in our own function
+                $content = preg_replace('#exit\s*(?:\(\s*(\d*)\s*\))?\s*;#', 'aa_berlin_addons_adminer_exit($1);', $content);
+                $content = $codeHeader . $content;
+            }
+            $targetFile = "$targetDir/$file";
+            if (!file_put_contents($targetFile, $content)) {
+                die("Could not write $file!");
+            }
+        }
+    }
+
+    @error_reporting(E_ERROR);
+    @ini_set('display_errors', 0);
+
+    // buffer was started by aa_berlin_addons_admin_init()
+    ob_end_clean();
+
+    // variable number of output buffers is being used by adminer, so init a few to brute force capture them later
+    ob_start();
+    ob_start();
+    ob_start();
+
+    chdir($adminerDir);
+
+    $file = $_GET['file'] ?? null;
+
+    if ($file == 'adminer.css') {
+        header('Content-Type: text/css');
+        echo file_get_contents("$adminerDir/adminer.css");
+        exit;
+    }
+
+    define('AA_BERLIN_ADDONS_ADMINER_DIR', $adminerDir);
+
+    function adminer_object() {
+        return aa_berlin_addons_adminer_object();
+    }
+
+    require "$adminerDir/$adminerMode.php";
+
+    // call exit handler in case it wasnt called by adminer
+    aa_berlin_addons_adminer_exit();
+}
+
+function aa_berlin_addons_adminer_object() {
+    $adminerDir = AA_BERLIN_ADDONS_ADMINER_DIR;
+
+    require "$adminerDir/plugins/plugin.php";
+    require "$adminerDir/plugins/login-password-less.php";
+    require "$adminerDir/plugins/login-servers.php";
+
+    return new AdminerPlugin([
+// disabled as not getting it to work
+//        new AdminerLoginPasswordLess(password_hash(DB_PASSWORD, PASSWORD_DEFAULT)),
+//        new AdminerLoginServers([
+//            'WordPress' => [
+//                'db' => DB_NAME,
+//                'username' => DB_USER,
+//                'server' => DB_HOST,
+//                'driver' => 'mysql',
+//            ],
+//        ]),
+    ]);
+}
+
+function aa_berlin_addons_adminer_exit($exitCode = 0) {
+    // these buffers were started by aa_berlin_addons_adminer() to defo catch anything rendered by adminer
+    $html = ob_get_clean();
+    $html = ob_get_clean() . $html;
+    $html = ob_get_clean() . $html;
+
+    $page = $_GET['page'] ?? null;
+    $page = preg_replace('#[^a-zA-Z0-9_-]#', '', $page);
+
+    $baseLink = $GLOBALS['pagenow'] ?? null;
+
+    $html = preg_replace("#$baseLink\?[^\"'`\s]+#", '$0&page=' . $page, $html);
+
+    // insert the wordpress page setting into each form
+    $driverField = '';
+    if (!strpos($html, 'name="auth[driver]"')) {
+        // as well as the auth[driver] field, as it sometimes is referenced by js but not rendered
+        // $driverField = '<input type=text style="display:none" name="auth[driver]" onchange="console.log(`authdriverchange`);" value=mysql>';
+    }
+    $html = preg_replace('#<form[^>{}]*?>#s', "$0$driverField<input type=hidden name=page value='$page'>", $html);
+
+    // replace physical link to adminer.css with one that passes through here
+    $html = preg_replace('#adminer\.css\??#', "$baseLink?page=$page&file=adminer.css&", $html);
+
+    // replace inline-event handlers with script tags to appease csp
+    $html = preg_replace_callback('#<(?:input|textarea|form|select|body)[^>{}]*?>#s', function ($match) {
+        if (!preg_match_all('#\s((on\w+)=([\'"])([^><]+)\3)#s', $match[0], $allHandlers, PREG_SET_ORDER)) {
+            return $match[0];
+        }
+
+        $patched = preg_replace('#\s(on\w+=)#s', 'data-disabled-$1', $match[0]);
+
+        $assignments = [];
+        foreach ($allHandlers as $handler) {
+            list($match, $attribute, $name, $quote, $code) = $handler;
+            $assignments[] = "tag.$name=function(){{$code}};";
+        }
+        $assignments = implode('', $assignments);
+
+        return $patched . "<script>(function(){let scripts=document.getElementsByTagName('script');const tag=scripts[scripts.length-1].previousSibling;$assignments})();</script>";
+    }, $html);
+
+    // add CSP nonces to scripts where still missing
+    $html = preg_replace_callback('#(<script[^>{}]*?)>#s', function ($match) {
+        if (!strpos($match[0], 'nonce=')) {
+            return $match[1] . ' nonce="' . get_nonce() . '">';
+        }
+
+        return $match[0];
+    }, $html);
+
+    foreach (headers_list() as $header) {
+        $header = preg_replace("#$baseLink\?[^\"'`\s]+#", '$0&page=' . $page, $header);
+        header($header);
+    }
+
+    echo $html;
+
+    exit($exitCode);
 }
