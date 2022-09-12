@@ -265,9 +265,11 @@
 
             const url = $('link[rel="shortlink"]').attr('href') + '#';
             const name = $('#meeting h1').text().trim();
-            const isOpen = !$(document.body).is('.tsml-type-c');
-            const isOnline = !$(document.body).is('.attendance-hybrid, .attendance-in_person');
-            const type = (isOnline ? 'Online Only, ' : '') + (isOpen ? 'Open' : 'Closed');
+            const body = $(document.body);
+            const isInactive = body.is('.attendance-inactive');
+            const isOpen = !body.is('.tsml-type-c');
+            const isOnline = !isInactive && !body.is('.attendance-hybrid, .attendance-in_person');
+            const type = (isInactive ? 'INACTIVE, ' : '') + (isOnline ? 'Online Only, ' : '') + (isOpen ? 'Open' : 'Closed') + ' Meeting';
             const time = $('#meeting .meeting-info .meeting-time').clone().find('.zenzero-aa-timezone').remove().end().text().trim();
             const address = isOnline ? '' : '\n' + $('#meeting .location-address').html().replace(/[\r\n\s]*<br>[\r\n\s]*/g, ', ').trim();
             const text = url + '\n' + name + ' (' + type + ')\n' + time + address;
