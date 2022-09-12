@@ -263,15 +263,19 @@
             const shareEl = $(template);
             const canvas = $('<canvas class="aa-berlin-addons-share-qr-image">');
 
-            const url = $('link[rel="shortlink"]').attr('href');
+            const url = $('link[rel="shortlink"]').attr('href') + '#';
             const name = $('#meeting h1').text().trim();
-            const type = $('#meeting .meeting-types li > hr').closest('li').next().text().trim();
+            const isOpen = !$(document.body).is('.tsml-type-c');
+            const isOnline = !$(document.body).is('.attendance-hybrid, .attendance-in_person');
+            const type = (isOnline ? 'Online Only, ' : '') + (isOpen ? 'Open' : 'Closed');
             const time = $('#meeting .meeting-info .meeting-time').clone().find('.zenzero-aa-timezone').remove().end().text().trim();
-            const text = name + ' (' + type + ' Meeting)\n' + time + '\n' + url;
+            const address = isOnline ? '' : '\n' + $('#meeting .location-address').html().replace(/[\r\n\s]*<br>[\r\n\s]*/g, ', ').trim();
+            const text = url + '\n' + name + ' (' + type + ')\n' + time + address;
 
             QRCode.toCanvas(canvas.get(0), text, {
                 margin: 0,
                 errorCorrectionLevel: 'M',
+                width: 180,
                 color: {
                     dark: '#337ab7ff',
                     light: '#ffffffff',
