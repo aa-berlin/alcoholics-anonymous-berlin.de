@@ -118,6 +118,18 @@ if (function_exists('tsml_custom_types')) {
     ]);
 }
 
+if (function_exists('tsml_custom_addresses')) {
+    tsml_custom_addresses([
+        'Neukölln, Berlin, Germany' => [
+            'formatted_address' => 'Neukölln, Berlin, Germany',
+            'city' => 'Berlin',
+            'latitude' => 52.4407709,
+            'longitude' => 13.4445071,
+            'approximate' => 'no',
+        ],
+    ]);
+}
+
 // This replaces the builtin meeting-schedule with our own styling.
 // This function should be kept up-to-date with tsml_ajax_pdf().
 function zenzero_aa_tsml_ajax_pdf() {
