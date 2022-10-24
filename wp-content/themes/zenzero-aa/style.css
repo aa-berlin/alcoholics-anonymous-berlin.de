@@ -676,6 +676,7 @@ textarea:focus {
     font-size: inherit;
     text-transform: uppercase;
     border: 0;
+    box-shadow: none;
 }
 
 #secondary .close-secondary i {
@@ -692,6 +693,19 @@ body.menu-opened #page {
 
 body.menu-opened .main-navigation.toggled .menu-main-menu-container {
     display: none;
+}
+
+body.menu-opened::after {
+    content: "";
+    position: fixed;
+    /* just below off-canvas menu */
+    z-index: 98;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.3;
 }
 
 #secondary.widget-area .nano-content {

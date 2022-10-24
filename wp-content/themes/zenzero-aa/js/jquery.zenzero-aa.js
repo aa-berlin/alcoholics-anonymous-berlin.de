@@ -81,6 +81,13 @@ jQuery(function ($) {
 });
 
 jQuery(function ($) {
+
+    const body = $('body').on('click', function (e) {
+        if (body.hasClass('menu-opened') && !$(e.target).closest('#secondary, .menu-toggle').length) {
+            closeSecondary();
+        }
+    });
+
     $('.menu-toggle').on('click', function () {
         $('body').toggleClass('menu-opened');
     }).one('click', function () {
@@ -88,16 +95,18 @@ jQuery(function ($) {
         const nav = $('<nav class="mobile-nav widget">');
         const mobilePanel = secondary.find('.nano-content');
 
-        $('<button class="close-secondary">').on('click', function () {
-            $('body').removeClass('menu-opened');
-            $('.main-navigation').removeClass('toggled');
-        }).html('<i class="fa fa-close"></i>' + $('#close-search').text()).appendTo(nav);
+        $('<button class="close-secondary">').on('click', closeSecondary).html('<i class="fa fa-close"></i>' + $('#close-search').text()).appendTo(nav);
 
         $('#menu-main-menu').clone().attr('id', 'menu-main-menu-mobile').appendTo(nav);
         nav.appendTo(mobilePanel);
 
         $('#sidebar .sidebar-content').clone().children().appendTo(mobilePanel);
     });
+
+    function closeSecondary() {
+        body.removeClass('menu-opened');
+        $('.main-navigation').removeClass('toggled');
+    }
 });
 
 jQuery(function ($) {
