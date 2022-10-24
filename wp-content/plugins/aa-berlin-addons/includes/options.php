@@ -152,7 +152,7 @@ $pages = array(
                     array(
                         'title' => __('Disable map on meeting detail', 'aa-berlin-addons'),
                         'type' => 'checkbox',
-                        'text' => 'Overlays the map with a bold red warning, if the meeting is not also marked as "Face-to-Face".',
+                        'text' => 'Overlays the map with a bold warning, if the meeting is not also marked as "Face-to-Face".',
                         'id' => 'disable_map_if_online',
                     ),
 
@@ -180,6 +180,7 @@ $pages = array(
                     array(
                         'title' => __('Disable map on meeting detail', 'aa-berlin-addons'),
                         'type' => 'checkbox',
+                        'text' => 'Overlays the map with a bold warning, that it cannot be visited in person.',
                         'id' => 'disable_map_if_tc',
                     ),
 
@@ -288,6 +289,14 @@ $pages = array(
                         'type' => 'checkbox',
                         'id' => 'activate_adminer',
                         'text' => 'Check this to enable In-WordPress access to the database via Adminer. (Admin status is required anyways, so this checkbox is mainly to prevent accidental access and mishaps :)',
+                    ),
+
+                    array(
+                        'title' => __('Documentation Widget on Dashboard', 'aa-berlin-addons'),
+                        'type' => 'wp_editor',
+                        'value' => '',
+                        'text' => 'Shown on the Dashboard to an admin user; put useful hints and links to documentation here.',
+                        'id' => 'dashboard_widget_docs',
                     ),
                 ),
             ),

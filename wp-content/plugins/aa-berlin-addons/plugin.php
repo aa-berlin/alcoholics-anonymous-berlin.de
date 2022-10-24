@@ -753,6 +753,7 @@ function aa_berlin_addons_widget_posts_args($options) {
 
 function aa_berlin_addons_wp_dashboard_setup() {
     wp_add_dashboard_widget('aa_berlin_addons_phpinfo_dashboard_widget', 'phpinfo()', 'aa_berlin_addons_phpinfo_dashboard_widget');
+    wp_add_dashboard_widget('aa_berlin_addons_dashboard_docs_widget', 'Berlin Intergroup', 'aa_berlin_addons_dashboard_docs_widget');
 }
 
 function aa_berlin_addons_phpinfo_dashboard_widget() {
@@ -782,6 +783,14 @@ function aa_berlin_addons_phpinfo_dashboard_widget() {
         <div class="aa-berlin-addons-phpinfo" style="height: 100%; width: 100%; position: absolute; top: 40px; left: 0; overflow: scroll; background: #fff; font-size: 16px;">
             <?php echo $infoHtml ?>
         </div>
+    </div><?php
+}
+
+function aa_berlin_addons_dashboard_docs_widget() {
+    $infoHtml = aa_berlin_addons_options('dashboard_widget_docs');
+
+    ?><div class="aa-berlin-addons-docs-widget" style="overflow: hidden; min-height: 300px; max-width: 100%; position: relative;">
+        <?php echo $infoHtml ?>
     </div><?php
 }
 
