@@ -41,12 +41,13 @@ $pages = array(
                         'id' => 'append_zoom_meeting_id',
                     ),
 
-                    array(
-                        'title' => __('Disable online meeting links, if meeting is not currently on', 'aa-berlin-addons'),
-                        'type' => 'checkbox',
-                        'text' => 'Disables online meeting links 30min before and after the meetings scheduled start and end time.',
-                        'id' => 'disable_outside_schedule',
-                    ),
+// TODO: fix or remove feature; date comparison not DST compatible yet
+//                    array(
+//                        'title' => __('Disable online meeting links, if meeting is not currently on', 'aa-berlin-addons'),
+//                        'type' => 'checkbox',
+//                        'text' => 'Disables online meeting links 30min before and after the meetings scheduled start and end time.',
+//                        'id' => 'disable_outside_schedule',
+//                    ),
 
                     array(
                         'title' => __('Show the following hint text as a notice of this severity', 'aa-berlin-addons'),
@@ -210,6 +211,13 @@ $pages = array(
                         'text' => 'List of meeting types (keys only) that should never be promoted as textual flags next to the meeting name; separated by comma; use this to switch certain types off',
                         'id' => 'custom_type_flags_remove',
                     ),
+
+                    array(
+                        'title' => __('Activate QR code and copy-button for sharing of meetings', 'aa-berlin-addons'),
+                        'type' => 'checkbox',
+                        'text' => 'Activate to display a QR code and text field with copy button so that meeting data can be shared more easily.',
+                        'id' => 'enable_sharing',
+                    ),
                 ),
             ),
 
@@ -273,6 +281,13 @@ $pages = array(
                         'type' => 'checkbox',
                         'id' => 'no_pw_if_logged_in',
                         'text' => 'Check this, if being logged into the backend also clears all password protections for protected pages.',
+                    ),
+
+                    array(
+                        'title' => __('Activate Adminer integration', 'aa-berlin-addons'),
+                        'type' => 'checkbox',
+                        'id' => 'activate_adminer',
+                        'text' => 'Check this to enable In-WordPress access to the database via Adminer. (Admin status is required anyways, so this checkbox is mainly to prevent accidental access and mishaps :)',
                     ),
                 ),
             ),

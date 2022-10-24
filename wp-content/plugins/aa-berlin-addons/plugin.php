@@ -187,10 +187,12 @@ function aa_berlin_wp_enqueue_scripts() {
         AA_BERLIN_ADDONS_VERSION
     );
 
-    wp_enqueue_script(
-        'qrcode-js',
-        'https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.js'
-    );
+    if (aa_berlin_addons_options('enable_sharing')) {
+        wp_enqueue_script(
+            'qrcode-js',
+            'https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.js'
+        );
+    }
 
     wp_enqueue_script(
         'aa-berlin-auto-augment-page',
@@ -302,12 +304,17 @@ function aa_berlin_addons_render_common_widgets() {
     $domains = aa_berlin_addons_options('stream_domains_pattern');
     $domains = preg_split('#\s*,\s*#', $domains);
 
+    if (aa_berlin_addons_options('enable_sharing')):
+        ?>
+        <template id="aa-berlin-addons-share-template" class="aa-berlin-addons-template">
+            <dl class="aa-berlin-addons-share panel" data-copy-label="<?php echo esc_attr(__('Copy to Clipboard', 'aa-berlin-addons')) ?>">
+                <dt class="aa-berlin-addons-share-header"><?php echo __('Share this Meeting', 'aa-berlin-addons') ?></dt>
+            </dl>
+        </template>
+        <?php
+    endif;
+
     ?>
-    <template id="aa-berlin-addons-share-template" class="aa-berlin-addons-template">
-        <dl class="aa-berlin-addons-share panel" data-copy-label="<?php echo esc_attr(__('Copy to Clipboard', 'aa-berlin-addons')) ?>">
-            <dt class="aa-berlin-addons-share-header"><?php echo __('Share this Meeting', 'aa-berlin-addons') ?></dt>
-        </dl>
-    </template>
     <template id="aa-berlin-addons-hint-for-augmented-links" class="aa-berlin-addons-template">
         <?php
         if (is_active_sidebar('aa_berlin_addons_hint_for_augmented_links')):
@@ -880,8 +887,13 @@ function aa_berlin_addons_admin_init() {
 }
 
 function aa_berlin_addons_admin_menu() {
+    if (!aa_berlin_addons_options('activate_adminer')) {
+        return;
+    }
+
     add_management_page( 'Administer Database (Adminer)', 'Administer Database (Adminer)', 'manage_options', 'aa-berlin-addons-adminer', 'aa_berlin_addons_adminer' );
-    add_management_page( 'Edit Data in Database (Adminer Editor)', 'Edit Data in Database (Adminer Editor)', 'manage_options', 'aa-berlin-addons-adminer-editor', 'aa_berlin_addons_adminer' );
+    // TODO: fix, editor behaves weirdly
+    // add_management_page( 'Edit Data in Database (Adminer Editor)', 'Edit Database (Adminer Editor)', 'manage_options', 'aa-berlin-addons-adminer-editor', 'aa_berlin_addons_adminer' );
 }
 
 function aa_berlin_addons_adminer() {
@@ -898,13 +910,16 @@ function aa_berlin_addons_adminer() {
     $rawRepoUrl = 'https://raw.githubusercontent.com/vrana/adminer/v' . $adminerVersion;
     $releasesUrl = 'https://github.com/vrana/adminer/releases/download/v' . $adminerVersion;
 
+    $pematonRawRepoUrl = 'https://raw.githubusercontent.com/pematon/adminer-plugins/v1.7.1';
+
     $filesToFetch = [
         'adminer.php' => "$releasesUrl/adminer-$adminerVersion-en.php",
         'editor.php' => "$releasesUrl/editor-$adminerVersion-en.php",
         'adminer.css' => 'https://raw.githubusercontent.com/pepa-linha/Adminer-Design-Dark/master/adminer.css',
         'plugins/plugin.php' => "$rawRepoUrl/plugins/plugin.php",
-        'plugins/login-password-less.php' => "$rawRepoUrl/plugins/login-password-less.php",
-        'plugins/login-servers.php' => "$rawRepoUrl/plugins/login-servers.php",
+        'plugins/AdminerJsonPreview.php' => "$pematonRawRepoUrl/AdminerJsonPreview.php",
+        'plugins/AdminerSimpleMenu.php' => "$pematonRawRepoUrl/AdminerSimpleMenu.php",
+        'plugins/AdminerCollations.php' => "$pematonRawRepoUrl/AdminerCollations.php",
     ];
 
     if (!$adminerDir) {
@@ -994,20 +1009,52 @@ function aa_berlin_addons_adminer_object() {
     $adminerDir = AA_BERLIN_ADDONS_ADMINER_DIR;
 
     require "$adminerDir/plugins/plugin.php";
-    require "$adminerDir/plugins/login-password-less.php";
-    require "$adminerDir/plugins/login-servers.php";
+    require "$adminerDir/plugins/AdminerJsonPreview.php";
+    require "$adminerDir/plugins/AdminerSimpleMenu.php";
+    require "$adminerDir/plugins/AdminerCollations.php";
+
+    class AdminerWordpressConnection {
+        public function serverName($server = null) {
+            return 'WordPress DB';
+        }
+        public function database() {
+            return DB_NAME;
+        }
+        public function databases() {
+            return [DB_NAME];
+        }
+        public function credentials() {
+            return [DB_HOST, DB_USER, DB_PASSWORD];
+        }
+        public function loginForm() {
+            $parentImpl = new Adminer();
+
+            ?><div class="patched-login-form"><?php
+                $parentImpl->loginForm();
+            ?></div>
+            <style>
+                .patched-login-form table {
+                    display: none;
+                }
+            </style>
+            <?php
+
+            return false;
+        }
+        public function login($login, $password) {
+            set_password(DRIVER, DB_HOST, DB_USER, DB_PASSWORD);
+            return true;
+        }
+    }
 
     return new AdminerPlugin([
-// disabled as not getting it to work
-//        new AdminerLoginPasswordLess(password_hash(DB_PASSWORD, PASSWORD_DEFAULT)),
-//        new AdminerLoginServers([
-//            'WordPress' => [
-//                'db' => DB_NAME,
-//                'username' => DB_USER,
-//                'server' => DB_HOST,
-//                'driver' => 'mysql',
-//            ],
-//        ]),
+            new AdminerWordpressConnection(),
+        new AdminerCollations([
+            'utf8mb4_general_ci',
+            'utf8mb4_unicode_ci',
+        ]),
+        new AdminerJsonPreview(),
+        new AdminerSimpleMenu(),
     ]);
 }
 

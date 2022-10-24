@@ -259,6 +259,10 @@
     jQuery(function ($) {
         const template = $('#aa-berlin-addons-share-template').html();
 
+        if (!template) {
+            return;
+        }
+
         $('#meeting #map').each(function (i, map) {
             const shareEl = $(template);
             const canvas = $('<canvas class="aa-berlin-addons-share-qr-image">');
