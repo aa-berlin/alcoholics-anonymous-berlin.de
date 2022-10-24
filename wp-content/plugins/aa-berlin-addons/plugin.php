@@ -791,6 +791,13 @@ function aa_berlin_addons_dashboard_docs_widget() {
 
     ?><div class="aa-berlin-addons-docs-widget" style="overflow: hidden; min-height: 300px; max-width: 100%; position: relative;">
         <?php echo $infoHtml ?>
+        <style>
+            .aa-berlin-addons-docs-widget ul {
+                list-style: inside disc;
+                padding-left: 20px;
+                text-indent: -20px;
+            }
+        </style>
     </div><?php
 }
 
