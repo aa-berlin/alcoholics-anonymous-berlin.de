@@ -369,25 +369,27 @@ function aa_berlin_addons_shortcode_timezone_info() {
 
 function aa_berlin_addons_add_metaboxes() {
     add_meta_box(
-            'aaberlinaddonspasswordlessmetabox',
-            __('AA B. Addons', 'aa-berlin-addons'),
-            'aa_berlin_addons_meetings_post_submit_meta_box',
-            'tsml_meeting',
-            'side'
+        'aaberlinaddonspasswordlessmetabox',
+        __('AA B. Addons', 'aa-berlin-addons'),
+        'aa_berlin_addons_meetings_post_submit_meta_box',
+        'tsml_meeting',
+        'side'
     );
 
     add_meta_box(
-            'aaberlinaddonsextrasmetabox',
-            __('AA B. Addons', 'aa-berlin-addons'),
-            'aa_berlin_addons_posts_post_submit_meta_box',
-            ['page', 'post'],
-            'side'
+        'aaberlinaddonsextrasmetabox',
+        __('AA B. Addons', 'aa-berlin-addons'),
+        'aa_berlin_addons_posts_post_submit_meta_box',
+        ['page', 'post'],
+        'side'
     );
 }
 
 function aa_berlin_addons_meetings_post_submit_meta_box(WP_Post $post, $args = array()) {
     $force_online = get_post_meta($post->ID, 'aa_berlin_addons_force_online', true);
     $is_passwordless = get_post_meta($post->ID, 'aa_berlin_addons_passwordless', true);
+
+    aa_berlin_addons_meta_box_private_note($post, $args);
 
     ?>
     <div class="misc-pub-section">
@@ -410,6 +412,8 @@ function aa_berlin_addons_posts_post_submit_meta_box(WP_Post $post, $args = arra
     $is_checked = get_post_meta($post->ID, 'aa_berlin_addons_allow_global_passwords', true);
     $password_html = get_post_meta($post->ID, 'aa_berlin_addons_password_page_html', true);
 
+    aa_berlin_addons_meta_box_private_note($post, $args);
+
     ?>
     <div class="misc-pub-section">
         <input id="aa_berlin_addons_allow_global_passwords" name="aa_berlin_addons_allow_global_passwords" type="checkbox" value="allow_global_passwords" <?php checked($is_checked); ?> />
@@ -422,6 +426,18 @@ function aa_berlin_addons_posts_post_submit_meta_box(WP_Post $post, $args = arra
     <div class="misc-pub-section">
         <label for="aa_berlin_addons_password_page_html" class="selectit"><?php echo __('Show this text above the password form, if password protected', 'aa-berlin-addons'); ?></label>
         <textarea placeholder="<?php echo __('Help text for password form', 'aa-berlin-addons') ?>" style="width:100%; min-height: 150px;" id="aa_berlin_addons_password_page_html" name="aa_berlin_addons_password_page_html"><?php echo esc_html($password_html) ?></textarea>
+        <br />
+    </div>
+    <?php
+}
+
+function aa_berlin_addons_meta_box_private_note(WP_Post $post, $args = array()) {
+    $private_note = get_post_meta($post->ID, 'aa_berlin_addons_private_note', true);
+
+    ?>
+    <div class="misc-pub-section">
+        <label for="aa_berlin_addons_private_note" class="selectit"><?php echo __('Notes about this post (never shown to end users)', 'aa-berlin-addons'); ?></label>
+        <textarea placeholder="<?php echo __('Notes', 'aa-berlin-addons') ?>" style="width:100%; min-height: 150px;" id="aa_berlin_addons_private_note" name="aa_berlin_addons_private_note"><?php echo esc_html($private_note) ?></textarea>
         <br />
     </div>
     <?php
@@ -483,6 +499,17 @@ function aa_berlin_addons_save_metaboxes_postdata($post_id, $a=1, $b=2) {
             $post_id,
             'aa_berlin_addons_password_page_html',
             $password_html
+        );
+    }
+
+    if (array_key_exists('aa_berlin_addons_private_note', $_POST)) {
+        $private_note = $_POST['aa_berlin_addons_private_note'];
+        $private_note = trim(preg_replace('#<script.*script\s*?>#s', '', $private_note));
+
+        update_post_meta(
+            $post_id,
+            'aa_berlin_addons_private_note',
+            $private_note
         );
     }
 }
