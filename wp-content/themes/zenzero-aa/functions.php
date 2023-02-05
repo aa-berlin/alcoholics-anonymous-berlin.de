@@ -199,5 +199,9 @@ function zenzero_aa_filter_gettext($translated, $original = null, $domain = null
 }
 
 function zenzero_aa_theme_mod_copyright($text) {
+    if (!is_string($text)) {
+        return $text;
+    }
+
     return preg_replace('#\d+#', '2007 - ' . date('Y'), $text, 1);
 }
