@@ -115,6 +115,8 @@ if (function_exists('tsml_custom_types')) {
         'NOX' => 'No Wheelchair Access',
         // antonym of official DF
         'NODF' => 'No Dogs Allowed',
+        // TR is already in use for Tradition Study
+        'TUR' => 'Turkish',
     ]);
 }
 
